@@ -1,13 +1,8 @@
 {
-  "itemGroup.projectbiohazard": "Example Mod Tab",
-  "block.projectbiohazard.example_block": "Example Block",
-  "item.projectbiohazard.example_item": "Example Item",
+  "creativetab.projectbiohazard.project_biohazard": "Project Biohazard",
 
-  "projectbiohazard.configuration.title": "Project Biohazard Configs",
-  "projectbiohazard.configuration.section.projectbiohazard.common.toml": "Project Biohazard Configs",
-  "projectbiohazard.configuration.section.projectbiohazard.common.toml.title": "Project Biohazard Configs",
-  "projectbiohazard.configuration.items": "Item List",
-  "projectbiohazard.configuration.logDirtBlock": "Log Dirt Block",
-  "projectbiohazard.configuration.magicNumberIntroduction": "Magic Number Text",
-  "projectbiohazard.configuration.magicNumber": "Magic Number"
+  "item.projectbiohazard.umbrella_insignia": "Umbrella Insignia",
+  "item.projectbiohazard.umbrella_badge": "Umbrella Badge",
+
+  "item.projectbiohazard.trona": "Trona"
 }

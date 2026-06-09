@@ -1,5 +1,7 @@
 package net.darkhood135.projectbiohazard;
 
+import net.darkhood135.projectbiohazard.creativetab.ModCreativeModeTabs;
+import net.darkhood135.projectbiohazard.item.ModItems;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -43,6 +45,10 @@ public class ProjectBiohazard {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
+        ModCreativeModeTabs.register(modEventBus);
+
+        ModItems.register(modEventBus);
+
         NeoForge.EVENT_BUS.register(this);
 
         // Register the item to a creative tab
@@ -59,7 +65,9 @@ public class ProjectBiohazard {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.TRONA);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
