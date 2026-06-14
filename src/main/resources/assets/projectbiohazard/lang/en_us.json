@@ -12,8 +12,28 @@
   "item.projectbiohazard.blue_herb": "Blue Herb",
   "item.projectbiohazard.yellow_herb": "Yellow Herb",
 
+  "tooltip.projectbiohazard.green_herb": "§7Restores a small amount of health.",
+  "tooltip.projectbiohazard.red_herb": "§7Amplifies effects when combined with another herb.",
+  "tooltip.projectbiohazard.blue_herb": "§7Treats small to moderate doses of several poisons.",
+  "tooltip.projectbiohazard.yellow_herb": "§7Increases maximum health.",
+
+  "item.projectbiohazard.boron_shard": "Boron Shard",
+
   "block.projectbiohazard.trona_ore": "Trona Ore",
+  "block.projectbiohazard.sandstone_trona_ore": "Sandstone Trona Ore",
+  "block.projectbiohazard.red_sandstone_trona_ore": "Red Sandstone Trona Ore",
   "block.projectbiohazard.trona_block": "Trona Block",
   "block.projectbiohazard.deactivated_redstone_block": "Deactivated Block of Redstone",
+
+  "block.projectbiohazard.undead_planks": "Undead Planks",
+  "block.projectbiohazard.undead_stairs": "Undead Stairs",
+  "block.projectbiohazard.undead_slab": "Undead Slab",
+  "block.projectbiohazard.undead_button": "Undead Button",
+  "block.projectbiohazard.undead_pressure_plate": "Undead Pressure Plate",
+  "block.projectbiohazard.undead_fence": "Undead Fence",
+  "block.projectbiohazard.undead_fence_gate": "Undead Fence Gate",
+  "block.projectbiohazard.undead_door": "Undead Door",
+  "block.projectbiohazard.undead_trapdoor": "Undead Trapdoor",
+
   "block.projectbiohazard.flesh_block": "Block of Flesh"
 }

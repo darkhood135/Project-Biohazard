@@ -20,13 +20,64 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider registries) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.TRONA_ORE.get())
+                .add(ModBlocks.SANDSTONE_TRONA_ORE.get())
+                .add(ModBlocks.RED_SANDSTONE_TRONA_ORE.get())
                 .add(ModBlocks.TRONA_BLOCK.get())
                 .add(ModBlocks.DEACTIVATED_REDSTONE_BLOCK.get());
 
         tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(ModBlocks.FLESH_BLOCK.get());
 
+        tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(ModBlocks.UNDEAD_PLANKS.get())
+                .add(ModBlocks.UNDEAD_STAIRS.get())
+                .add(ModBlocks.UNDEAD_SLAB.get())
+                .add(ModBlocks.UNDEAD_BUTTON.get())
+                .add(ModBlocks.UNDEAD_PRESSURE_PLATE.get())
+                .add(ModBlocks.UNDEAD_FENCE.get())
+                .add(ModBlocks.UNDEAD_FENCE_GATE.get())
+                .add(ModBlocks.UNDEAD_DOOR.get())
+                .add(ModBlocks.UNDEAD_TRAPDOOR.get());
+
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.TRONA_ORE.get());
+
+        tag(BlockTags.WOODEN_STAIRS)
+                .add(ModBlocks.UNDEAD_STAIRS.get());
+        tag(BlockTags.STAIRS)
+                .add(ModBlocks.UNDEAD_STAIRS.get());
+
+        tag(BlockTags.WOODEN_SLABS)
+                .add(ModBlocks.UNDEAD_SLAB.get());
+        tag(BlockTags.SLABS)
+                .add(ModBlocks.UNDEAD_SLAB.get());
+
+        tag(BlockTags.WOODEN_PRESSURE_PLATES)
+                .add(ModBlocks.UNDEAD_PRESSURE_PLATE.get());
+        tag(BlockTags.PRESSURE_PLATES)
+                .add(ModBlocks.UNDEAD_PRESSURE_PLATE.get());
+
+        tag(BlockTags.WOODEN_BUTTONS)
+                .add(ModBlocks.UNDEAD_BUTTON.get());
+        tag(BlockTags.BUTTONS)
+                .add(ModBlocks.UNDEAD_BUTTON.get());
+
+        tag(BlockTags.WOODEN_FENCES)
+                .add(ModBlocks.UNDEAD_FENCE.get());
+        tag(BlockTags.FENCES)
+                .add(ModBlocks.UNDEAD_FENCE.get());
+
+        tag(BlockTags.FENCE_GATES)
+                .add(ModBlocks.UNDEAD_FENCE_GATE.get());
+
+        tag(BlockTags.WOODEN_DOORS)
+                .add(ModBlocks.UNDEAD_DOOR.get());
+        tag(BlockTags.DOORS)
+                .add(ModBlocks.UNDEAD_DOOR.get());
+
+        tag(BlockTags.WOODEN_TRAPDOORS)
+                .add(ModBlocks.UNDEAD_TRAPDOOR.get());
+        tag(BlockTags.TRAPDOORS)
+                .add(ModBlocks.UNDEAD_TRAPDOOR.get());
     }
 }

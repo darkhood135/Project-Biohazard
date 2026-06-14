@@ -32,7 +32,16 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.RED_HERB);
                         output.accept(ModItems.YELLOW_HERB);
                         output.accept(ModItems.BLUE_HERB);
-
+                        output.accept(ModItems.BORON_SHARD);
+                        output.accept(ModBlocks.UNDEAD_PLANKS);
+                        output.accept(ModBlocks.UNDEAD_STAIRS);
+                        output.accept(ModBlocks.UNDEAD_SLAB);
+                        output.accept(ModBlocks.UNDEAD_PRESSURE_PLATE);
+                        output.accept(ModBlocks.UNDEAD_BUTTON);
+                        output.accept(ModBlocks.UNDEAD_FENCE);
+                        output.accept(ModBlocks.UNDEAD_FENCE_GATE);
+                        output.accept(ModBlocks.UNDEAD_DOOR);
+                        output.accept(ModBlocks.UNDEAD_TRAPDOOR);
                     })
                     .build());
 

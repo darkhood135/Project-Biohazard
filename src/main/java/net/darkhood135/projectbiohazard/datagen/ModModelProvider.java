@@ -7,6 +7,8 @@ import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.client.data.models.model.TextureMapping;
+import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.data.PackOutput;
 
 public class ModModelProvider extends ModelProvider {
@@ -26,11 +28,30 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.RED_HERB.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.BLUE_HERB.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.YELLOW_HERB.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.BORON_SHARD.get(), ModelTemplates.FLAT_ITEM);
 
         // Blocks
         blockModels.createTrivialCube(ModBlocks.TRONA_ORE.get());
+        blockModels.createTrivialBlock(
+                ModBlocks.SANDSTONE_TRONA_ORE.get(),
+                TexturedModel.createDefault(TextureMapping::cubeBottomTop, ModelTemplates.CUBE_BOTTOM_TOP)
+        );
+        blockModels.createTrivialBlock(
+                ModBlocks.RED_SANDSTONE_TRONA_ORE.get(),
+                TexturedModel.createDefault(TextureMapping::cubeBottomTop, ModelTemplates.CUBE_BOTTOM_TOP)
+        );
         blockModels.createTrivialCube(ModBlocks.TRONA_BLOCK.get());
         blockModels.createTrivialCube(ModBlocks.DEACTIVATED_REDSTONE_BLOCK.get());
         blockModels.createTrivialCube(ModBlocks.FLESH_BLOCK.get());
+
+        blockModels.family(ModBlocks.UNDEAD_PLANKS.get())
+                .stairs(ModBlocks.UNDEAD_STAIRS.get())
+                .slab(ModBlocks.UNDEAD_SLAB.get())
+                .button(ModBlocks.UNDEAD_BUTTON.get())
+                .pressurePlate(ModBlocks.UNDEAD_PRESSURE_PLATE.get())
+                .fence(ModBlocks.UNDEAD_FENCE.get())
+                .fenceGate(ModBlocks.UNDEAD_FENCE_GATE.get())
+                .door(ModBlocks.UNDEAD_DOOR.get())
+                .trapdoor(ModBlocks.UNDEAD_TRAPDOOR.get());
     }
 }

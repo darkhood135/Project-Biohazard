@@ -12,7 +12,7 @@ public class GreenHerbItem extends Item {
 
     @Override
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity entity) {
-        entity.heal(12f);
+        entity.heal(6f);
         return super.finishUsingItem(itemStack, level, entity);
     }
 }

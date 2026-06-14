@@ -36,9 +36,23 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         // dropSelf(ModBlocks.NAME_HERE.get());
         dropSelf(ModBlocks.FLESH_BLOCK.get());
 
+        dropSelf(ModBlocks.UNDEAD_PLANKS.get());
+        dropSelf(ModBlocks.UNDEAD_STAIRS.get());
+        dropSelf(ModBlocks.UNDEAD_PRESSURE_PLATE.get());
+        dropSelf(ModBlocks.UNDEAD_BUTTON.get());
+        add(ModBlocks.UNDEAD_SLAB.get(), this::createSlabItemTable);
+        dropSelf(ModBlocks.UNDEAD_FENCE.get());
+        dropSelf(ModBlocks.UNDEAD_FENCE_GATE.get());
+        dropSelf(ModBlocks.UNDEAD_TRAPDOOR.get());
+        add(ModBlocks.UNDEAD_DOOR.get(), this::createDoorTable);
+
         dropOther(ModBlocks.DEACTIVATED_REDSTONE_BLOCK.get(), Blocks.REDSTONE_BLOCK);
 
         add(ModBlocks.TRONA_ORE.get(),
+                block -> createMultipleOreDrops(block, ModItems.TRONA.get(), 3, 6));
+        add(ModBlocks.SANDSTONE_TRONA_ORE.get(),
+                block -> createMultipleOreDrops(block, ModItems.TRONA.get(), 3, 6));
+        add(ModBlocks.RED_SANDSTONE_TRONA_ORE.get(),
                 block -> createMultipleOreDrops(block, ModItems.TRONA.get(), 3, 6));
         add(ModBlocks.TRONA_BLOCK.get(),
                 block -> createMultipleDrops(block, ModItems.TRONA.get(), 6, 9));

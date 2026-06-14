@@ -45,6 +45,33 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requires(ModBlocks.TRONA_BLOCK)
                 .unlockedBy(getHasName(ModBlocks.TRONA_BLOCK.get()), has(ModBlocks.TRONA_BLOCK.get()))
                 .save(output, ProjectBiohazard.MOD_ID + ":" + "trona_from_block");
+
+        stairBuilder(ModBlocks.UNDEAD_STAIRS.get(), Ingredient.of(ModBlocks.UNDEAD_PLANKS))
+                .group("undead")
+                .unlockedBy(getHasName(ModBlocks.UNDEAD_PLANKS.get()), has(ModBlocks.UNDEAD_PLANKS.get()))
+                .save(output);
+        slab(RecipeCategory.BUILDING_BLOCKS, ModBlocks.UNDEAD_SLAB.get(), ModBlocks.UNDEAD_PLANKS.get());
+        buttonBuilder(ModBlocks.UNDEAD_BUTTON.get(), Ingredient.of(ModBlocks.UNDEAD_PLANKS.get()))
+                .group("undead")
+                .unlockedBy(getHasName(ModBlocks.UNDEAD_PLANKS.get()), has(ModBlocks.UNDEAD_PLANKS.get()))
+                .save(output);
+        pressurePlate(ModBlocks.UNDEAD_PRESSURE_PLATE.get(), ModBlocks.UNDEAD_PLANKS.get());
+        fenceBuilder(ModBlocks.UNDEAD_FENCE.get(), Ingredient.of(ModBlocks.UNDEAD_PLANKS.get()))
+                .group("undead")
+                .unlockedBy(getHasName(ModBlocks.UNDEAD_PLANKS.get()), has(ModBlocks.UNDEAD_PLANKS.get()))
+                .save(output);
+        fenceGateBuilder(ModBlocks.UNDEAD_FENCE_GATE.get(), Ingredient.of(ModBlocks.UNDEAD_PLANKS.get()))
+                .group("undead")
+                .unlockedBy(getHasName(ModBlocks.UNDEAD_PLANKS.get()), has(ModBlocks.UNDEAD_PLANKS.get()))
+                .save(output);
+        doorBuilder(ModBlocks.UNDEAD_DOOR.get(), Ingredient.of(ModBlocks.UNDEAD_PLANKS.get()))
+                .group("undead")
+                .unlockedBy(getHasName(ModBlocks.UNDEAD_PLANKS.get()), has(ModBlocks.UNDEAD_PLANKS.get()))
+                .save(output);
+        trapdoorBuilder(ModBlocks.UNDEAD_TRAPDOOR.get(), Ingredient.of(ModBlocks.UNDEAD_PLANKS.get()))
+                .group("undead")
+                .unlockedBy(getHasName(ModBlocks.UNDEAD_PLANKS.get()), has(ModBlocks.UNDEAD_PLANKS.get()))
+                .save(output);
     }
 
     // Must overwrite all default methods to ensure that it still belongs to Project Biohazards' mod ID
