@@ -1,6 +1,7 @@
 package net.darkhood135.projectbiohazard.creativetab;
 
 import net.darkhood135.projectbiohazard.ProjectBiohazard;
+import net.darkhood135.projectbiohazard.block.ModBlocks;
 import net.darkhood135.projectbiohazard.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -23,6 +24,15 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.UMBRELLA_BADGE);
                         output.accept(ModItems.TRONA);
+                        output.accept(ModBlocks.TRONA_ORE);
+                        output.accept(ModBlocks.TRONA_BLOCK);
+                        output.accept(ModItems.EMF_VISUALIZER);
+                        output.accept(ModBlocks.FLESH_BLOCK);
+                        output.accept(ModItems.GREEN_HERB);
+                        output.accept(ModItems.RED_HERB);
+                        output.accept(ModItems.YELLOW_HERB);
+                        output.accept(ModItems.BLUE_HERB);
+
                     })
                     .build());
 

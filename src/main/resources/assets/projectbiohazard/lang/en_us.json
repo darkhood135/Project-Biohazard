@@ -4,5 +4,16 @@
   "item.projectbiohazard.umbrella_insignia": "Umbrella Insignia",
   "item.projectbiohazard.umbrella_badge": "Umbrella Badge",
 
-  "item.projectbiohazard.trona": "Trona"
+  "item.projectbiohazard.emf_visualizer": "EMF Visualizer",
+  "item.projectbiohazard.trona": "Trona",
+
+  "item.projectbiohazard.green_herb": "Green Herb",
+  "item.projectbiohazard.red_herb": "Red Herb",
+  "item.projectbiohazard.blue_herb": "Blue Herb",
+  "item.projectbiohazard.yellow_herb": "Yellow Herb",
+
+  "block.projectbiohazard.trona_ore": "Trona Ore",
+  "block.projectbiohazard.trona_block": "Trona Block",
+  "block.projectbiohazard.deactivated_redstone_block": "Deactivated Block of Redstone",
+  "block.projectbiohazard.flesh_block": "Block of Flesh"
 }

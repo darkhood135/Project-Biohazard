@@ -1,5 +1,6 @@
 package net.darkhood135.projectbiohazard;
 
+import net.darkhood135.projectbiohazard.block.ModBlocks;
 import net.darkhood135.projectbiohazard.creativetab.ModCreativeModeTabs;
 import net.darkhood135.projectbiohazard.item.ModItems;
 import org.slf4j.Logger;
@@ -48,6 +49,7 @@ public class ProjectBiohazard {
         ModCreativeModeTabs.register(modEventBus);
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
 
