@@ -1,0 +1,90 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "minecraft:custom_model_data",
+    "index": 0,
+    "cases": [
+      {
+        "when": "gg",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_gg" }
+      },
+      {
+        "when": "gr",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_gr" }
+      },
+      {
+        "when": "gy",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_gy" }
+      },
+      {
+        "when": "gb",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_gb" }
+      },
+      {
+        "when": "ry",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_ry" }
+      },
+      {
+        "when": "rb",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_rb" }
+      },
+      {
+        "when": "yy",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_yy" }
+      },
+      {
+        "when": "yb",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_yb" }
+      },
+      {
+        "when": "ggg",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_ggg" }
+      },
+      {
+        "when": "ggr",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_ggr" }
+      },
+      {
+        "when": "ggy",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_ggy" }
+      },
+      {
+        "when": "ggb",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_ggb" }
+      },
+      {
+        "when": "gry",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_gry" }
+      },
+      {
+        "when": "grb",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_grb" }
+      },
+      {
+        "when": "gyy",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_gyy" }
+      },
+      {
+        "when": "gyb",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_gyb" }
+      },
+      {
+        "when": "ryy",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_ryy" }
+      },
+      {
+        "when": "ryb",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_ryb" }
+      },
+      {
+        "when": "yyy",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_yyy" }
+      },
+      {
+        "when": "yyb",
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/vial_yyb" }
+      }
+    ],
+    "fallback": { "type": "minecraft:model", "model": "projectbiohazard:item/glass_vial" }
+  }
+}

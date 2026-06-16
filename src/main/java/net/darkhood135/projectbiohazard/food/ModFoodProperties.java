@@ -13,8 +13,16 @@ public class ModFoodProperties {
             .nutrition(1)
             .saturationModifier(0.6f)
             .build();
+    public static final FoodProperties HERB_VIAL = new FoodProperties.Builder()
+            .alwaysEdible()
+            .nutrition(2)
+            .saturationModifier(1.2f)
+            .build();
 
     public static final Consumable BASIC_HERB_EFFECT = Consumables
             .defaultFood().consumeSeconds(0.4f)
+            .build();
+    public static final Consumable BASIC_VIAL_EFFECT = Consumables
+            .defaultDrink().consumeSeconds(0.6f)
             .build();
 }

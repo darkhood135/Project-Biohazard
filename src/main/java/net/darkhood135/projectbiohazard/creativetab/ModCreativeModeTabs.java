@@ -26,6 +26,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.TRONA);
                         output.accept(ModBlocks.TRONA_ORE);
                         output.accept(ModBlocks.TRONA_BLOCK);
+                        output.accept(ModItems.SODA_ASH);
+                        output.accept(ModItems.BAUXITE);
+                        output.accept(ModBlocks.BAUXITE_ORE);
+                        output.accept(ModBlocks.DEEPSLATE_BAUXITE_ORE);
+                        output.accept(ModItems.ALUMINUM_INGOT);
                         output.accept(ModItems.EMF_VISUALIZER);
                         output.accept(ModBlocks.FLESH_BLOCK);
                         output.accept(ModItems.GREEN_HERB);
@@ -42,6 +47,9 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.UNDEAD_FENCE_GATE);
                         output.accept(ModBlocks.UNDEAD_DOOR);
                         output.accept(ModBlocks.UNDEAD_TRAPDOOR);
+                        output.accept(ModBlocks.BOROSILICATE_GLASS);
+                        output.accept(ModBlocks.BOROSILICATE_GLASS_PANE);
+                        output.accept(ModItems.GLASS_VIAL);
                     })
                     .build());
 

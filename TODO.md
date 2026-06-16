@@ -2,11 +2,34 @@
 
 A running list of things to build, fix, or revisit. Newest priorities near the top.
 
-## Now / Next
-- Continue course lessons and keep adding core content (items, blocks, mechanics).
+## Now / Next — Herb Vial system (in progress)
+
+**Done so far:**
+- `HERB_VIAL_COMBINATION` data component (String, canonical sorted key e.g. "gyb").
+- `Herb` enum inside `VialItem` (key char, `unique` flag, translation key; `parse`/`toKey`/`fromKey`).
+- Dynamic `getName` + `appendHoverText` tooltip (reads the component; guard on `!isEmpty()`, not null).
+- Texture system: **Option A** chosen — one texture per *mixture* (20 total: 8 two-herb + 12 three-herb),
+  build-order ignored. Sorted keys stay simple. Two-component design:
+  `herb_vial_combination` (gameplay/name/tooltip) + `custom_model_data` (texture select), kept in sync.
+- `items/glass_vial.json` uses `minecraft:select` on `custom_model_data` strings. Do NOT point it at
+  the custom component — no built-in select property reads arbitrary components.
+
+**Next steps (in order):**
+1. **Crafting recipes — automate via datagen.** Write a loop in `ModRecipeProvider` that enumerates all
+   legal mixtures (size 2-3, Red<=1, Blue<=1) and emits shapeless recipes: empty vial + N herbs -> filled
+   vial, AND 2-herb vial + 1 herb -> 3-herb vial. The recipe output must set BOTH components from one
+   `toKey` result (gameplay key + matching custom_model_data) so texture/name stay in sync.
+   - Consider whether a single custom dynamic `CraftingRecipe` (like SuspiciousStewRecipe) is cleaner than
+     N generated static recipes — revisit the trade-off when we start.
+2. **Drinkable effects.** Vial becomes consumable; drinking applies effects based on the herbs inside
+   (parse the component -> List<Herb> -> apply per-herb effects). Reuse the `finishUsingItem` + server-guard
+   pattern from `GreenHerbItem`. No more 1-herb vials, so every vial is a 2-3 herb blend.
 
 ## Backlog
-- _(add as they come up)_
+- Optional polish: collapse the two-component design to one via a custom `SelectItemModelProperty`
+  that reads `herb_vial_combination` directly (removes the custom_model_data redundancy). Advanced; later.
+- Optional: per-herb `ChatFormatting` colors on the tooltip names.
+- Build-order-realism textures (Option B, 34 textures) if ever wanted — additive, not a rewrite.
 
 ## Parked — revisit later
 

@@ -6,23 +6,39 @@
 
   "item.projectbiohazard.emf_visualizer": "EMF Visualizer",
   "item.projectbiohazard.trona": "Trona",
+  "item.projectbiohazard.soda_ash": "Soda Ash",
+  "item.projectbiohazard.bauxite": "Bauxite",
+  "item.projectbiohazard.aluminum_ingot": "Aluminum Ingot",
 
   "item.projectbiohazard.green_herb": "Green Herb",
+  "herb.projectbiohazard.green": "§2§oGreen",
   "item.projectbiohazard.red_herb": "Red Herb",
+  "herb.projectbiohazard.red": "§4§oRed",
   "item.projectbiohazard.blue_herb": "Blue Herb",
+  "herb.projectbiohazard.blue": "§9§oBlue",
   "item.projectbiohazard.yellow_herb": "Yellow Herb",
+  "herb.projectbiohazard.yellow": "§6§oYellow",
 
   "tooltip.projectbiohazard.green_herb": "§7Restores a small amount of health.",
   "tooltip.projectbiohazard.red_herb": "§7Amplifies effects when combined with another herb.",
   "tooltip.projectbiohazard.blue_herb": "§7Treats small to moderate doses of several poisons.",
   "tooltip.projectbiohazard.yellow_herb": "§7Increases maximum health.",
 
+  "key.projectbiohazard.reload_key": "Reload Weapon",
+
   "item.projectbiohazard.boron_shard": "Boron Shard",
+
+  "item.projectbiohazard.glass_vial": "Glass Vial",
+  "item.projectbiohazard.herb_vial": "Vial of Herbs",
 
   "block.projectbiohazard.trona_ore": "Trona Ore",
   "block.projectbiohazard.sandstone_trona_ore": "Sandstone Trona Ore",
   "block.projectbiohazard.red_sandstone_trona_ore": "Red Sandstone Trona Ore",
   "block.projectbiohazard.trona_block": "Trona Block",
+
+  "block.projectbiohazard.bauxite_ore": "Bauxite Ore",
+  "block.projectbiohazard.deepslate_bauxite_ore": "Deepslate Bauxite Ore",
+
   "block.projectbiohazard.deactivated_redstone_block": "Deactivated Block of Redstone",
 
   "block.projectbiohazard.undead_planks": "Undead Planks",
@@ -34,6 +50,9 @@
   "block.projectbiohazard.undead_fence_gate": "Undead Fence Gate",
   "block.projectbiohazard.undead_door": "Undead Door",
   "block.projectbiohazard.undead_trapdoor": "Undead Trapdoor",
+
+  "block.projectbiohazard.borosilicate_glass": "Borosilicate Glass",
+  "block.projectbiohazard.borosilicate_glass_pane": "Borosilicate Glass Pane",
 
   "block.projectbiohazard.flesh_block": "Block of Flesh"
 }

@@ -1,10 +1,9 @@
 package net.darkhood135.projectbiohazard.item;
 
 import net.darkhood135.projectbiohazard.ProjectBiohazard;
+import net.darkhood135.projectbiohazard.component.ModDataComponentTypes;
 import net.darkhood135.projectbiohazard.food.ModFoodProperties;
-import net.darkhood135.projectbiohazard.item.custom.BlueHerbItem;
-import net.darkhood135.projectbiohazard.item.custom.EMFItem;
-import net.darkhood135.projectbiohazard.item.custom.GreenHerbItem;
+import net.darkhood135.projectbiohazard.item.custom.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -23,6 +22,15 @@ public class ModItems {
             properties -> properties);
     public static final DeferredItem<Item> TRONA = ITEMS.registerSimpleItem("trona",
             properties -> properties);
+    public static final DeferredItem<Item> SODA_ASH = ITEMS.registerSimpleItem("soda_ash",
+            properties -> properties);
+    public static final DeferredItem<Item> BAUXITE = ITEMS.registerSimpleItem("bauxite",
+            properties -> properties);
+    public static final DeferredItem<Item> ALUMINUM_INGOT = ITEMS.registerSimpleItem("aluminum_ingot",
+            properties -> properties);
+
+    public static final DeferredItem<Item> GLASS_VIAL = ITEMS.registerItem("glass_vial",
+            properties -> new VialItem(properties.food(ModFoodProperties.HERB_VIAL, ModFoodProperties.BASIC_VIAL_EFFECT).component(ModDataComponentTypes.HERB_VIAL_COMBINATION.get(), "")));
 
     public static final DeferredItem<Item> EMF_VISUALIZER = ITEMS.registerItem("emf_visualizer",
             properties -> new EMFItem(properties.durability(32)));
@@ -33,7 +41,7 @@ public class ModItems {
 
     // Foods
     public static final DeferredItem<Item> GREEN_HERB = ITEMS.registerItem("green_herb",
-            properties -> new GreenHerbItem(properties.food(ModFoodProperties.HERB, ModFoodProperties.BASIC_HERB_EFFECT)) {
+            properties -> new HerbItem(properties.food(ModFoodProperties.HERB, ModFoodProperties.BASIC_HERB_EFFECT)) {
                 @Override
                 public void appendHoverText(ItemStack itemStack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
                     builder.accept(Component.translatable("tooltip.projectbiohazard.green_herb"));
@@ -50,7 +58,7 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<Item> BLUE_HERB = ITEMS.registerItem("blue_herb",
-            properties -> new BlueHerbItem(properties.food(ModFoodProperties.HERB, ModFoodProperties.BASIC_HERB_EFFECT)){
+            properties -> new HerbItem(properties.food(ModFoodProperties.HERB, ModFoodProperties.BASIC_HERB_EFFECT)){
                 @Override
                 public void appendHoverText(ItemStack itemStack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
                     builder.accept(Component.translatable("tooltip.projectbiohazard.blue_herb"));
@@ -58,7 +66,7 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<Item> YELLOW_HERB = ITEMS.registerItem("yellow_herb",
-            properties -> new Item(properties.food(ModFoodProperties.HERB, ModFoodProperties.BASIC_HERB_EFFECT))
+            properties -> new HerbItem(properties.food(ModFoodProperties.HERB, ModFoodProperties.BASIC_HERB_EFFECT))
             {
                 @Override
                 public void appendHoverText(ItemStack itemStack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {

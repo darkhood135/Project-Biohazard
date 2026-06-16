@@ -8,6 +8,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
@@ -115,6 +116,21 @@ public class ModBlocks {
                     .sound(SoundType.DECORATED_POT)
                     .strength(1f)
             ));
+
+    public static final DeferredBlock<Block> BAUXITE_ORE = registerBlock("bauxite_ore",
+            properties -> new Block(properties
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)
+                    .strength(3f)
+            ));
+
+    public static final DeferredBlock<Block> DEEPSLATE_BAUXITE_ORE = registerBlock("deepslate_bauxite_ore",
+            properties -> new Block(properties
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.DEEPSLATE)
+                    .strength(4.5f)
+            ));
+
     public static final DeferredBlock<Block> DEACTIVATED_REDSTONE_BLOCK = registerBlock("deactivated_redstone_block",
             properties -> new Block(properties
                     .requiresCorrectToolForDrops()
@@ -126,6 +142,26 @@ public class ModBlocks {
             properties -> new FleshBlock(properties
                     .sound(SoundType.MUD)
                     .strength(1f)
+            ));
+
+    public static final DeferredBlock<Block> BOROSILICATE_GLASS = registerBlock("borosilicate_glass",
+            properties -> new TransparentBlock(properties
+                    .instrument(NoteBlockInstrument.HAT)
+                    .strength(5F, 10f)
+                    .sound(SoundType.GLASS)
+                    .noOcclusion()
+                    .isValidSpawn(Blocks::never)
+                    .isRedstoneConductor((state, level, pos) -> false)
+                    .isSuffocating((state, level, pos) -> false)
+                    .isViewBlocking((state, level, pos) -> false)
+            ));
+
+    public static final DeferredBlock<Block> BOROSILICATE_GLASS_PANE = registerBlock("borosilicate_glass_pane",
+            properties -> new IronBarsBlock(properties
+                    .instrument(NoteBlockInstrument.HAT)
+                    .strength(5F, 10f)
+                    .sound(SoundType.GLASS)
+                    .noOcclusion()
             ));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> function) {

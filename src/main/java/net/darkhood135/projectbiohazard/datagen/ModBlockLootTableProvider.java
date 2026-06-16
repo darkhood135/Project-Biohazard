@@ -45,8 +45,12 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.UNDEAD_FENCE_GATE.get());
         dropSelf(ModBlocks.UNDEAD_TRAPDOOR.get());
         add(ModBlocks.UNDEAD_DOOR.get(), this::createDoorTable);
-
         dropOther(ModBlocks.DEACTIVATED_REDSTONE_BLOCK.get(), Blocks.REDSTONE_BLOCK);
+
+        add(ModBlocks.BAUXITE_ORE.get(),
+                block -> createOreDrop(block, ModItems.BAUXITE.get()));
+        add(ModBlocks.DEEPSLATE_BAUXITE_ORE.get(),
+                block -> createOreDrop(block, ModItems.BAUXITE.get()));
 
         add(ModBlocks.TRONA_ORE.get(),
                 block -> createMultipleOreDrops(block, ModItems.TRONA.get(), 3, 6));
@@ -56,6 +60,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 block -> createMultipleOreDrops(block, ModItems.TRONA.get(), 3, 6));
         add(ModBlocks.TRONA_BLOCK.get(),
                 block -> createMultipleDrops(block, ModItems.TRONA.get(), 6, 9));
+
+        add(ModBlocks.BOROSILICATE_GLASS.get(), this::createSilkTouchOnlyTable);
+        add(ModBlocks.BOROSILICATE_GLASS_PANE.get(), this::createSilkTouchOnlyTable);
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block pBlock, Item item, float minDrops, float maxDrops) {

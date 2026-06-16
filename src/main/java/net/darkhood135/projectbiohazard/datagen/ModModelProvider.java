@@ -9,11 +9,22 @@ import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TexturedModel;
+import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.Item;
+import org.jspecify.annotations.NonNull;
+
+import java.util.stream.Stream;
 
 public class ModModelProvider extends ModelProvider {
     public ModModelProvider(PackOutput output) {
         super(output, ProjectBiohazard.MOD_ID);
+    }
+
+    @Override
+    protected @NonNull Stream<? extends Holder<Item>> getKnownItems() {
+        return super.getKnownItems()
+                .filter(holder -> holder.value() != ModItems.GLASS_VIAL.get());
     }
 
     @Override
@@ -29,9 +40,14 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.BLUE_HERB.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.YELLOW_HERB.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.BORON_SHARD.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.SODA_ASH.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.BAUXITE.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.ALUMINUM_INGOT.get(), ModelTemplates.FLAT_ITEM);
 
         // Blocks
         blockModels.createTrivialCube(ModBlocks.TRONA_ORE.get());
+        blockModels.createTrivialCube(ModBlocks.BAUXITE_ORE.get());
+        blockModels.createTrivialCube(ModBlocks.DEEPSLATE_BAUXITE_ORE.get());
         blockModels.createTrivialBlock(
                 ModBlocks.SANDSTONE_TRONA_ORE.get(),
                 TexturedModel.createDefault(TextureMapping::cubeBottomTop, ModelTemplates.CUBE_BOTTOM_TOP)
@@ -43,6 +59,8 @@ public class ModModelProvider extends ModelProvider {
         blockModels.createTrivialCube(ModBlocks.TRONA_BLOCK.get());
         blockModels.createTrivialCube(ModBlocks.DEACTIVATED_REDSTONE_BLOCK.get());
         blockModels.createTrivialCube(ModBlocks.FLESH_BLOCK.get());
+
+        blockModels.createGlassBlocks(ModBlocks.BOROSILICATE_GLASS.get(), ModBlocks.BOROSILICATE_GLASS_PANE.get());
 
         blockModels.family(ModBlocks.UNDEAD_PLANKS.get())
                 .stairs(ModBlocks.UNDEAD_STAIRS.get())

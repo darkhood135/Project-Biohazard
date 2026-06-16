@@ -23,7 +23,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.SANDSTONE_TRONA_ORE.get())
                 .add(ModBlocks.RED_SANDSTONE_TRONA_ORE.get())
                 .add(ModBlocks.TRONA_BLOCK.get())
-                .add(ModBlocks.DEACTIVATED_REDSTONE_BLOCK.get());
+                .add(ModBlocks.DEACTIVATED_REDSTONE_BLOCK.get())
+                .add(ModBlocks.BAUXITE_ORE.get())
+                .add(ModBlocks.DEEPSLATE_BAUXITE_ORE.get());
 
         tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(ModBlocks.FLESH_BLOCK.get());
@@ -41,6 +43,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.TRONA_ORE.get());
+
+        tag(BlockTags.NEEDS_IRON_TOOL)
+                .add(ModBlocks.BAUXITE_ORE.get())
+                .add(ModBlocks.DEEPSLATE_BAUXITE_ORE.get());
 
         tag(BlockTags.WOODEN_STAIRS)
                 .add(ModBlocks.UNDEAD_STAIRS.get());
