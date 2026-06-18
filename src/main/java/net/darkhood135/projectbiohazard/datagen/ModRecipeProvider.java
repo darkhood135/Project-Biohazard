@@ -218,6 +218,53 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(output);
 
         wall(RecipeCategory.BUILDING_BLOCKS, ModBlocks.BOROSILICATE_GLASS_PANE.get(), ModBlocks.BOROSILICATE_GLASS.get());
+
+        // Aluminum Tools
+        shaped(RecipeCategory.COMBAT, ModItems.ALUMINUM_SWORD.get())
+                .pattern("Z")
+                .pattern("Z")
+                .pattern("S")
+                .define('Z', ModItems.ALUMINUM_INGOT.get())
+                .define('S', Items.STICK)
+                .group("aluminum")
+                .unlockedBy(getHasName(ModItems.ALUMINUM_INGOT.get()), has(ModItems.ALUMINUM_INGOT.get()))
+                .save(output);
+        shaped(RecipeCategory.TOOLS, ModItems.ALUMINUM_PICKAXE.get())
+                .pattern("ZZZ")
+                .pattern(" S ")
+                .pattern(" S ")
+                .define('Z', ModItems.ALUMINUM_INGOT.get())
+                .define('S', Items.STICK)
+                .group("aluminum")
+                .unlockedBy(getHasName(ModItems.ALUMINUM_INGOT.get()), has(ModItems.ALUMINUM_INGOT.get()))
+                .save(output);
+        shaped(RecipeCategory.TOOLS, ModItems.ALUMINUM_SHOVEL.get())
+                .pattern("Z")
+                .pattern("S")
+                .pattern("S")
+                .define('Z', ModItems.ALUMINUM_INGOT.get())
+                .define('S', Items.STICK)
+                .group("aluminum")
+                .unlockedBy(getHasName(ModItems.ALUMINUM_INGOT.get()), has(ModItems.ALUMINUM_INGOT.get()))
+                .save(output);
+        shaped(RecipeCategory.TOOLS, ModItems.ALUMINUM_AXE.get())
+                .pattern("ZZ")
+                .pattern("ZS")
+                .pattern(" S")
+                .define('Z', ModItems.ALUMINUM_INGOT.get())
+                .define('S', Items.STICK)
+                .group("aluminum")
+                .unlockedBy(getHasName(ModItems.ALUMINUM_INGOT.get()), has(ModItems.ALUMINUM_INGOT.get()))
+                .save(output);
+        shaped(RecipeCategory.TOOLS, ModItems.ALUMINUM_HOE.get())
+                .pattern("ZZ")
+                .pattern(" S")
+                .pattern(" S")
+                .define('Z', ModItems.ALUMINUM_INGOT.get())
+                .define('S', Items.STICK)
+                .group("aluminum")
+                .unlockedBy(getHasName(ModItems.ALUMINUM_INGOT.get()), has(ModItems.ALUMINUM_INGOT.get()))
+                .save(output);
     }
 
     // Must overwrite all default methods to ensure that it still belongs to Project Biohazards' mod ID

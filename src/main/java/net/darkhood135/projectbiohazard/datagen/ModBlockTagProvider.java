@@ -3,6 +3,7 @@ package net.darkhood135.projectbiohazard.datagen;
 import com.jcraft.jorbis.Block;
 import net.darkhood135.projectbiohazard.ProjectBiohazard;
 import net.darkhood135.projectbiohazard.block.ModBlocks;
+import net.darkhood135.projectbiohazard.tag.ModTags;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -85,5 +86,14 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.UNDEAD_TRAPDOOR.get());
         tag(BlockTags.TRAPDOORS)
                 .add(ModBlocks.UNDEAD_TRAPDOOR.get());
+
+        tag(ModTags.Blocks.NEEDS_ALUMINUM_TOOL)
+                .addTag(BlockTags.NEEDS_IRON_TOOL);
+        tag(ModTags.Blocks.INCORRECT_FOR_ALUMINUM_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
+                .remove(ModTags.Blocks.NEEDS_ALUMINUM_TOOL);
+
+        tag(ModTags.Blocks.HATCHET_MINEABLE)
+                .addTag(BlockTags.SWORD_EFFICIENT);
     }
 }

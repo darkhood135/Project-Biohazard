@@ -17,7 +17,6 @@ public class ModAttachmentTypes {
     public static final Supplier<AttachmentType<Integer>> YELLOW_HERB_HP = ATTACHMENT_TYPES.register("yellow_herb_hp",
             () -> AttachmentType.<Integer>builder(() -> 0).sync(ByteBufCodecs.INT).serialize(Codec.INT.fieldOf("yellow_herb_hp")).copyOnDeath().build());
 
-
     public static void register(IEventBus eventBus) {
         ATTACHMENT_TYPES.register(eventBus);
     }

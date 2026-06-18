@@ -2,28 +2,26 @@
 
 A running list of things to build, fix, or revisit. Newest priorities near the top.
 
-## Now / Next — Herb Vial system (in progress)
+## DONE — Herb Vial system (complete)
 
-**Done so far:**
-- `HERB_VIAL_COMBINATION` data component (String, canonical sorted key e.g. "gyb").
-- `Herb` enum inside `VialItem` (key char, `unique` flag, translation key; `parse`/`toKey`/`fromKey`).
-- Dynamic `getName` + `appendHoverText` tooltip (reads the component; guard on `!isEmpty()`, not null).
-- Texture system: **Option A** chosen — one texture per *mixture* (20 total: 8 two-herb + 12 three-herb),
-  build-order ignored. Sorted keys stay simple. Two-component design:
-  `herb_vial_combination` (gameplay/name/tooltip) + `custom_model_data` (texture select), kept in sync.
-- `items/glass_vial.json` uses `minecraft:select` on `custom_model_data` strings. Do NOT point it at
-  the custom component — no built-in select property reads arbitrary components.
+Full feature shipped: single `glass_vial` item + `HERB_VIAL_COMBINATION` string component + `Herb` enum;
+dynamic name/tooltip; 20 per-mixture textures via `minecraft:select` on `custom_model_data` (Option A);
+~46 auto-generated recipes (direct + incremental, `DataComponentIngredient` for the input vial,
+`ItemStackTemplate` + `DataComponentPatch` for component-bearing outputs); drinkable-only-when-filled via
+`use()` gate; combination effects resolved in `HerbEffects` (red = amplifier), shared by `HerbItem` and
+`VialItem` via composition (no inheritance). Reminder: `heal()` is in HEALTH POINTS (2 = 1 heart).
 
-**Next steps (in order):**
-1. **Crafting recipes — automate via datagen.** Write a loop in `ModRecipeProvider` that enumerates all
-   legal mixtures (size 2-3, Red<=1, Blue<=1) and emits shapeless recipes: empty vial + N herbs -> filled
-   vial, AND 2-herb vial + 1 herb -> 3-herb vial. The recipe output must set BOTH components from one
-   `toKey` result (gameplay key + matching custom_model_data) so texture/name stay in sync.
-   - Consider whether a single custom dynamic `CraftingRecipe` (like SuspiciousStewRecipe) is cleaner than
-     N generated static recipes — revisit the trade-off when we start.
-2. **Drinkable effects.** Vial becomes consumable; drinking applies effects based on the herbs inside
-   (parse the component -> List<Herb> -> apply per-herb effects). Reuse the `finishUsingItem` + server-guard
-   pattern from `GreenHerbItem`. No more 1-herb vials, so every vial is a 2-3 herb blend.
+## Now / Next — three goals (in order)
+
+1. **Immunity status effect** (the red+blue payoff). Register a custom `MobEffect` via a `DeferredRegister`
+   for `Registries.MOB_EFFECT`. Mechanic = while active, block/clear incoming harmful effects for the
+   duration. Then wire it into `HerbEffects.useBlueHerb(..., red=true)` where the TODO comment already sits.
+2. **Vial potions + brewing stand.** Vial variants that carry potion effects, brewed in a brewing stand.
+   Will involve brewing recipe registration (check NeoForge's brewing API in the jar) + a potion-carrying
+   vial representation. Bigger feature — may span multiple sittings.
+3. **Injections / syringes.** Use a vial-potion to craft a syringe; on hitting an entity with it, apply the
+   stored status effect for a long duration. Custom item with on-hit-entity behavior (`hurtEnemy` /
+   attack hook) that reads the stored effect and applies it. Depends on #2 (needs vial potions first).
 
 ## Backlog
 - Optional polish: collapse the two-component design to one via a custom `SelectItemModelProperty`

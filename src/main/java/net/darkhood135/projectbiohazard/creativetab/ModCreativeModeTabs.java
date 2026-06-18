@@ -33,6 +33,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.ALUMINUM_INGOT);
                         output.accept(ModItems.EMF_VISUALIZER);
                         output.accept(ModBlocks.FLESH_BLOCK);
+                        output.accept(ModItems.GLASS_VIAL);
                         output.accept(ModItems.GREEN_HERB);
                         output.accept(ModItems.RED_HERB);
                         output.accept(ModItems.YELLOW_HERB);
@@ -49,7 +50,21 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.UNDEAD_TRAPDOOR);
                         output.accept(ModBlocks.BOROSILICATE_GLASS);
                         output.accept(ModBlocks.BOROSILICATE_GLASS_PANE);
-                        output.accept(ModItems.GLASS_VIAL);
+
+                        output.accept(ModItems.WOODEN_HATCHET);
+                        output.accept(ModItems.STONE_HATCHET);
+                        output.accept(ModItems.COPPER_HATCHET);
+                        output.accept(ModItems.IRON_HATCHET);
+                        output.accept(ModItems.GOLDEN_HATCHET);
+                        output.accept(ModItems.DIAMOND_HATCHET);
+                        output.accept(ModItems.NETHERITE_HATCHET);
+
+                        output.accept(ModItems.ALUMINUM_SWORD);
+                        output.accept(ModItems.ALUMINUM_PICKAXE);
+                        output.accept(ModItems.ALUMINUM_AXE);
+                        output.accept(ModItems.ALUMINUM_SHOVEL);
+                        output.accept(ModItems.ALUMINUM_HOE);
+                        output.accept(ModItems.ALUMINUM_HATCHET);
                     })
                     .build());
 

@@ -3,6 +3,8 @@ package net.darkhood135.projectbiohazard.item.custom.effects;
 import net.darkhood135.projectbiohazard.Config;
 import net.darkhood135.projectbiohazard.ProjectBiohazard;
 import net.darkhood135.projectbiohazard.attachmenttype.ModAttachmentTypes;
+import net.darkhood135.projectbiohazard.effect.ModEffects;
+import net.darkhood135.projectbiohazard.effect.custom.ImmunityEffect;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -37,12 +39,7 @@ public class HerbEffects {
         player.removeEffect(MobEffects.HUNGER);
         player.removeEffect(MobEffects.NAUSEA);
         if (red) {
-            for (MobEffectInstance effect : List.copyOf(player.getActiveEffects())) {
-                if (effect.getEffect().value().getCategory() == MobEffectCategory.HARMFUL) {
-                    player.removeEffect(effect.getEffect());
-                }
-            }
-            // Grants immunity (for future implementation)
+            ImmunityEffect.applyImmunity(player, 600, 0);
         }
     }
 

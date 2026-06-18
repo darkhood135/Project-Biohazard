@@ -5,9 +5,7 @@ import net.darkhood135.projectbiohazard.component.ModDataComponentTypes;
 import net.darkhood135.projectbiohazard.food.ModFoodProperties;
 import net.darkhood135.projectbiohazard.item.custom.*;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -75,6 +73,37 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<Item> BORON_SHARD = ITEMS.registerItem("boron_shard", Item::new);
+
+    public static final DeferredItem<Item> ALUMINUM_SWORD = ITEMS.registerItem("aluminum_sword",
+            properties -> new Item(properties.sword(ModToolMaterials.ALUMINUM, 3f, -2.4f)));
+    public static final DeferredItem<Item> ALUMINUM_PICKAXE = ITEMS.registerItem("aluminum_pickaxe",
+            properties -> new Item(properties.pickaxe(ModToolMaterials.ALUMINUM, 1f, -2.8f)));
+    public static final DeferredItem<Item> ALUMINUM_SHOVEL = ITEMS.registerItem("aluminum_shovel",
+            properties -> new ShovelItem(ModToolMaterials.ALUMINUM, 1.5f, -3f, properties));
+    public static final DeferredItem<Item> ALUMINUM_AXE = ITEMS.registerItem("aluminum_axe",
+            properties -> new AxeItem(ModToolMaterials.ALUMINUM, 6f, -3.2f, properties));
+    public static final DeferredItem<Item> ALUMINUM_HOE = ITEMS.registerItem("aluminum_hoe",
+            properties -> new HoeItem(ModToolMaterials.ALUMINUM, 0f, -3f, properties));
+
+    // Hatchets
+    public static final DeferredItem<Item> ALUMINUM_HATCHET = ITEMS.registerItem("aluminum_hatchet",
+            properties -> new HatchetItem(ModToolMaterials.ALUMINUM, 2f, -1.5f, properties));
+    public static final DeferredItem<Item> WOODEN_HATCHET = ITEMS.registerItem("wooden_hatchet",
+            properties -> new HatchetItem(ToolMaterial.WOOD, 2f, -1.5f, properties));
+    public static final DeferredItem<Item> STONE_HATCHET = ITEMS.registerItem("stone_hatchet",
+            properties -> new HatchetItem(ToolMaterial.STONE, 2f, -1.5f, properties));
+    public static final DeferredItem<Item> COPPER_HATCHET = ITEMS.registerItem("copper_hatchet",
+            properties -> new HatchetItem(ToolMaterial.COPPER, 2f, -1.5f, properties));
+    public static final DeferredItem<Item> IRON_HATCHET = ITEMS.registerItem("iron_hatchet",
+            properties -> new HatchetItem(ToolMaterial.IRON, 2f, -1.5f, properties));
+    public static final DeferredItem<Item> GOLDEN_HATCHET = ITEMS.registerItem("golden_hatchet",
+            properties -> new HatchetItem(ToolMaterial.GOLD, 2f, -1.5f, properties));
+    public static final DeferredItem<Item> DIAMOND_HATCHET = ITEMS.registerItem("diamond_hatchet",
+            properties -> new HatchetItem(ToolMaterial.DIAMOND, 2f, -1.5f, properties));
+    public static final DeferredItem<Item> NETHERITE_HATCHET = ITEMS.registerItem("netherite_hatchet",
+            properties -> new HatchetItem(ToolMaterial.NETHERITE, 2f, -1.5f, properties));
+
+
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

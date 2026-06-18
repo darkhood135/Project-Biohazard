@@ -54,5 +54,26 @@
   "block.projectbiohazard.borosilicate_glass": "Borosilicate Glass",
   "block.projectbiohazard.borosilicate_glass_pane": "Borosilicate Glass Pane",
 
-  "block.projectbiohazard.flesh_block": "Block of Flesh"
+  "item.projectbiohazard.aluminum_sword": "Aluminum Sword",
+  "item.projectbiohazard.aluminum_pickaxe": "Aluminum Pickaxe",
+  "item.projectbiohazard.aluminum_shovel": "Aluminum Shovel",
+  "item.projectbiohazard.aluminum_axe": "Aluminum Axe",
+  "item.projectbiohazard.aluminum_hoe": "Aluminum Hoe",
+  "item.projectbiohazard.aluminum_hatchet": "Aluminum Hatchet",
+
+  "item.projectbiohazard.wooden_hatchet": "Wooden Hatchet",
+  "item.projectbiohazard.stone_hatchet": "Stone Hatchet",
+  "item.projectbiohazard.iron_hatchet": "Iron Hatchet",
+  "item.projectbiohazard.copper_hatchet": "Copper Hatchet",
+  "item.projectbiohazard.golden_hatchet": "Golden Hatchet",
+  "item.projectbiohazard.diamond_hatchet": "Diamond Hatchet",
+  "item.projectbiohazard.netherite_hatchet": "Netherite Hatchet",
+
+  "block.projectbiohazard.flesh_block": "Block of Flesh",
+
+  "effect.projectbiohazard.immunity": "Immunity",
+  "effect.projectbiohazard.immunity.description": "Provides immunity to all negative status effects",
+
+  "effect.projectbiohazard.adrenaline": "Adrenaline",
+  "effect.projectbiohazard.adrenaline.description": "Increases attack speed and critical damage"
 }

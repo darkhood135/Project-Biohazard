@@ -4,6 +4,7 @@ import net.darkhood135.projectbiohazard.attachmenttype.ModAttachmentTypes;
 import net.darkhood135.projectbiohazard.block.ModBlocks;
 import net.darkhood135.projectbiohazard.component.ModDataComponentTypes;
 import net.darkhood135.projectbiohazard.creativetab.ModCreativeModeTabs;
+import net.darkhood135.projectbiohazard.effect.ModEffects;
 import net.darkhood135.projectbiohazard.item.ModItems;
 import org.slf4j.Logger;
 
@@ -55,6 +56,8 @@ public class ProjectBiohazard {
 
         ModDataComponentTypes.register(modEventBus);
         ModAttachmentTypes.register(modEventBus);
+
+        ModEffects.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
 
