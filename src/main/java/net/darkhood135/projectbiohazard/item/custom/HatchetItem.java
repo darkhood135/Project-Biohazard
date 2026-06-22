@@ -1,8 +1,11 @@
 package net.darkhood135.projectbiohazard.item.custom;
 
+import net.darkhood135.projectbiohazard.ProjectBiohazard;
 import net.darkhood135.projectbiohazard.attachmenttype.ModAttachmentTypes;
 import net.darkhood135.projectbiohazard.item.ModItems;
 import net.darkhood135.projectbiohazard.tag.ModTags;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,15 +14,21 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.component.UseCooldown;
 import net.minecraft.world.level.Level;
+
+import java.util.Optional;
 
 public class HatchetItem extends Item {
 
     // Most Hatchet logic is handled by parry events (see ModEvents)
 
     public HatchetItem(ToolMaterial toolMaterial, float attackDamageBaseLine,
-            float attackSpeedBaseline, Properties properties) {
-        super(properties.tool(toolMaterial, ModTags.Blocks.HATCHET_MINEABLE, attackDamageBaseLine, attackSpeedBaseline, 0.5f));
+                       float attackSpeedBaseline, Properties properties) {
+        super(properties
+                .tool(toolMaterial, ModTags.Blocks.HATCHET_MINEABLE, attackDamageBaseLine, attackSpeedBaseline, 0.5f)
+                .component(DataComponents.USE_COOLDOWN, new UseCooldown(0f, Optional.of(
+                        Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "hatchet")))));
     }
 
     @Override

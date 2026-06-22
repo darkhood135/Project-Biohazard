@@ -18,6 +18,9 @@ public class ModFoodProperties {
             .nutrition(2)
             .saturationModifier(1.2f)
             .build();
+    public static final FoodProperties WATER_VIAL = new FoodProperties.Builder()
+            .alwaysEdible()
+            .build();
 
     public static final Consumable BASIC_HERB_EFFECT = Consumables
             .defaultFood().consumeSeconds(0.4f)

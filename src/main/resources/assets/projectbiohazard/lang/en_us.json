@@ -1,5 +1,6 @@
 {
   "creativetab.projectbiohazard.project_biohazard": "Project Biohazard",
+  "creativetab.projectbiohazard.vial_mixtures": "Vial Mixtures",
 
   "item.projectbiohazard.umbrella_insignia": "Umbrella Insignia",
   "item.projectbiohazard.umbrella_badge": "Umbrella Badge",
@@ -11,17 +12,17 @@
   "item.projectbiohazard.aluminum_ingot": "Aluminum Ingot",
 
   "item.projectbiohazard.green_herb": "Green Herb",
-  "herb.projectbiohazard.green": "§2§oGreen",
+  "herb.projectbiohazard.green": "§2Green",
   "item.projectbiohazard.red_herb": "Red Herb",
-  "herb.projectbiohazard.red": "§4§oRed",
+  "herb.projectbiohazard.red": "§4Red",
   "item.projectbiohazard.blue_herb": "Blue Herb",
-  "herb.projectbiohazard.blue": "§9§oBlue",
+  "herb.projectbiohazard.blue": "§9Blue",
   "item.projectbiohazard.yellow_herb": "Yellow Herb",
-  "herb.projectbiohazard.yellow": "§6§oYellow",
+  "herb.projectbiohazard.yellow": "§6Yellow",
 
-  "tooltip.projectbiohazard.green_herb": "§7Restores a small amount of health.",
-  "tooltip.projectbiohazard.red_herb": "§7Amplifies effects when combined with another herb.",
-  "tooltip.projectbiohazard.blue_herb": "§7Treats small to moderate doses of several poisons.",
+  "tooltip.projectbiohazard.green_herb": "§7Restores health.",
+  "tooltip.projectbiohazard.red_herb": "§7Amplifies effects of other herbs.",
+  "tooltip.projectbiohazard.blue_herb": "§7Treats small poisons.",
   "tooltip.projectbiohazard.yellow_herb": "§7Increases maximum health.",
 
   "key.projectbiohazard.reload_key": "Reload Weapon",
@@ -29,7 +30,36 @@
   "item.projectbiohazard.boron_shard": "Boron Shard",
 
   "item.projectbiohazard.glass_vial": "Glass Vial",
+  "item.projectbiohazard.honey_vial": "Honey Vial",
   "item.projectbiohazard.herb_vial": "Vial of Herbs",
+  "item.projectbiohazard.water_vial": "Water Vial",
+  "item.projectbiohazard.water_vial.effect.strength": "Vial of Strength",
+  "item.projectbiohazard.water_vial.effect.fire_resistance": "Vial of Fire Resistance",
+  "item.projectbiohazard.water_vial.effect.infested": "Vial of Infestation",
+  "item.projectbiohazard.water_vial.effect.turtle_master": "Vial of the Turtle Master",
+  "item.projectbiohazard.water_vial.effect.harming": "Vial of Harming",
+  "item.projectbiohazard.water_vial.effect.healing": "Vial of Healing",
+  "item.projectbiohazard.water_vial.effect.invisibility": "Vial of Invisibility",
+  "item.projectbiohazard.water_vial.effect.leaping": "Vial of Leaping",
+  "item.projectbiohazard.water_vial.effect.luck": "Vial of Luck",
+  "item.projectbiohazard.water_vial.effect.night_vision": "Vial of Night Vision",
+  "item.projectbiohazard.water_vial.effect.oozing": "Vial of Oozing",
+  "item.projectbiohazard.water_vial.effect.poison": "Vial of Poison",
+  "item.projectbiohazard.water_vial.effect.regeneration": "Vial of Regeneration",
+  "item.projectbiohazard.water_vial.effect.slowness": "Vial of Slowness",
+  "item.projectbiohazard.water_vial.effect.slow_falling": "Vial of Slow Falling",
+  "item.projectbiohazard.water_vial.effect.swiftness": "Vial of Swiftness",
+  "item.projectbiohazard.water_vial.effect.water_breathing": "Vial of Water Breathing",
+  "item.projectbiohazard.water_vial.effect.weakness": "Vial of Weakness",
+  "item.projectbiohazard.water_vial.effect.weaving": "Vial of Weaving",
+  "item.projectbiohazard.water_vial.effect.wind_charged": "Vial of Wind Charging",
+  "item.projectbiohazard.water_vial.effect.thick": "Thick Vial",
+  "item.projectbiohazard.water_vial.effect.mundane": "Mundane Vial",
+  "item.projectbiohazard.water_vial.effect.awkward": "Awkward Vial",
+  "item.projectbiohazard.water_vial.effect.water": "Water Vial",
+
+
+
 
   "block.projectbiohazard.trona_ore": "Trona Ore",
   "block.projectbiohazard.sandstone_trona_ore": "Sandstone Trona Ore",
@@ -75,5 +105,11 @@
   "effect.projectbiohazard.immunity.description": "Provides immunity to all negative status effects",
 
   "effect.projectbiohazard.adrenaline": "Adrenaline",
-  "effect.projectbiohazard.adrenaline.description": "Increases attack speed and critical damage"
+  "effect.projectbiohazard.adrenaline.description": "Increases attack speed and critical damage",
+
+  "item.projectbiohazard.secure_music_disc": "Music Disc",
+  "jukebox_song.projectbiohazard.secure": "Crow Hex - Secure",
+
+  "sounds.projectbiohazard.syringe_pierce": "Stabbed with a syringe",
+  "sounds.projectbiohazard.secure": "Playing Secure music disc"
 }

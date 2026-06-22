@@ -1,0 +1,25 @@
+package net.darkhood135.projectbiohazard.datagen;
+
+import net.darkhood135.projectbiohazard.ProjectBiohazard;
+import net.darkhood135.projectbiohazard.sound.ModSounds;
+import net.minecraft.data.PackOutput;
+import net.minecraft.resources.Identifier;
+import net.neoforged.neoforge.common.data.SoundDefinitionsProvider;
+
+public class ModSoundsProvider extends SoundDefinitionsProvider {
+
+    public ModSoundsProvider(PackOutput output) {
+        super(output, ProjectBiohazard.MOD_ID);
+    }
+
+    @Override
+    public void registerSounds() {
+        add(ModSounds.SYRINGE_PIERCE.get(), definition().subtitle("sounds.projectbiohazard.syringe_pierce")
+                .with(sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "syringe_pierce1")),
+                    sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "syringe_pierce2")),
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "syringe_pierce3"))));
+
+        add(ModSounds.SECURE.get(), definition().subtitle("sounds.projectbiohazard.secure")
+                .with(sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "secure")).stream()));
+    }
+}

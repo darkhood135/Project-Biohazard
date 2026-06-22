@@ -24,7 +24,8 @@ public class ModModelProvider extends ModelProvider {
     @Override
     protected @NonNull Stream<? extends Holder<Item>> getKnownItems() {
         return super.getKnownItems()
-                .filter(holder -> holder.value() != ModItems.GLASS_VIAL.get());
+                .filter(holder -> holder.value() != ModItems.GLASS_VIAL.get())
+                .filter(holder -> holder.value() != ModItems.WATER_VIAL.get());
     }
 
     @Override
@@ -43,6 +44,8 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.SODA_ASH.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.BAUXITE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.ALUMINUM_INGOT.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.HONEY_VIAL.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.SECURE_MUSIC_DISC.get(), ModelTemplates.FLAT_ITEM);
 
         // Aluminum Tools
         itemModels.generateFlatItem(ModItems.ALUMINUM_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);

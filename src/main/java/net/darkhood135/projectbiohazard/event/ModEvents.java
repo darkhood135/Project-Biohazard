@@ -3,9 +3,12 @@ package net.darkhood135.projectbiohazard.event;
 import net.darkhood135.projectbiohazard.ProjectBiohazard;
 import net.darkhood135.projectbiohazard.attachmenttype.ModAttachmentTypes;
 import net.darkhood135.projectbiohazard.effect.ModEffects;
+import net.darkhood135.projectbiohazard.item.ModItems;
 import net.darkhood135.projectbiohazard.item.custom.HatchetItem;
 import net.darkhood135.projectbiohazard.networking.ServerboundPackets;
 import net.darkhood135.projectbiohazard.networking.packet.TestPacketC2S;
+import net.darkhood135.projectbiohazard.potion.ModPotions;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -21,10 +24,15 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
@@ -44,6 +52,20 @@ public class ModEvents {
         registrar.playToServer(TestPacketC2S.TYPE, TestPacketC2S.STREAM_CODEC, ServerboundPackets::handleTestPacket);
     }
 
+    // Vial Potions
+    @SubscribeEvent
+    public static void onBrewingRecipeRegister(RegisterBrewingRecipesEvent event) {
+        event.getBuilder().addContainer(ModItems.WATER_VIAL.get());
+        // event.getBuilder().addMix(Potions.AWKWARD, Blocks.HERE.asItem(), ModPotions.POTION);
+    }
+    @SubscribeEvent
+    public static void addVialsToVanillaTab(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {   // the tab vanilla potions live in (confirm key)
+            event.getParameters().holders().lookupOrThrow(Registries.POTION).listElements().forEach(potion ->
+                    event.accept(PotionContents.createItemStack(ModItems.WATER_VIAL.get(), potion)));
+        }
+    }
+
     // Immunity Function
     @SubscribeEvent
     public static void blockHarmfulWhileImmune(MobEffectEvent.Applicable event) {
@@ -51,6 +73,13 @@ public class ModEvents {
         if (event.getEffectInstance().getEffect().value().getCategory() == MobEffectCategory.HARMFUL) {
             event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);  // verify the enum value name
         }
+    }
+    @SubscribeEvent
+    public static void immunityDefense(LivingIncomingDamageEvent event) {
+        MobEffectInstance imm = event.getEntity().getEffect(ModEffects.IMMUNITY);
+        if (imm == null) return;
+        float reduction = Math.min(0.9f, 0.2f * (imm.getAmplifier() + 1));  // amp0=20%, amp1=40%; capped at 90%
+        event.setAmount(event.getAmount() * (1f - reduction));
     }
 
     // Adrenaline Function
@@ -71,15 +100,6 @@ public class ModEvents {
         maxHealth.addPermanentModifier(
                 new AttributeModifier(yellowHerbHPID, boost, AttributeModifier.Operation.ADD_VALUE));
     }
-
-    // TESTING ONLY!!!!
-    /*
-    @SubscribeEvent
-    public static void setYellow(PlayerEvent.PlayerLoggedInEvent event) {
-        Player newPlayer = event.getEntity();
-        newPlayer.setData(ModAttachmentTypes.YELLOW_HERB_HP, 0);
-    }
-    */
 
     @SubscribeEvent
     public static void setYellowHerbProgressOnClone(PlayerEvent.Clone event) {
@@ -160,11 +180,6 @@ public class ModEvents {
 
         }
     }
-    /*
-    @SubscribeEvent
-    public static void noAttackWhileParrying(AttackEntityEvent event) {
-        Player p = event.getEntity();
-        if (p.isUsingItem() && p.getUseItem().getItem() instanceof HatchetItem) event.setCanceled(true);
-    } */
+
 
 }

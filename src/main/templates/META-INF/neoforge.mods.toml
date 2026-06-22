@@ -32,8 +32,6 @@ displayName="${mod_name}" #mandatory
 # A file name (in the root of the mod JAR) containing a logo for display
 #logoFile="examplemod.png" #optional
 
-# A text field displayed in the mod UI
-#credits="" #optional
 
 # The authors of the mod, displayed in the mod UI (optional)
 authors="DarkHood135"
@@ -42,6 +40,9 @@ authors="DarkHood135"
 description='''
 Example mod description.
 '''
+
+# A text field displayed in the mod UI
+credits=""
 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
 [[mixins]]

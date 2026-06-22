@@ -2,15 +2,21 @@ package net.darkhood135.projectbiohazard.creativetab;
 
 import net.darkhood135.projectbiohazard.ProjectBiohazard;
 import net.darkhood135.projectbiohazard.block.ModBlocks;
+import net.darkhood135.projectbiohazard.component.ModDataComponentTypes;
+import net.darkhood135.projectbiohazard.datagen.ModRecipeProvider;
 import net.darkhood135.projectbiohazard.item.ModItems;
+import net.darkhood135.projectbiohazard.item.custom.VialItem;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.component.CustomModelData;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.awt.*;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class ModCreativeModeTabs {
@@ -65,8 +71,35 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.ALUMINUM_SHOVEL);
                         output.accept(ModItems.ALUMINUM_HOE);
                         output.accept(ModItems.ALUMINUM_HATCHET);
+                        output.accept(ModItems.SECURE_MUSIC_DISC);
                     })
                     .build());
+
+    public static final Supplier<CreativeModeTab> VIAL_MIXTURES_TAB =
+            CREATIVE_MODE_TABS.register("vial_mixtures_tab", () -> CreativeModeTab.builder()
+                    .icon(() -> new ItemStack(ModItems.WATER_VIAL.get()))
+                    .title(Component.translatable("creativetab.projectbiohazard.vial_mixtures"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModItems.GREEN_HERB);
+                        output.accept(ModItems.RED_HERB);
+                        output.accept(ModItems.YELLOW_HERB);
+                        output.accept(ModItems.BLUE_HERB);
+                        output.accept(ModItems.GLASS_VIAL);
+                        for (List<VialItem.Herb> mix : ModRecipeProvider.allHerbMixtures()) {
+                            String key = VialItem.Herb.toKey(mix);
+                            ItemStack v = new ItemStack(ModItems.GLASS_VIAL.get());
+                            v.set(ModDataComponentTypes.HERB_VIAL_COMBINATION.get(), key);
+                            v.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(List.of(), List.of(), List.of(key), List.of()));
+                            output.accept(v);
+                        }
+                        // potion vials: one per registered potion
+                        itemDisplayParameters.holders().lookupOrThrow(Registries.POTION).listElements().forEach(potion ->
+                                output.accept(PotionContents.createItemStack(ModItems.WATER_VIAL.get(), potion)));
+                        output.accept(ModItems.HONEY_VIAL);
+                    })
+                    .build());
+
+
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);

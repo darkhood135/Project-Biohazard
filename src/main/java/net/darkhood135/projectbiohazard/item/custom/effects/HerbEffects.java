@@ -39,7 +39,7 @@ public class HerbEffects {
         player.removeEffect(MobEffects.HUNGER);
         player.removeEffect(MobEffects.NAUSEA);
         if (red) {
-            ImmunityEffect.applyImmunity(player, 600, 0);
+            ImmunityEffect.applyImmunity(player, 600, 1);
         }
     }
 

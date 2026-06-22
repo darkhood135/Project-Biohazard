@@ -10,7 +10,6 @@ import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomModelData;
@@ -44,7 +43,7 @@ public class ModRecipeProvider extends RecipeProvider {
         return true;
     }
 
-    private static List<List<VialItem.Herb>> allMixtures() {
+    public static List<List<VialItem.Herb>> allHerbMixtures() {
         List<List<VialItem.Herb>> result = new ArrayList<>();
         VialItem.Herb[] herbs = VialItem.Herb.values();
         // 2 Herbs
@@ -87,7 +86,7 @@ public class ModRecipeProvider extends RecipeProvider {
     @Override
     protected void buildRecipes() {
         // Herbs
-        for (List<VialItem.Herb> mix : allMixtures()) {
+        for (List<VialItem.Herb> mix : allHerbMixtures()) {
             String key = VialItem.Herb.toKey(mix);
             DataComponentPatch patch = DataComponentPatch.builder()
                     .set(ModDataComponentTypes.HERB_VIAL_COMBINATION.get(), key)
@@ -105,7 +104,7 @@ public class ModRecipeProvider extends RecipeProvider {
             builder.save(output, ProjectBiohazard.MOD_ID + ":vial_" + key);
         }
 
-        for (List<VialItem.Herb> mix : allMixtures()) {
+        for (List<VialItem.Herb> mix : allHerbMixtures()) {
             if (mix.size() != 3) continue;                 // incremental only makes 3-herb from 2-herb
             String finalKey = VialItem.Herb.toKey(mix);
 

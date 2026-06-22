@@ -11,17 +11,30 @@ dynamic name/tooltip; 20 per-mixture textures via `minecraft:select` on `custom_
 `use()` gate; combination effects resolved in `HerbEffects` (red = amplifier), shared by `HerbItem` and
 `VialItem` via composition (no inheritance). Reminder: `heal()` is in HEALTH POINTS (2 = 1 heart).
 
-## Now / Next — three goals (in order)
+## DONE — Hatchet, parry & custom effects (complete)
 
-1. **Immunity status effect** (the red+blue payoff). Register a custom `MobEffect` via a `DeferredRegister`
-   for `Registries.MOB_EFFECT`. Mechanic = while active, block/clear incoming harmful effects for the
-   duration. Then wire it into `HerbEffects.useBlueHerb(..., red=true)` where the TODO comment already sits.
-2. **Vial potions + brewing stand.** Vial variants that carry potion effects, brewed in a brewing stand.
+Hatchet: faster/weaker than sword, cuts sword-tier blocks. Parry: right-click `use()` block stance
+(0.5s window via `getTicksUsingItem`, perfect = first ~3 ticks, directional dot-product facing check,
+flattened to horizontal). Negates damage (`LivingIncomingDamageEvent.setCanceled`, skips explosions),
+knockback, durability ~1:1, cooldown scaled by damage (heavy >10 = 5s) showing the vanilla HUD overlay,
+whiff penalty. Perfect parry = `player.attack()` counter + Adrenaline. Immunity effect: marker MobEffect
++ `MobEffectEvent.Applicable` blocks harmful at source + one-time cleanse helper (no per-tick scan).
+Adrenaline (`AdrenalineEffect`, 3s on perfect parry): +30%/amp attack speed via effect attribute modifier,
++20%/amp crit damage via `CriticalHitEvent`. Verified-from-jar gotchas: `hurtServer(ServerLevel,...)`,
+`ItemUseAnimation` (not UseAnim), `ENTITY_INTERACTION_RANGE`, `MobEffect` ctor is protected (needs subclass).
+
+## Now / Next — goals (in order)
+
+1. **Vial potions + brewing stand.** Vial variants that carry potion effects, brewed in a brewing stand.
    Will involve brewing recipe registration (check NeoForge's brewing API in the jar) + a potion-carrying
    vial representation. Bigger feature — may span multiple sittings.
-3. **Injections / syringes.** Use a vial-potion to craft a syringe; on hitting an entity with it, apply the
+2. **Injections / syringes.** Use a vial-potion to craft a syringe; on hitting an entity with it, apply the
    stored status effect for a long duration. Custom item with on-hit-entity behavior (`hurtEnemy` /
-   attack hook) that reads the stored effect and applies it. Depends on #2 (needs vial potions first).
+   attack hook) that reads the stored effect and applies it. Depends on #1 (needs vial potions first).
+3. **Hatchet cooldown applies to ALL hatchets in inventory** — stop multi-hatchet parry abuse (swapping
+   hatchets to parry constantly = near-immortal). Likely uses the 1.21.2+ cooldown-GROUP system: give the
+   hatchet a cooldown-group component and call the `addCooldown(Identifier groupId, int)` overload (we saw
+   it in the jar) instead of `addCooldown(ItemStack,...)`, so the cooldown covers the whole group.
 
 ## Backlog
 - Optional polish: collapse the two-component design to one via a custom `SelectItemModelProperty`

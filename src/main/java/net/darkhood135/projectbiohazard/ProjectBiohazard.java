@@ -6,6 +6,9 @@ import net.darkhood135.projectbiohazard.component.ModDataComponentTypes;
 import net.darkhood135.projectbiohazard.creativetab.ModCreativeModeTabs;
 import net.darkhood135.projectbiohazard.effect.ModEffects;
 import net.darkhood135.projectbiohazard.item.ModItems;
+import net.darkhood135.projectbiohazard.item.custom.VialItem;
+import net.darkhood135.projectbiohazard.sound.ModSounds;
+import net.minecraft.core.cauldron.CauldronInteractions;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -58,6 +61,7 @@ public class ProjectBiohazard {
         ModAttachmentTypes.register(modEventBus);
 
         ModEffects.register(modEventBus);
+        ModSounds.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
 
@@ -70,7 +74,9 @@ public class ProjectBiohazard {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         // Some common setup code
-
+        // in commonSetup (mod bus), which you already have:
+        event.enqueueWork(() ->
+                CauldronInteractions.WATER.put(ModItems.GLASS_VIAL.get(), VialItem::fillFromCauldron));
     }
 
     // Add the example block item to the building blocks tab

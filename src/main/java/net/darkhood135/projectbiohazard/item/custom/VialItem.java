@@ -3,9 +3,13 @@ package net.darkhood135.projectbiohazard.item.custom;
 import net.darkhood135.projectbiohazard.component.ModDataComponentTypes;
 import net.darkhood135.projectbiohazard.item.ModItems;
 import net.darkhood135.projectbiohazard.item.custom.effects.HerbEffects;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffects;
@@ -13,9 +17,19 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BeehiveBlock;
+import net.minecraft.world.level.block.LayeredCauldronBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -140,10 +154,23 @@ public class VialItem extends Item {
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         String combo = stack.get(ModDataComponentTypes.HERB_VIAL_COMBINATION.get());
+
         if (combo == null || combo.isEmpty()) {
-            return InteractionResult.PASS;     // empty vial -> right-click does nothing
+            // empty vial -> try to fill from a water source
+            BlockHitResult hit = getPlayerPOVHitResult(level, player, ClipContext.Fluid.SOURCE_ONLY);
+            if (hit.getType() == HitResult.Type.BLOCK
+                    && level.getFluidState(hit.getBlockPos()).is(FluidTags.WATER)) {
+                if (!level.isClientSide()) {
+                    ItemStack waterVial = PotionContents.createItemStack(ModItems.WATER_VIAL.get(), Potions.WATER);
+                    player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, waterVial));
+                    level.playSound(null, player.blockPosition(), SoundEvents.BOTTLE_FILL, SoundSource.PLAYERS, 1f, 1f);
+                }
+                return InteractionResult.SUCCESS;
+            }
+            return InteractionResult.PASS;          // empty + not aiming at water -> nothing
         }
-        player.startUsingItem(hand);            // filled -> begin the drink action
+
+        player.startUsingItem(hand);                 // herb-filled -> drink (unchanged)
         return InteractionResult.CONSUME;
     }
 
@@ -154,5 +181,40 @@ public class VialItem extends Item {
             applyVialEffects(player, VialItem.Herb.parse(combo));
         }
         return new ItemStack(ModItems.GLASS_VIAL.get());   // back to an empty container
+    }
+
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        BlockState state = level.getBlockState(pos);
+        ItemStack stack = context.getItemInHand();
+        Player player = context.getPlayer();
+
+        String combo = stack.get(ModDataComponentTypes.HERB_VIAL_COMBINATION.get());
+        boolean empty = combo == null || combo.isEmpty();
+
+        if (empty && state.getBlock() instanceof BeehiveBlock
+                && state.getValue(BeehiveBlock.HONEY_LEVEL) >= 5) {        // full hive
+            if (!level.isClientSide() && player != null) {
+                ItemStack honeyVial = new ItemStack(ModItems.HONEY_VIAL.get());
+                player.setItemInHand(context.getHand(), ItemUtils.createFilledResult(stack, player, honeyVial));
+                level.setBlockAndUpdate(pos, state.setValue(BeehiveBlock.HONEY_LEVEL, 0));   // empty the hive
+                level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1f, 1f);
+            }
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.PASS;   // not a full hive -> let other behavior proceed
+    }
+
+    public static InteractionResult fillFromCauldron(BlockState state, Level level, BlockPos pos,
+                                                     Player player, InteractionHand hand, ItemStack stack) {
+        if (!level.isClientSide()) {
+            ItemStack waterVial = PotionContents.createItemStack(ModItems.WATER_VIAL.get(), Potions.WATER);
+            player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, waterVial));
+            LayeredCauldronBlock.lowerFillLevel(state, level, pos);   // verified — drops the water level
+            level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1f, 1f);
+        }
+        return InteractionResult.SUCCESS;
     }
 }

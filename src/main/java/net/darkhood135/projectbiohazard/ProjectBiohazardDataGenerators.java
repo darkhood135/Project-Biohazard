@@ -1,6 +1,7 @@
 package net.darkhood135.projectbiohazard;
 
 import net.darkhood135.projectbiohazard.datagen.*;
+import net.darkhood135.projectbiohazard.sound.ModSounds;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
@@ -27,5 +28,8 @@ public class ProjectBiohazardDataGenerators {
         generator.addProvider(true, new ModRecipeProvider.Runner(packOutput, lookupProvider));
         generator.addProvider(true, new ModDataMapProvider(packOutput, lookupProvider));
         generator.addProvider(true, new ModItemTagProvider(packOutput, lookupProvider));
+
+        generator.addProvider(true, new ModSoundsProvider(packOutput));
+        generator.addProvider(true, new ModDatapackProvider(packOutput, lookupProvider));
     }
 }
