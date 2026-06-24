@@ -2,6 +2,7 @@ package net.darkhood135.projectbiohazard.block;
 
 import net.darkhood135.projectbiohazard.ProjectBiohazard;
 import net.darkhood135.projectbiohazard.block.custom.FleshBlock;
+import net.darkhood135.projectbiohazard.block.custom.TypewriterBlock;
 import net.darkhood135.projectbiohazard.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -163,6 +164,15 @@ public class ModBlocks {
                     .sound(SoundType.GLASS)
                     .noOcclusion()
             ));
+
+    // Typewriter
+    public static final DeferredBlock<Block> TYPEWRITER = registerBlock("typewriter",
+            properties -> new TypewriterBlock(properties
+                    .sound(SoundType.METAL)
+                    .strength(1.5f)
+                    .pushReaction(PushReaction.DESTROY)
+            ));
+
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> function) {
         DeferredBlock<T> toReturn = BLOCKS.registerBlock(name, function);

@@ -16,6 +16,8 @@ public class ModSounds {
 
     public static final Supplier<SoundEvent> SYRINGE_PIERCE = registerSoundEvent("syringe_pierce");
 
+    public static final Supplier<SoundEvent> TYPEWRITER_SAVE = registerSoundEvent("typewriter_save");
+
     public static final DeferredHolder<SoundEvent, SoundEvent> SECURE = registerJukeboxSong("secure");
 
     private static Supplier<SoundEvent> registerSoundEvent(String name) {

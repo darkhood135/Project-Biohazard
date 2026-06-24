@@ -72,6 +72,9 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.ALUMINUM_HOE);
                         output.accept(ModItems.ALUMINUM_HATCHET);
                         output.accept(ModItems.SECURE_MUSIC_DISC);
+                        output.accept(ModItems.EMPTY_SYRINGE);
+                        output.accept(ModBlocks.TYPEWRITER);
+                        output.accept(ModItems.INK_RIBBON);
                     })
                     .build());
 
@@ -96,6 +99,12 @@ public class ModCreativeModeTabs {
                         itemDisplayParameters.holders().lookupOrThrow(Registries.POTION).listElements().forEach(potion ->
                                 output.accept(PotionContents.createItemStack(ModItems.WATER_VIAL.get(), potion)));
                         output.accept(ModItems.HONEY_VIAL);
+                        output.accept(ModItems.EMPTY_SYRINGE);
+                        itemDisplayParameters.holders().lookupOrThrow(Registries.POTION).listElements().forEach(potion -> {
+                            ItemStack s = new ItemStack(ModItems.SYRINGE.get());
+                            s.set(DataComponents.POTION_CONTENTS, new PotionContents(potion));
+                            output.accept(s);
+                        });
                     })
                     .build());
 

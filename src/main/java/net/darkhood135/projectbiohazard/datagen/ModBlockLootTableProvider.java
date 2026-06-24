@@ -36,6 +36,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         // dropSelf(ModBlocks.NAME_HERE.get());
         dropSelf(ModBlocks.FLESH_BLOCK.get());
 
+        dropSelf(ModBlocks.TYPEWRITER.get());
+
         dropSelf(ModBlocks.UNDEAD_PLANKS.get());
         dropSelf(ModBlocks.UNDEAD_STAIRS.get());
         dropSelf(ModBlocks.UNDEAD_PRESSURE_PLATE.get());

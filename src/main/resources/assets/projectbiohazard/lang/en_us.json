@@ -58,13 +58,17 @@
   "item.projectbiohazard.water_vial.effect.awkward": "Awkward Vial",
   "item.projectbiohazard.water_vial.effect.water": "Water Vial",
 
-
+  "item.projectbiohazard.syringe": "Syringe",
+  "item.projectbiohazard.syringe.named": "Syringe of %s",
+  "item.projectbiohazard.empty_syringe": "Empty Syringe",
 
 
   "block.projectbiohazard.trona_ore": "Trona Ore",
   "block.projectbiohazard.sandstone_trona_ore": "Sandstone Trona Ore",
   "block.projectbiohazard.red_sandstone_trona_ore": "Red Sandstone Trona Ore",
   "block.projectbiohazard.trona_block": "Trona Block",
+
+  "block.projectbiohazard.typewriter": "Typewriter",
 
   "block.projectbiohazard.bauxite_ore": "Bauxite Ore",
   "block.projectbiohazard.deepslate_bauxite_ore": "Deepslate Bauxite Ore",
@@ -99,6 +103,8 @@
   "item.projectbiohazard.diamond_hatchet": "Diamond Hatchet",
   "item.projectbiohazard.netherite_hatchet": "Netherite Hatchet",
 
+  "item.projectbiohazard.ink_ribbon": "Ink Ribbon",
+
   "block.projectbiohazard.flesh_block": "Block of Flesh",
 
   "effect.projectbiohazard.immunity": "Immunity",
@@ -111,5 +117,6 @@
   "jukebox_song.projectbiohazard.secure": "Crow Hex - Secure",
 
   "sounds.projectbiohazard.syringe_pierce": "Stabbed with a syringe",
-  "sounds.projectbiohazard.secure": "Playing Secure music disc"
+  "sounds.projectbiohazard.secure": "Playing Secure music disc",
+  "sounds.projectbiohazard.typewriter_save": "Saved with a typewriter"
 }

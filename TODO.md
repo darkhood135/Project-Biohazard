@@ -2,6 +2,22 @@
 
 A running list of things to build, fix, or revisit. Newest priorities near the top.
 
+## DONE — Typewriter "Save State" (complete)
+
+Directional-placed Blockbench block. Right-click with an Ink Ribbon = save: sets vanilla respawn
+(`RespawnConfig` / `RespawnData.of`), consumes a ribbon, plays `typewriter_save` sound, snapshots the
+inventory (`SAVE_SNAPSHOT` attachment, serialized, NO copyOnDeath = one-use), and stores the typewriter's
+`GlobalPos` (`SAVE_TYPEWRITER_POS`). On death (`LivingDeathEvent`): if the typewriter is confirmed gone
+(only when its chunk `isLoaded` — else assume present, no force-load) the save voids; otherwise protected
+items (count-capped vs snapshot, matched **ignoring the `DAMAGE` component** so worn gear counts) are pulled
+from the inventory before drops and stashed (`RESTORE_STASH`), then re-added on `PlayerEvent.Clone`. Anti-dupe
+by moving items, not copying. Recipe: aluminum frame + Totem of Undying + Echo Shard + iron/redstone/paper.
+Note: beds & the typewriter share one vanilla respawn point (last-write-wins for *location*); a bed does NOT
+clear the item protection (separate systems) — intentional. Reach the server via `level().getServer()`.
+
+**Next natural goal:** the Upgrade Station (the deferred 2nd typewriter idea) — but it's gated on dodge,
+infection, special melees, and parry upgrades existing first. Those features ARE the roadmap toward it.
+
 ## DONE — Herb Vial system (complete)
 
 Full feature shipped: single `glass_vial` item + `HERB_VIAL_COMBINATION` string component + `Herb` enum;
@@ -23,24 +39,27 @@ Adrenaline (`AdrenalineEffect`, 3s on perfect parry): +30%/amp attack speed via 
 +20%/amp crit damage via `CriticalHitEvent`. Verified-from-jar gotchas: `hurtServer(ServerLevel,...)`,
 `ItemUseAnimation` (not UseAnim), `ENTITY_INTERACTION_RANGE`, `MobEffect` ctor is protected (needs subclass).
 
-## Now / Next — goals (in order)
+## DONE — vial potions, syringes, hatchet cooldown (complete)
 
-1. **Vial potions + brewing stand.** Vial variants that carry potion effects, brewed in a brewing stand.
-   Will involve brewing recipe registration (check NeoForge's brewing API in the jar) + a potion-carrying
-   vial representation. Bigger feature — may span multiple sittings.
-2. **Injections / syringes.** Use a vial-potion to craft a syringe; on hitting an entity with it, apply the
-   stored status effect for a long duration. Custom item with on-hit-entity behavior (`hurtEnemy` /
-   attack hook) that reads the stored effect and applies it. Depends on #1 (needs vial potions first).
-3. **Hatchet cooldown applies to ALL hatchets in inventory** — stop multi-hatchet parry abuse (swapping
-   hatchets to parry constantly = near-immortal). Likely uses the 1.21.2+ cooldown-GROUP system: give the
-   hatchet a cooldown-group component and call the `addCooldown(Identifier groupId, int)` overload (we saw
-   it in the jar) instead of `addCooldown(ItemStack,...)`, so the cooldown covers the whole group.
+Potion vials (water_vial + `potion_contents`, rides the vanilla brewing tree via `addContainer`, water-fill
+from source + cauldron via an AT, potion-tint rendering). Honey vial (reuses vanilla `Foods`/`Consumables`).
+Syringes: `SyringeItem` + `potion_contents`, melee `hurtEnemy` applies effect, separate empty-syringe item,
+custom "Syringe Pierce" sound (3 random variants), dynamic `%s Syringe` names, gradual injection over 9s
+(transient `SyringeInjection` attachment + `EntityTickEvent.Post`, 3 ramping charges, immunity/resistance
+rejects, consumes for all attackers incl. mobs). Hatchet cooldown shared across all hatchets via a
+cooldown-group `use_cooldown` component. Deferred from syringes: the "sticks in the entity like an arrow"
+visual (needs a custom entity — Tyler's first entity project, for later).
 
 ## Backlog
 - Optional polish: collapse the two-component design to one via a custom `SelectItemModelProperty`
   that reads `herb_vial_combination` directly (removes the custom_model_data redundancy). Advanced; later.
 - Optional: per-herb `ChatFormatting` colors on the tooltip names.
 - Build-order-realism textures (Option B, 34 textures) if ever wanted — additive, not a rewrite.
+- Visual (future): a "being affected" shake on entities mid-injection (or other effects), like the
+  zombie-villager curing shake. That shake is client-side render code tied to the entity's render state —
+  pairs naturally with the deferred custom-entity / rendering work.
+- Audio (future): "Secure" safe-room track (friend's RE2 safe-room cover, the `secure` sound) plays as
+  ambient music when no monsters are nearby in a safe, lit area. Conditional music playback feature.
 
 ## Parked — revisit later
 

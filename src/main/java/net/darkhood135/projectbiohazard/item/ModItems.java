@@ -5,10 +5,12 @@ import net.darkhood135.projectbiohazard.component.ModDataComponentTypes;
 import net.darkhood135.projectbiohazard.datagen.ModJukeboxSongs;
 import net.darkhood135.projectbiohazard.food.ModFoodProperties;
 import net.darkhood135.projectbiohazard.item.custom.*;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.neoforged.bus.api.IEventBus;
@@ -34,13 +36,17 @@ public class ModItems {
     public static final DeferredItem<Item> GLASS_VIAL = ITEMS.registerItem("glass_vial",
             properties -> new VialItem(properties.food(ModFoodProperties.HERB_VIAL, ModFoodProperties.BASIC_VIAL_EFFECT).component(ModDataComponentTypes.HERB_VIAL_COMBINATION.get(), "")));
     public static final DeferredItem<Item> WATER_VIAL = ITEMS.registerItem("water_vial",
-            properties -> new PotionVialItem(properties.stacksTo(1).food(ModFoodProperties.WATER_VIAL, ModFoodProperties.BASIC_VIAL_EFFECT)));
+            properties -> new PotionVialItem(properties.stacksTo(1).food(ModFoodProperties.WATER_VIAL, ModFoodProperties.BASIC_VIAL_EFFECT).craftRemainder(ModItems.GLASS_VIAL.get())));
     public static final DeferredItem<Item> HONEY_VIAL = ITEMS.registerItem("honey_vial",
             properties -> new Item(properties
                     .craftRemainder(ModItems.GLASS_VIAL.get())
                     .food(Foods.HONEY_BOTTLE, Consumables.HONEY_BOTTLE)   // reuse vanilla hunger + poison-clear
                     .usingConvertsTo(ModItems.GLASS_VIAL.get())            // drink -> empty vial
                     .stacksTo(16)));
+    public static final DeferredItem<Item> EMPTY_SYRINGE = ITEMS.registerItem("empty_syringe",
+            properties -> new Item(properties.stacksTo(1)));
+    public static final DeferredItem<Item> SYRINGE = ITEMS.registerItem("syringe",
+            properties -> new SyringeItem(properties.stacksTo(1)));
 
     public static final DeferredItem<Item> EMF_VISUALIZER = ITEMS.registerItem("emf_visualizer",
             properties -> new EMFItem(properties.durability(32)));
@@ -118,6 +124,10 @@ public class ModItems {
             properties -> new HatchetItem(ToolMaterial.DIAMOND, 1f, -1.5f, properties));
     public static final DeferredItem<Item> NETHERITE_HATCHET = ITEMS.registerItem("netherite_hatchet",
             properties -> new HatchetItem(ToolMaterial.NETHERITE, 1f, -1.5f, properties));
+
+    // Materials
+    public static final DeferredItem<Item> INK_RIBBON = ITEMS.registerSimpleItem("ink_ribbon",
+            properties -> properties);
 
 
 

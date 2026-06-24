@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "projectbiohazard:item/syringe_potion_overlay",
+    "layer1": "projectbiohazard:item/empty_syringe"
+  }
+}

@@ -21,5 +21,8 @@ public class ModSoundsProvider extends SoundDefinitionsProvider {
 
         add(ModSounds.SECURE.get(), definition().subtitle("sounds.projectbiohazard.secure")
                 .with(sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "secure")).stream()));
+
+        add(ModSounds.TYPEWRITER_SAVE.get(), definition().subtitle("sounds.projectbiohazard.typewriter_save")
+                .with(sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "typewriter_save")).stream()));
     }
 }

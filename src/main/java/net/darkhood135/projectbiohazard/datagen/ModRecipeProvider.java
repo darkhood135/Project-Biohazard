@@ -8,16 +8,20 @@ import net.darkhood135.projectbiohazard.item.custom.VialItem;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.BlastingRecipe;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
 import java.util.ArrayList;
@@ -85,6 +89,25 @@ public class ModRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes() {
+        // Syringes
+        this.registries.lookupOrThrow(Registries.POTION).listElements().forEach(potion -> {
+            PotionContents contents = new PotionContents(potion);   // single-potion contents (verify ctor)
+
+            Ingredient vialIn = DataComponentIngredient.of(false,
+                    DataComponents.POTION_CONTENTS, contents, ModItems.WATER_VIAL.get());
+
+            DataComponentPatch patch = DataComponentPatch.builder()
+                    .set(DataComponents.POTION_CONTENTS, contents)
+                    .build();
+            ItemStackTemplate result = new ItemStackTemplate(ModItems.SYRINGE.get(), patch);
+
+            shapeless(RecipeCategory.MISC, result)
+                    .requires(vialIn)
+                    .requires(ModItems.EMPTY_SYRINGE.get())
+                    .unlockedBy("has_syringe", has(ModItems.EMPTY_SYRINGE.get()))
+                    .save(output, ProjectBiohazard.MOD_ID + ":syringe_" + potion.getRegisteredName().replace(':', '_'));
+        });
+
         // Herbs
         for (List<VialItem.Herb> mix : allHerbMixtures()) {
             String key = VialItem.Herb.toKey(mix);
@@ -103,7 +126,6 @@ public class ModRecipeProvider extends RecipeProvider {
             }
             builder.save(output, ProjectBiohazard.MOD_ID + ":vial_" + key);
         }
-
         for (List<VialItem.Herb> mix : allHerbMixtures()) {
             if (mix.size() != 3) continue;                 // incremental only makes 3-herb from 2-herb
             String finalKey = VialItem.Herb.toKey(mix);
@@ -176,14 +198,6 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ModItems.BORON_SHARD.get()), has(ModItems.BORON_SHARD.get()))
                 .save(output);
 
-        shaped(RecipeCategory.BREWING, ModItems.GLASS_VIAL.get(), 4)
-                .pattern("   ")
-                .pattern("Z Z")
-                .pattern(" Z ")
-                .define('Z', ModBlocks.BOROSILICATE_GLASS)
-                .unlockedBy(getHasName(ModItems.BORON_SHARD.get()), has(ModItems.BORON_SHARD.get()))
-                .save(output);
-
         shapeless(RecipeCategory.MISC, ModItems.TRONA.get(), 9)
                 .requires(ModBlocks.TRONA_BLOCK)
                 .unlockedBy(getHasName(ModBlocks.TRONA_BLOCK.get()), has(ModBlocks.TRONA_BLOCK.get()))
@@ -216,7 +230,24 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ModBlocks.UNDEAD_PLANKS.get()), has(ModBlocks.UNDEAD_PLANKS.get()))
                 .save(output);
 
+        // Borosilicate Glass Recipes
+        shaped(RecipeCategory.BREWING, ModItems.GLASS_VIAL.get(), 4)
+                .pattern("   ")
+                .pattern("Z Z")
+                .pattern(" Z ")
+                .define('Z', ModBlocks.BOROSILICATE_GLASS)
+                .unlockedBy(getHasName(ModItems.BORON_SHARD.get()), has(ModItems.BORON_SHARD.get()))
+                .save(output);
         wall(RecipeCategory.BUILDING_BLOCKS, ModBlocks.BOROSILICATE_GLASS_PANE.get(), ModBlocks.BOROSILICATE_GLASS.get());
+        shaped(RecipeCategory.BREWING, ModItems.EMPTY_SYRINGE.get(), 1)
+                .pattern("  Z")
+                .pattern(" X ")
+                .pattern("Y  ")
+                .define('Y', ModItems.ALUMINUM_INGOT)
+                .define('Z', Items.IRON_INGOT)
+                .define('X', ModItems.GLASS_VIAL)
+                .unlockedBy(getHasName(ModItems.GLASS_VIAL.get()), has(ModItems.GLASS_VIAL.get()))
+                .save(output);
 
         // Aluminum Tools
         shaped(RecipeCategory.COMBAT, ModItems.ALUMINUM_SWORD.get())
@@ -263,6 +294,156 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('S', Items.STICK)
                 .group("aluminum")
                 .unlockedBy(getHasName(ModItems.ALUMINUM_INGOT.get()), has(ModItems.ALUMINUM_INGOT.get()))
+                .save(output);
+
+        // Hatchets
+        shaped(RecipeCategory.COMBAT, ModItems.ALUMINUM_HATCHET.get())
+                .pattern("ZZZ")
+                .pattern("ZS ")
+                .pattern(" S ")
+                .define('Z', ModItems.ALUMINUM_INGOT.get())
+                .define('S', Items.STICK)
+                .group("aluminum")
+                .unlockedBy(getHasName(ModItems.ALUMINUM_INGOT.get()), has(ModItems.ALUMINUM_INGOT.get()))
+                .save(output);
+        shaped(RecipeCategory.COMBAT, ModItems.WOODEN_HATCHET.get())
+                .pattern("ZZZ")
+                .pattern("ZS ")
+                .pattern(" S ")
+                .define('Z', ItemTags.PLANKS)
+                .define('S', Items.STICK)
+                .group("wooden")
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+                .save(output);
+        shaped(RecipeCategory.COMBAT, ModItems.STONE_HATCHET.get())
+                .pattern("ZZZ")
+                .pattern("ZS ")
+                .pattern(" S ")
+                .define('Z', Blocks.COBBLESTONE)
+                .define('S', Items.STICK)
+                .group("stone")
+                .unlockedBy(getHasName(Blocks.COBBLESTONE), has(Blocks.COBBLESTONE))
+                .save(output);
+        shaped(RecipeCategory.COMBAT, ModItems.IRON_HATCHET.get())
+                .pattern("ZZZ")
+                .pattern("ZS ")
+                .pattern(" S ")
+                .define('Z', Items.IRON_INGOT)
+                .define('S', Items.STICK)
+                .group("iron")
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(output);
+        shaped(RecipeCategory.COMBAT, ModItems.GOLDEN_HATCHET.get())
+                .pattern("ZZZ")
+                .pattern("ZS ")
+                .pattern(" S ")
+                .define('Z', Items.GOLD_INGOT)
+                .define('S', Items.STICK)
+                .group("gold")
+                .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
+                .save(output);
+        shaped(RecipeCategory.COMBAT, ModItems.COPPER_HATCHET.get())
+                .pattern("ZZZ")
+                .pattern("ZS ")
+                .pattern(" S ")
+                .define('Z', Items.COPPER_INGOT)
+                .define('S', Items.STICK)
+                .group("copper")
+                .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
+                .save(output);
+        shaped(RecipeCategory.COMBAT, ModItems.DIAMOND_HATCHET.get())
+                .pattern("ZZZ")
+                .pattern("ZS ")
+                .pattern(" S ")
+                .define('Z', Items.DIAMOND)
+                .define('S', Items.STICK)
+                .group("diamond")
+                .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
+                .save(output);
+        shaped(RecipeCategory.COMBAT, ModItems.ALUMINUM_HATCHET.get())
+                .pattern("ZZZ")
+                .pattern(" SZ")
+                .pattern(" S ")
+                .define('Z', ModItems.ALUMINUM_INGOT.get())
+                .define('S', Items.STICK)
+                .group("aluminum")
+                .unlockedBy(getHasName(ModItems.ALUMINUM_INGOT.get()), has(ModItems.ALUMINUM_INGOT.get()))
+                .save(output, ProjectBiohazard.MOD_ID + ":aluminum_hatchet_right");
+        shaped(RecipeCategory.COMBAT, ModItems.WOODEN_HATCHET.get())
+                .pattern("ZZZ")
+                .pattern(" SZ")
+                .pattern(" S ")
+                .define('Z', ItemTags.PLANKS)
+                .define('S', Items.STICK)
+                .group("wooden")
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+                .save(output, ProjectBiohazard.MOD_ID + ":wooden_hatchet_right");
+        shaped(RecipeCategory.COMBAT, ModItems.STONE_HATCHET.get())
+                .pattern("ZZZ")
+                .pattern(" SZ")
+                .pattern(" S ")
+                .define('Z', Blocks.COBBLESTONE)
+                .define('S', Items.STICK)
+                .group("stone")
+                .unlockedBy(getHasName(Blocks.COBBLESTONE), has(Blocks.COBBLESTONE))
+                .save(output, ProjectBiohazard.MOD_ID + ":stone_hatchet_right");
+        shaped(RecipeCategory.COMBAT, ModItems.IRON_HATCHET.get())
+                .pattern("ZZZ")
+                .pattern(" SZ")
+                .pattern(" S ")
+                .define('Z', Items.IRON_INGOT)
+                .define('S', Items.STICK)
+                .group("iron")
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(output, ProjectBiohazard.MOD_ID + ":iron_hatchet_right");
+        shaped(RecipeCategory.COMBAT, ModItems.GOLDEN_HATCHET.get())
+                .pattern("ZZZ")
+                .pattern(" SZ")
+                .pattern(" S ")
+                .define('Z', Items.GOLD_INGOT)
+                .define('S', Items.STICK)
+                .group("gold")
+                .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
+                .save(output, ProjectBiohazard.MOD_ID + ":golden_hatchet_right");
+        shaped(RecipeCategory.COMBAT, ModItems.COPPER_HATCHET.get())
+                .pattern("ZZZ")
+                .pattern(" SZ")
+                .pattern(" S ")
+                .define('Z', Items.COPPER_INGOT)
+                .define('S', Items.STICK)
+                .group("copper")
+                .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
+                .save(output, ProjectBiohazard.MOD_ID + ":copper_hatchet_right");
+        shaped(RecipeCategory.COMBAT, ModItems.DIAMOND_HATCHET.get())
+                .pattern("ZZZ")
+                .pattern(" SZ")
+                .pattern(" S ")
+                .define('Z', Items.DIAMOND)
+                .define('S', Items.STICK)
+                .group("diamond")
+                .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
+                .save(output, ProjectBiohazard.MOD_ID + ":diamond_hatchet_right");
+        netheriteSmithing(ModItems.DIAMOND_HATCHET.get(), RecipeCategory.COMBAT, ModItems.NETHERITE_HATCHET.get());
+
+        // Typewriter + Ink Ribbon
+        shapeless(RecipeCategory.MISC, ModItems.INK_RIBBON.get())
+                .requires(Items.STRING)
+                .requires(Items.INK_SAC)
+                .requires(ModItems.ALUMINUM_INGOT)
+                .requires(Items.GREEN_DYE)
+                .unlockedBy(getHasName(Items.INK_SAC), has(Items.INK_SAC))
+                .save(output);
+        shaped(RecipeCategory.DECORATIONS, ModBlocks.TYPEWRITER.get())
+                .pattern("APA")
+                .pattern("ETE")
+                .pattern("IRI")
+                .define('A', ModItems.ALUMINUM_INGOT)
+                .define('T', Items.TOTEM_OF_UNDYING)
+                .define('E', Items.ECHO_SHARD)
+                .define('P', Items.PAPER)
+                .define('I', Items.IRON_INGOT)
+                .define('R', Items.REDSTONE)
+                .unlockedBy(getHasName(Items.TOTEM_OF_UNDYING), has(Items.TOTEM_OF_UNDYING))
                 .save(output);
     }
 

@@ -11,6 +11,7 @@ import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import org.jspecify.annotations.NonNull;
 
@@ -25,7 +26,8 @@ public class ModModelProvider extends ModelProvider {
     protected @NonNull Stream<? extends Holder<Item>> getKnownItems() {
         return super.getKnownItems()
                 .filter(holder -> holder.value() != ModItems.GLASS_VIAL.get())
-                .filter(holder -> holder.value() != ModItems.WATER_VIAL.get());
+                .filter(holder -> holder.value() != ModItems.WATER_VIAL.get())
+                .filter(holder -> holder.value() != ModItems.SYRINGE.get());
     }
 
     @Override
@@ -46,6 +48,10 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.ALUMINUM_INGOT.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.HONEY_VIAL.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.SECURE_MUSIC_DISC.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.EMPTY_SYRINGE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+
+        // Materials
+        itemModels.generateFlatItem(ModItems.INK_RIBBON.get(), ModelTemplates.FLAT_ITEM);
 
         // Aluminum Tools
         itemModels.generateFlatItem(ModItems.ALUMINUM_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
@@ -91,5 +97,9 @@ public class ModModelProvider extends ModelProvider {
                 .fenceGate(ModBlocks.UNDEAD_FENCE_GATE.get())
                 .door(ModBlocks.UNDEAD_DOOR.get())
                 .trapdoor(ModBlocks.UNDEAD_TRAPDOOR.get());
+
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(ModBlocks.TYPEWRITER.get(),
+                BlockModelGenerators.plainVariant(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/typewriter")))
+                .with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING));
     }
 }
