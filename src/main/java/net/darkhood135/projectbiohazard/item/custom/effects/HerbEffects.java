@@ -3,18 +3,14 @@ package net.darkhood135.projectbiohazard.item.custom.effects;
 import net.darkhood135.projectbiohazard.Config;
 import net.darkhood135.projectbiohazard.ProjectBiohazard;
 import net.darkhood135.projectbiohazard.attachmenttype.ModAttachmentTypes;
-import net.darkhood135.projectbiohazard.effect.ModEffects;
-import net.darkhood135.projectbiohazard.effect.custom.ImmunityEffect;
+import net.darkhood135.projectbiohazard.effect.custom.ConstitutionEffect;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-
-import java.util.List;
 
 public class HerbEffects {
 
@@ -39,7 +35,7 @@ public class HerbEffects {
         player.removeEffect(MobEffects.HUNGER);
         player.removeEffect(MobEffects.NAUSEA);
         if (red) {
-            ImmunityEffect.applyImmunity(player, 600, 1);
+            ConstitutionEffect.applyConstitution(player, 600, 1);
         }
     }
 

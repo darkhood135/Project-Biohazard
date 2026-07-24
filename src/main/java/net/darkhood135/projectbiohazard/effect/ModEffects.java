@@ -2,7 +2,7 @@ package net.darkhood135.projectbiohazard.effect;
 
 import net.darkhood135.projectbiohazard.ProjectBiohazard;
 import net.darkhood135.projectbiohazard.effect.custom.AdrenalineEffect;
-import net.darkhood135.projectbiohazard.effect.custom.ImmunityEffect;
+import net.darkhood135.projectbiohazard.effect.custom.ConstitutionEffect;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -17,8 +17,8 @@ public class ModEffects {
     public static final DeferredRegister<MobEffect> MOB_EFFECTS =
             DeferredRegister.create(BuiltInRegistries.MOB_EFFECT, ProjectBiohazard.MOD_ID);
 
-    public static final Holder<MobEffect> IMMUNITY = MOB_EFFECTS.register("immunity",
-            () -> new ImmunityEffect(MobEffectCategory.BENEFICIAL, 0xd1a347));
+    public static final Holder<MobEffect> CONSTITUTION = MOB_EFFECTS.register("constitution",
+            () -> new ConstitutionEffect(MobEffectCategory.BENEFICIAL, 0xd1a347));
     public static final Holder<MobEffect> ADRENALINE = MOB_EFFECTS.register("adrenaline",
             () -> new AdrenalineEffect(MobEffectCategory.BENEFICIAL, 0x4a0207)   // pick a color
                     .addAttributeModifier(

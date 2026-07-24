@@ -198,37 +198,85 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ModItems.BORON_SHARD.get()), has(ModItems.BORON_SHARD.get()))
                 .save(output);
 
+        // Stone Tiles
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_TILES, Blocks.STONE);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_TILE_SLAB, Blocks.STONE, 2);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_TILE_STAIRS, Blocks.STONE);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_TILE_SLAB, ModBlocks.STONE_TILES, 2);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_TILE_STAIRS, ModBlocks.STONE_TILES);
+        shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOSSY_STONE_TILES)
+                .requires(ModBlocks.STONE_TILES)
+                .requires(Blocks.VINE)
+                .unlockedBy(getHasName(Blocks.VINE), has(Blocks.VINE))
+                .save(output);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOSSY_STONE_TILE_SLAB, ModBlocks.MOSSY_STONE_TILES, 2);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOSSY_STONE_TILE_STAIRS, ModBlocks.MOSSY_STONE_TILES);
+        stairBuilder(ModBlocks.STONE_TILE_STAIRS.get(), Ingredient.of(ModBlocks.STONE_TILES))
+                .group("stone_tiles")
+                .unlockedBy(getHasName(ModBlocks.STONE_TILES.get()), has(ModBlocks.STONE_TILES.get()))
+                .save(output);
+        slab(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_TILE_SLAB.get(), ModBlocks.STONE_TILES.get());
+        stairBuilder(ModBlocks.MOSSY_STONE_TILE_STAIRS.get(), Ingredient.of(ModBlocks.MOSSY_STONE_TILES))
+                .group("mossy_stone_tiles")
+                .unlockedBy(getHasName(ModBlocks.MOSSY_STONE_TILES.get()), has(ModBlocks.MOSSY_STONE_TILES.get()))
+                .save(output);
+        slab(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOSSY_STONE_TILE_SLAB.get(), ModBlocks.MOSSY_STONE_TILES.get());
+
+        // Weathered Bricks
+        shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WEATHERED_BRICKS)
+                .requires(Blocks.BRICKS)
+                .requires(Blocks.GRAVEL)
+                .unlockedBy(getHasName(Blocks.BRICKS), has(Blocks.BRICKS))
+                .save(output);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WEATHERED_BRICK_SLAB, ModBlocks.WEATHERED_BRICKS);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WEATHERED_BRICK_STAIRS, ModBlocks.WEATHERED_BRICKS);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WEATHERED_BRICK_WALL, ModBlocks.WEATHERED_BRICKS);
+        stairBuilder(ModBlocks.WEATHERED_BRICK_STAIRS.get(), Ingredient.of(ModBlocks.WEATHERED_BRICKS))
+                .group("weathered_bricks")
+                .unlockedBy(getHasName(ModBlocks.WEATHERED_BRICKS.get()), has(ModBlocks.WEATHERED_BRICKS.get()))
+                .save(output);
+        slab(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WEATHERED_BRICK_SLAB.get(), ModBlocks.WEATHERED_BRICKS.get());
+
         shapeless(RecipeCategory.MISC, ModItems.TRONA.get(), 9)
                 .requires(ModBlocks.TRONA_BLOCK)
                 .unlockedBy(getHasName(ModBlocks.TRONA_BLOCK.get()), has(ModBlocks.TRONA_BLOCK.get()))
                 .save(output, ProjectBiohazard.MOD_ID + ":" + "trona_from_block");
 
-        stairBuilder(ModBlocks.UNDEAD_STAIRS.get(), Ingredient.of(ModBlocks.UNDEAD_PLANKS))
-                .group("undead")
-                .unlockedBy(getHasName(ModBlocks.UNDEAD_PLANKS.get()), has(ModBlocks.UNDEAD_PLANKS.get()))
+        // Beech Wood
+        stairBuilder(ModBlocks.BEECH_STAIRS.get(), Ingredient.of(ModBlocks.BEECH_PLANKS))
+                .group("beech")
+                .unlockedBy(getHasName(ModBlocks.BEECH_PLANKS.get()), has(ModBlocks.BEECH_PLANKS.get()))
                 .save(output);
-        slab(RecipeCategory.BUILDING_BLOCKS, ModBlocks.UNDEAD_SLAB.get(), ModBlocks.UNDEAD_PLANKS.get());
-        buttonBuilder(ModBlocks.UNDEAD_BUTTON.get(), Ingredient.of(ModBlocks.UNDEAD_PLANKS.get()))
-                .group("undead")
-                .unlockedBy(getHasName(ModBlocks.UNDEAD_PLANKS.get()), has(ModBlocks.UNDEAD_PLANKS.get()))
+        slab(RecipeCategory.BUILDING_BLOCKS, ModBlocks.BEECH_SLAB.get(), ModBlocks.BEECH_PLANKS.get());
+        buttonBuilder(ModBlocks.BEECH_BUTTON.get(), Ingredient.of(ModBlocks.BEECH_PLANKS.get()))
+                .group("beech")
+                .unlockedBy(getHasName(ModBlocks.BEECH_PLANKS.get()), has(ModBlocks.BEECH_PLANKS.get()))
                 .save(output);
-        pressurePlate(ModBlocks.UNDEAD_PRESSURE_PLATE.get(), ModBlocks.UNDEAD_PLANKS.get());
-        fenceBuilder(ModBlocks.UNDEAD_FENCE.get(), Ingredient.of(ModBlocks.UNDEAD_PLANKS.get()))
-                .group("undead")
-                .unlockedBy(getHasName(ModBlocks.UNDEAD_PLANKS.get()), has(ModBlocks.UNDEAD_PLANKS.get()))
+        pressurePlate(ModBlocks.BEECH_PRESSURE_PLATE.get(), ModBlocks.BEECH_PLANKS.get());
+        fenceBuilder(ModBlocks.BEECH_FENCE.get(), Ingredient.of(ModBlocks.BEECH_PLANKS.get()))
+                .group("beech")
+                .unlockedBy(getHasName(ModBlocks.BEECH_PLANKS.get()), has(ModBlocks.BEECH_PLANKS.get()))
                 .save(output);
-        fenceGateBuilder(ModBlocks.UNDEAD_FENCE_GATE.get(), Ingredient.of(ModBlocks.UNDEAD_PLANKS.get()))
-                .group("undead")
-                .unlockedBy(getHasName(ModBlocks.UNDEAD_PLANKS.get()), has(ModBlocks.UNDEAD_PLANKS.get()))
+        fenceGateBuilder(ModBlocks.BEECH_FENCE_GATE.get(), Ingredient.of(ModBlocks.BEECH_PLANKS.get()))
+                .group("beech")
+                .unlockedBy(getHasName(ModBlocks.BEECH_PLANKS.get()), has(ModBlocks.BEECH_PLANKS.get()))
                 .save(output);
-        doorBuilder(ModBlocks.UNDEAD_DOOR.get(), Ingredient.of(ModBlocks.UNDEAD_PLANKS.get()))
-                .group("undead")
-                .unlockedBy(getHasName(ModBlocks.UNDEAD_PLANKS.get()), has(ModBlocks.UNDEAD_PLANKS.get()))
+        doorBuilder(ModBlocks.BEECH_DOOR.get(), Ingredient.of(ModBlocks.BEECH_PLANKS.get()))
+                .group("beech")
+                .unlockedBy(getHasName(ModBlocks.BEECH_PLANKS.get()), has(ModBlocks.BEECH_PLANKS.get()))
                 .save(output);
-        trapdoorBuilder(ModBlocks.UNDEAD_TRAPDOOR.get(), Ingredient.of(ModBlocks.UNDEAD_PLANKS.get()))
-                .group("undead")
-                .unlockedBy(getHasName(ModBlocks.UNDEAD_PLANKS.get()), has(ModBlocks.UNDEAD_PLANKS.get()))
+        trapdoorBuilder(ModBlocks.BEECH_TRAPDOOR.get(), Ingredient.of(ModBlocks.BEECH_PLANKS.get()))
+                .group("beech")
+                .unlockedBy(getHasName(ModBlocks.BEECH_PLANKS.get()), has(ModBlocks.BEECH_PLANKS.get()))
                 .save(output);
+
+        // Dirty Glass
+        shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DIRTY_GLASS)
+                .requires(Blocks.GLASS)
+                .requires(Blocks.GRAVEL)
+                .unlockedBy(getHasName(Blocks.GLASS), has(Blocks.GLASS))
+                .save(output);
+        wall(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DIRTY_GLASS_PANE.get(), ModBlocks.DIRTY_GLASS.get());
 
         // Borosilicate Glass Recipes
         shaped(RecipeCategory.BREWING, ModItems.GLASS_VIAL.get(), 4)

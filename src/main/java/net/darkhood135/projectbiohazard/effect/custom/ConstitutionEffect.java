@@ -8,17 +8,17 @@ import net.minecraft.world.entity.LivingEntity;
 
 import java.util.List;
 
-public class ImmunityEffect extends MobEffect {
-    public ImmunityEffect(MobEffectCategory category, int color) {
+public class ConstitutionEffect extends MobEffect {
+    public ConstitutionEffect(MobEffectCategory category, int color) {
         super(category, color);
     }
 
-    public static void applyImmunity(LivingEntity entity, int duration, int amplifier) {
+    public static void applyConstitution(LivingEntity entity, int duration, int amplifier) {
         for (MobEffectInstance effect : List.copyOf(entity.getActiveEffects())) {
             if (effect.getEffect().value().getCategory() == MobEffectCategory.HARMFUL) {
                 entity.removeEffect(effect.getEffect());
             }
         }
-        entity.addEffect(new MobEffectInstance(ModEffects.IMMUNITY, duration, amplifier));
+        entity.addEffect(new MobEffectInstance(ModEffects.CONSTITUTION, duration, amplifier));
     }
 }

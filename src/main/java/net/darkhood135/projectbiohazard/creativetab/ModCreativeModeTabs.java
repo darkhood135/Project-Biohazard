@@ -45,15 +45,15 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.YELLOW_HERB);
                         output.accept(ModItems.BLUE_HERB);
                         output.accept(ModItems.BORON_SHARD);
-                        output.accept(ModBlocks.UNDEAD_PLANKS);
-                        output.accept(ModBlocks.UNDEAD_STAIRS);
-                        output.accept(ModBlocks.UNDEAD_SLAB);
-                        output.accept(ModBlocks.UNDEAD_PRESSURE_PLATE);
-                        output.accept(ModBlocks.UNDEAD_BUTTON);
-                        output.accept(ModBlocks.UNDEAD_FENCE);
-                        output.accept(ModBlocks.UNDEAD_FENCE_GATE);
-                        output.accept(ModBlocks.UNDEAD_DOOR);
-                        output.accept(ModBlocks.UNDEAD_TRAPDOOR);
+                        output.accept(ModBlocks.BEECH_PLANKS);
+                        output.accept(ModBlocks.BEECH_STAIRS);
+                        output.accept(ModBlocks.BEECH_SLAB);
+                        output.accept(ModBlocks.BEECH_PRESSURE_PLATE);
+                        output.accept(ModBlocks.BEECH_BUTTON);
+                        output.accept(ModBlocks.BEECH_FENCE);
+                        output.accept(ModBlocks.BEECH_FENCE_GATE);
+                        output.accept(ModBlocks.BEECH_DOOR);
+                        output.accept(ModBlocks.BEECH_TRAPDOOR);
                         output.accept(ModBlocks.BOROSILICATE_GLASS);
                         output.accept(ModBlocks.BOROSILICATE_GLASS_PANE);
 
@@ -105,6 +105,36 @@ public class ModCreativeModeTabs {
                             s.set(DataComponents.POTION_CONTENTS, new PotionContents(potion));
                             output.accept(s);
                         });
+                    })
+                    .build());
+
+    public static final Supplier<CreativeModeTab> BIOHAZARD_BLOCKS_TAB =
+            CREATIVE_MODE_TABS.register("biohazard_blocks_tab", () -> CreativeModeTab.builder()
+                    .icon(() -> new ItemStack(ModBlocks.TYPEWRITER.get()))
+                    .title(Component.translatable("creativetab.projectbiohazard.biohazard_blocks"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModBlocks.TYPEWRITER);
+                        output.accept(ModBlocks.BEECH_PLANKS);
+                        output.accept(ModBlocks.BEECH_STAIRS);
+                        output.accept(ModBlocks.BEECH_SLAB);
+                        output.accept(ModBlocks.BEECH_FENCE);
+                        output.accept(ModBlocks.BEECH_FENCE_GATE);
+                        output.accept(ModBlocks.BEECH_DOOR);
+                        output.accept(ModBlocks.BEECH_TRAPDOOR);
+                        output.accept(ModBlocks.BEECH_PRESSURE_PLATE);
+                        output.accept(ModBlocks.BEECH_BUTTON);
+                        output.accept(ModBlocks.STONE_TILES);
+                        output.accept(ModBlocks.STONE_TILE_STAIRS);
+                        output.accept(ModBlocks.STONE_TILE_SLAB);
+                        output.accept(ModBlocks.MOSSY_STONE_TILES);
+                        output.accept(ModBlocks.MOSSY_STONE_TILE_STAIRS);
+                        output.accept(ModBlocks.MOSSY_STONE_TILE_SLAB);
+                        output.accept(ModBlocks.WEATHERED_BRICKS);
+                        output.accept(ModBlocks.WEATHERED_BRICK_STAIRS);
+                        output.accept(ModBlocks.WEATHERED_BRICK_SLAB);
+                        output.accept(ModBlocks.WEATHERED_BRICK_WALL);
+                        output.accept(ModBlocks.DIRTY_GLASS);
+                        output.accept(ModBlocks.DIRTY_GLASS_PANE);
                     })
                     .build());
 

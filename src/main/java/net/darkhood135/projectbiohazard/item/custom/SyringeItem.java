@@ -25,7 +25,7 @@ public class SyringeItem extends Item {
         if (!target.level().isClientSide()) {
             PotionContents contents = stack.get(DataComponents.POTION_CONTENTS);
             if (contents != null) {
-                if (target.hasEffect(ModEffects.IMMUNITY) || target.hasEffect(MobEffects.RESISTANCE)) {
+                if (target.hasEffect(ModEffects.CONSTITUTION) || target.hasEffect(MobEffects.RESISTANCE)) {
                     return;   // "bounce off" — reject; syringe stays filled (don't empty it)
                 }
                 target.setData(ModAttachmentTypes.SYRINGE_INJECTION, new SyringeInjection(contents, 0, 60)); // first charge in 3s

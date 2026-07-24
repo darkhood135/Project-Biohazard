@@ -49,7 +49,7 @@ public class ModItems {
             properties -> new SyringeItem(properties.stacksTo(1)));
 
     public static final DeferredItem<Item> EMF_VISUALIZER = ITEMS.registerItem("emf_visualizer",
-            properties -> new EMFItem(properties.durability(32)));
+            properties -> new EMFItem(properties.stacksTo(1).durability(32).rarity(Rarity.EPIC)));
 
     // Hidden items (Visual only)
     public static final DeferredItem<Item> UMBRELLA_INSIGNIA = ITEMS.registerSimpleItem("umbrella_insignia",

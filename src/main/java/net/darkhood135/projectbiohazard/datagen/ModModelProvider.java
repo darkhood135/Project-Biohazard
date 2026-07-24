@@ -27,7 +27,10 @@ public class ModModelProvider extends ModelProvider {
         return super.getKnownItems()
                 .filter(holder -> holder.value() != ModItems.GLASS_VIAL.get())
                 .filter(holder -> holder.value() != ModItems.WATER_VIAL.get())
-                .filter(holder -> holder.value() != ModItems.SYRINGE.get());
+                .filter(holder -> holder.value() != ModItems.SYRINGE.get())
+                .filter(holder -> holder.value() != ModItems.EMF_VISUALIZER.get())
+                .filter(holder -> holder.value() != ModBlocks.TYPEWRITER.asItem());
+
     }
 
     @Override
@@ -37,7 +40,6 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.TRONA.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.UMBRELLA_BADGE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.UMBRELLA_INSIGNIA.get(), ModelTemplates.FLAT_ITEM);
-        itemModels.generateFlatItem(ModItems.EMF_VISUALIZER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ModItems.GREEN_HERB.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.RED_HERB.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.BLUE_HERB.get(), ModelTemplates.FLAT_ITEM);
@@ -87,16 +89,30 @@ public class ModModelProvider extends ModelProvider {
         blockModels.createTrivialCube(ModBlocks.FLESH_BLOCK.get());
 
         blockModels.createGlassBlocks(ModBlocks.BOROSILICATE_GLASS.get(), ModBlocks.BOROSILICATE_GLASS_PANE.get());
+        blockModels.createGlassBlocks(ModBlocks.DIRTY_GLASS.get(), ModBlocks.DIRTY_GLASS_PANE.get());
 
-        blockModels.family(ModBlocks.UNDEAD_PLANKS.get())
-                .stairs(ModBlocks.UNDEAD_STAIRS.get())
-                .slab(ModBlocks.UNDEAD_SLAB.get())
-                .button(ModBlocks.UNDEAD_BUTTON.get())
-                .pressurePlate(ModBlocks.UNDEAD_PRESSURE_PLATE.get())
-                .fence(ModBlocks.UNDEAD_FENCE.get())
-                .fenceGate(ModBlocks.UNDEAD_FENCE_GATE.get())
-                .door(ModBlocks.UNDEAD_DOOR.get())
-                .trapdoor(ModBlocks.UNDEAD_TRAPDOOR.get());
+        blockModels.family(ModBlocks.STONE_TILES.get())
+                .stairs(ModBlocks.STONE_TILE_STAIRS.get())
+                .slab(ModBlocks.STONE_TILE_SLAB.get());
+
+        blockModels.family(ModBlocks.WEATHERED_BRICKS.get())
+                .stairs(ModBlocks.WEATHERED_BRICK_STAIRS.get())
+                .slab(ModBlocks.WEATHERED_BRICK_SLAB.get())
+                .wall(ModBlocks.WEATHERED_BRICK_WALL.get());
+
+        blockModels.family(ModBlocks.MOSSY_STONE_TILES.get())
+                .stairs(ModBlocks.MOSSY_STONE_TILE_STAIRS.get())
+                .slab(ModBlocks.MOSSY_STONE_TILE_SLAB.get());
+
+        blockModels.family(ModBlocks.BEECH_PLANKS.get())
+                .stairs(ModBlocks.BEECH_STAIRS.get())
+                .slab(ModBlocks.BEECH_SLAB.get())
+                .button(ModBlocks.BEECH_BUTTON.get())
+                .pressurePlate(ModBlocks.BEECH_PRESSURE_PLATE.get())
+                .fence(ModBlocks.BEECH_FENCE.get())
+                .fenceGate(ModBlocks.BEECH_FENCE_GATE.get())
+                .door(ModBlocks.BEECH_DOOR.get())
+                .trapdoor(ModBlocks.BEECH_TRAPDOOR.get());
 
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(ModBlocks.TYPEWRITER.get(),
                 BlockModelGenerators.plainVariant(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/typewriter")))

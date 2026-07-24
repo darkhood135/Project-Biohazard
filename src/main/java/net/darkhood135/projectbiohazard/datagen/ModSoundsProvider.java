@@ -19,10 +19,13 @@ public class ModSoundsProvider extends SoundDefinitionsProvider {
                     sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "syringe_pierce2")),
                         sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "syringe_pierce3"))));
 
-        add(ModSounds.SECURE.get(), definition().subtitle("sounds.projectbiohazard.secure")
-                .with(sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "secure")).stream()));
+        add(ModSounds.SECURE_CD.get(), definition().subtitle("sounds.projectbiohazard.secure_cd")
+                .with(sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "secure_cd")).stream()));
 
         add(ModSounds.TYPEWRITER_SAVE.get(), definition().subtitle("sounds.projectbiohazard.typewriter_save")
                 .with(sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "typewriter_save")).stream()));
+
+        add(ModSounds.SECURE.get(), definition().subtitle("sounds.projectbiohazard.secure")
+                .with(sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "secure")).stream()));
     }
 }

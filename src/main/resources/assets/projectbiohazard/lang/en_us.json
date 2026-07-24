@@ -1,6 +1,7 @@
 {
   "creativetab.projectbiohazard.project_biohazard": "Project Biohazard",
   "creativetab.projectbiohazard.vial_mixtures": "Vial Mixtures",
+  "creativetab.projectbiohazard.biohazard_blocks": "Biohazard Blocks",
 
   "item.projectbiohazard.umbrella_insignia": "Umbrella Insignia",
   "item.projectbiohazard.umbrella_badge": "Umbrella Badge",
@@ -75,18 +76,33 @@
 
   "block.projectbiohazard.deactivated_redstone_block": "Deactivated Block of Redstone",
 
-  "block.projectbiohazard.undead_planks": "Undead Planks",
-  "block.projectbiohazard.undead_stairs": "Undead Stairs",
-  "block.projectbiohazard.undead_slab": "Undead Slab",
-  "block.projectbiohazard.undead_button": "Undead Button",
-  "block.projectbiohazard.undead_pressure_plate": "Undead Pressure Plate",
-  "block.projectbiohazard.undead_fence": "Undead Fence",
-  "block.projectbiohazard.undead_fence_gate": "Undead Fence Gate",
-  "block.projectbiohazard.undead_door": "Undead Door",
-  "block.projectbiohazard.undead_trapdoor": "Undead Trapdoor",
+  "block.projectbiohazard.beech_planks": "Beech Planks",
+  "block.projectbiohazard.beech_stairs": "Beech Stairs",
+  "block.projectbiohazard.beech_slab": "Beech Slab",
+  "block.projectbiohazard.beech_button": "Beech Button",
+  "block.projectbiohazard.beech_pressure_plate": "Beech Pressure Plate",
+  "block.projectbiohazard.beech_fence": "Beech Fence",
+  "block.projectbiohazard.beech_fence_gate": "Beech Fence Gate",
+  "block.projectbiohazard.beech_door": "Beech Door",
+  "block.projectbiohazard.beech_trapdoor": "Beech Trapdoor",
+
+  "block.projectbiohazard.stone_tiles": "Stone Tiles",
+  "block.projectbiohazard.stone_tile_stairs": "Stone Tile Stairs",
+  "block.projectbiohazard.stone_tile_slab": "Stone Tile Slab",
+  "block.projectbiohazard.mossy_stone_tiles": "Mossy Stone Tiles",
+  "block.projectbiohazard.mossy_stone_tile_stairs": "Mossy Stone Tile Stairs",
+  "block.projectbiohazard.mossy_stone_tile_slab": "Mossy Stone Tile Slab",
+
+  "block.projectbiohazard.weathered_bricks": "Weathered Bricks",
+  "block.projectbiohazard.weathered_brick_stairs": "Weathered Brick Stairs",
+  "block.projectbiohazard.weathered_brick_slab": "Weathered Brick Slab",
+  "block.projectbiohazard.weathered_brick_wall": "Weathered Brick Wall",
 
   "block.projectbiohazard.borosilicate_glass": "Borosilicate Glass",
   "block.projectbiohazard.borosilicate_glass_pane": "Borosilicate Glass Pane",
+
+  "block.projectbiohazard.dirty_glass": "Dirty Glass",
+  "block.projectbiohazard.dirty_glass_pane": "Dirty Glass Pane",
 
   "item.projectbiohazard.aluminum_sword": "Aluminum Sword",
   "item.projectbiohazard.aluminum_pickaxe": "Aluminum Pickaxe",
@@ -107,8 +123,8 @@
 
   "block.projectbiohazard.flesh_block": "Block of Flesh",
 
-  "effect.projectbiohazard.immunity": "Immunity",
-  "effect.projectbiohazard.immunity.description": "Provides immunity to all negative status effects",
+  "effect.projectbiohazard.constitution": "Constitution",
+  "effect.projectbiohazard.constitution.description": "Increases defense and provides immunity to all negative status effects",
 
   "effect.projectbiohazard.adrenaline": "Adrenaline",
   "effect.projectbiohazard.adrenaline.description": "Increases attack speed and critical damage",
@@ -117,6 +133,7 @@
   "jukebox_song.projectbiohazard.secure": "Crow Hex - Secure",
 
   "sounds.projectbiohazard.syringe_pierce": "Stabbed with a syringe",
-  "sounds.projectbiohazard.secure": "Playing Secure music disc",
+  "sounds.projectbiohazard.secure": "Playing Secure background music",
+  "sounds.projectbiohazard.secure_cd": "Playing Secure music disc",
   "sounds.projectbiohazard.typewriter_save": "Saved with a typewriter"
 }

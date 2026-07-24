@@ -1,0 +1,16 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "minecraft:display_context",
+    "cases": [
+      {
+        "when": ["gui", "fixed", "on_shelf"],
+        "model": { "type": "minecraft:model", "model": "projectbiohazard:item/emf_visualizer_gui" }
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "projectbiohazard:item/emf_visualizer"
+    }
+  }
+}

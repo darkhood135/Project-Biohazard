@@ -17,7 +17,7 @@ public class ModJukeboxSongs {
     public static final ResourceKey<JukeboxSong> SECURE_KEY = createKey("secure");
 
     public static void bootstrap(BootstrapContext<JukeboxSong> context) {
-        register(context, SECURE_KEY, ((Holder.Reference<SoundEvent>) ModSounds.SECURE.getDelegate()), 79, 2);
+        register(context, SECURE_KEY, ((Holder.Reference<SoundEvent>) ModSounds.SECURE_CD.getDelegate()), 79, 2);
     }
 
     private static ResourceKey<JukeboxSong> createKey(String name) {
