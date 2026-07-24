@@ -123,18 +123,24 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.BEECH_TRAPDOOR);
                         output.accept(ModBlocks.BEECH_PRESSURE_PLATE);
                         output.accept(ModBlocks.BEECH_BUTTON);
-                        output.accept(ModBlocks.STONE_TILES);
-                        output.accept(ModBlocks.STONE_TILE_STAIRS);
-                        output.accept(ModBlocks.STONE_TILE_SLAB);
-                        output.accept(ModBlocks.MOSSY_STONE_TILES);
-                        output.accept(ModBlocks.MOSSY_STONE_TILE_STAIRS);
-                        output.accept(ModBlocks.MOSSY_STONE_TILE_SLAB);
+                        output.accept(ModBlocks.STONE_PANELS);
+                        output.accept(ModBlocks.STONE_PANEL_STAIRS);
+                        output.accept(ModBlocks.STONE_PANEL_SLAB);
+                        output.accept(ModBlocks.MOSSY_STONE_PANELS);
+                        output.accept(ModBlocks.MOSSY_STONE_PANEL_STAIRS);
+                        output.accept(ModBlocks.MOSSY_STONE_PANEL_SLAB);
+                        output.accept(ModBlocks.DEEPSLATE_PANELS);
+                        output.accept(ModBlocks.DEEPSLATE_PANEL_STAIRS);
+                        output.accept(ModBlocks.DEEPSLATE_PANEL_SLAB);
                         output.accept(ModBlocks.WEATHERED_BRICKS);
                         output.accept(ModBlocks.WEATHERED_BRICK_STAIRS);
                         output.accept(ModBlocks.WEATHERED_BRICK_SLAB);
                         output.accept(ModBlocks.WEATHERED_BRICK_WALL);
                         output.accept(ModBlocks.DIRTY_GLASS);
                         output.accept(ModBlocks.DIRTY_GLASS_PANE);
+                        output.accept(ModBlocks.PLASTER);
+                        output.accept(ModBlocks.WEATHERED_PLASTER);
+                        output.accept(ModBlocks.DRIPPING_PLASTER);
                     })
                     .build());
 

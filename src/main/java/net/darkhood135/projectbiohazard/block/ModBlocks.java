@@ -24,39 +24,85 @@ public class ModBlocks {
             DeferredRegister.createBlocks(ProjectBiohazard.MOD_ID);
 
     // Stone Tiles
-    public static final DeferredBlock<Block> STONE_TILES = registerBlock("stone_tiles",
+    public static final DeferredBlock<Block> STONE_PANELS = registerBlock("stone_panels",
             properties -> new Block(properties
                     .sound(SoundType.STONE)
                     .mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(1.5F, 6.0F)
             ));
-    public static final DeferredBlock<Block> STONE_TILE_STAIRS = registerBlock("stone_tile_stairs",
-            properties -> new StairBlock(ModBlocks.STONE_TILES.get().defaultBlockState(), properties
+    public static final DeferredBlock<Block> STONE_PANEL_STAIRS = registerBlock("stone_panel_stairs",
+            properties -> new StairBlock(ModBlocks.STONE_PANELS.get().defaultBlockState(), properties
                     .sound(SoundType.STONE)
                     .mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(1.5F, 6.0F)
                     .isValidSpawn(Blocks::never)
             ));
-    public static final DeferredBlock<Block> STONE_TILE_SLAB = registerBlock("stone_tile_slab",
+    public static final DeferredBlock<Block> STONE_PANEL_SLAB = registerBlock("stone_panel_slab",
             properties -> new SlabBlock(properties
                     .sound(SoundType.STONE)
                     .mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(1.5F, 6.0F)
                     .isValidSpawn(Blocks::never)
             ));
-    public static final DeferredBlock<Block> MOSSY_STONE_TILES = registerBlock("mossy_stone_tiles",
+    public static final DeferredBlock<Block> MOSSY_STONE_PANELS = registerBlock("mossy_stone_panels",
             properties -> new Block(properties
                     .sound(SoundType.STONE)
                     .mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(1.5F, 6.0F)
             ));
-    public static final DeferredBlock<Block> MOSSY_STONE_TILE_STAIRS = registerBlock("mossy_stone_tile_stairs",
-            properties -> new StairBlock(ModBlocks.MOSSY_STONE_TILES.get().defaultBlockState(), properties
+    public static final DeferredBlock<Block> MOSSY_STONE_PANEL_STAIRS = registerBlock("mossy_stone_panel_stairs",
+            properties -> new StairBlock(ModBlocks.MOSSY_STONE_PANELS.get().defaultBlockState(), properties
                     .sound(SoundType.STONE)
                     .mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(1.5F, 6.0F)
                     .isValidSpawn(Blocks::never)
             ));
-    public static final DeferredBlock<Block> MOSSY_STONE_TILE_SLAB = registerBlock("mossy_stone_tile_slab",
+    public static final DeferredBlock<Block> MOSSY_STONE_PANEL_SLAB = registerBlock("mossy_stone_panel_slab",
             properties -> new SlabBlock(properties
                     .sound(SoundType.STONE)
                     .strength(3f)
                     .isValidSpawn(Blocks::never)
+            ));
+    public static final DeferredBlock<Block> DEEPSLATE_PANELS = registerBlock("deepslate_panels",
+            properties -> new Block(properties
+                    .mapColor(MapColor.DEEPSLATE)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .requiresCorrectToolForDrops()
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.DEEPSLATE)
+            ));
+    public static final DeferredBlock<Block> DEEPSLATE_PANEL_STAIRS = registerBlock("deepslate_panel_stairs",
+            properties -> new StairBlock(ModBlocks.STONE_PANELS.get().defaultBlockState(), properties
+                    .mapColor(MapColor.DEEPSLATE)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .requiresCorrectToolForDrops()
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.DEEPSLATE)
+                    .isValidSpawn(Blocks::never)
+            ));
+    public static final DeferredBlock<Block> DEEPSLATE_PANEL_SLAB = registerBlock("deepslate_panel_slab",
+            properties -> new SlabBlock(properties
+                    .mapColor(MapColor.DEEPSLATE)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .requiresCorrectToolForDrops()
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.DEEPSLATE)
+                    .isValidSpawn(Blocks::never)
+            ));
+
+    // Plaster
+    public static final DeferredBlock<Block> PLASTER = registerBlock("plaster",
+            properties -> new Block(properties
+                    .mapColor(MapColor.SAND)
+                    .requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F)
+            ));
+    public static final DeferredBlock<Block> WEATHERED_PLASTER = registerBlock("weathered_plaster",
+            properties -> new Block(properties
+                    .mapColor(MapColor.SAND)
+                    .requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F)
+            ));
+    public static final DeferredBlock<Block> DRIPPING_PLASTER = registerBlock("dripping_plaster",
+            properties -> new Block(properties
+                    .mapColor(MapColor.SAND)
+                    .requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F)
             ));
 
     // Weathered Bricks
@@ -92,7 +138,6 @@ public class ModBlocks {
                     .isValidSpawn(Blocks::never)
                     .forceSolidOn()
             ));
-
 
     // Beech Wood
     public static final DeferredBlock<Block> BEECH_PLANKS = registerBlock("beech_planks",

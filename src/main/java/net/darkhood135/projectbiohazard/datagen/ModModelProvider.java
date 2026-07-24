@@ -1,5 +1,6 @@
 package net.darkhood135.projectbiohazard.datagen;
 
+import com.mojang.math.Quadrant;
 import net.darkhood135.projectbiohazard.ProjectBiohazard;
 import net.darkhood135.projectbiohazard.block.ModBlocks;
 import net.darkhood135.projectbiohazard.item.ModItems;
@@ -8,13 +9,18 @@ import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
+import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.client.data.models.model.TexturedModel;
+import net.minecraft.client.renderer.block.dispatch.Variant;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import org.jspecify.annotations.NonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class ModModelProvider extends ModelProvider {
@@ -91,18 +97,77 @@ public class ModModelProvider extends ModelProvider {
         blockModels.createGlassBlocks(ModBlocks.BOROSILICATE_GLASS.get(), ModBlocks.BOROSILICATE_GLASS_PANE.get());
         blockModels.createGlassBlocks(ModBlocks.DIRTY_GLASS.get(), ModBlocks.DIRTY_GLASS_PANE.get());
 
-        blockModels.family(ModBlocks.STONE_TILES.get())
-                .stairs(ModBlocks.STONE_TILE_STAIRS.get())
-                .slab(ModBlocks.STONE_TILE_SLAB.get());
+        blockModels.family(ModBlocks.STONE_PANELS.get())
+                .stairs(ModBlocks.STONE_PANEL_STAIRS.get())
+                .slab(ModBlocks.STONE_PANEL_SLAB.get());
 
         blockModels.family(ModBlocks.WEATHERED_BRICKS.get())
                 .stairs(ModBlocks.WEATHERED_BRICK_STAIRS.get())
                 .slab(ModBlocks.WEATHERED_BRICK_SLAB.get())
                 .wall(ModBlocks.WEATHERED_BRICK_WALL.get());
 
-        blockModels.family(ModBlocks.MOSSY_STONE_TILES.get())
-                .stairs(ModBlocks.MOSSY_STONE_TILE_STAIRS.get())
-                .slab(ModBlocks.MOSSY_STONE_TILE_SLAB.get());
+        blockModels.family(ModBlocks.MOSSY_STONE_PANELS.get())
+                .stairs(ModBlocks.MOSSY_STONE_PANEL_STAIRS.get())
+                .slab(ModBlocks.MOSSY_STONE_PANEL_SLAB.get());
+
+        blockModels.family(ModBlocks.DEEPSLATE_PANELS.get())
+                .stairs(ModBlocks.DEEPSLATE_PANEL_STAIRS.get())
+                .slab(ModBlocks.DEEPSLATE_PANEL_SLAB.get());
+
+        // Plaster
+        List<Variant> plasterVariants = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            Identifier modelLoc = Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/plaster" + i);
+            Material tex = TextureMapping.getBlockTexture(ModBlocks.PLASTER.get(), String.valueOf(i)); // block/plaster<i>
+            ModelTemplates.CUBE_ALL.create(modelLoc, TextureMapping.cube(tex), blockModels.modelOutput);
+            Variant base = BlockModelGenerators.plainModel(modelLoc);
+            for (Quadrant q : Quadrant.values()) {           // R0, R90, R180, R270
+                plasterVariants.add(base.withYRot(q));
+            }
+        }
+        blockModels.registerSimpleItemModel(ModBlocks.PLASTER.get(),
+                Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/plaster0"));
+        blockModels.blockStateOutput.accept(
+                BlockModelGenerators.createSimpleBlock(ModBlocks.PLASTER.get(),
+                        BlockModelGenerators.variants(plasterVariants.toArray(new Variant[0]))));
+
+        // Weathered Plaster
+        List<Variant> weatheredPlasterVariants = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            Identifier modelLoc = Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/weathered_plaster" + i);
+            TextureMapping tex = new TextureMapping()
+                    .put(TextureSlot.SIDE,   TextureMapping.getBlockTexture(ModBlocks.WEATHERED_PLASTER.get(), String.valueOf(i))) // weathered_plaster<i>
+                    .put(TextureSlot.TOP,    TextureMapping.getBlockTexture(ModBlocks.PLASTER.get(), "0"))                         // plaster0 on top
+                    .put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(ModBlocks.WEATHERED_PLASTER.get(), "_bottom"));        // weathered_plaster_bottom
+            ModelTemplates.CUBE_BOTTOM_TOP.create(modelLoc, tex, blockModels.modelOutput);
+            weatheredPlasterVariants.add(BlockModelGenerators.plainModel(modelLoc));
+            Variant base = BlockModelGenerators.plainModel(modelLoc);
+            weatheredPlasterVariants.add(base);
+        }
+        blockModels.registerSimpleItemModel(ModBlocks.WEATHERED_PLASTER.get(),
+                Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/weathered_plaster0"));
+        blockModels.blockStateOutput.accept(
+                BlockModelGenerators.createSimpleBlock(ModBlocks.WEATHERED_PLASTER.get(),
+                        BlockModelGenerators.variants(weatheredPlasterVariants.toArray(new Variant[0]))));
+
+        // Dripping Plaster
+        List<Variant> drippingPlasterVariants = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            Identifier modelLoc = Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/dripping_plaster" + i);
+            TextureMapping tex = new TextureMapping()
+                    .put(TextureSlot.SIDE,   TextureMapping.getBlockTexture(ModBlocks.DRIPPING_PLASTER.get(), String.valueOf(i))) // weathered_plaster<i>
+                    .put(TextureSlot.TOP,    TextureMapping.getBlockTexture(ModBlocks.WEATHERED_PLASTER.get(), "_bottom"))                         // plaster0 on top
+                    .put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(ModBlocks.PLASTER.get(), "0"));        // weathered_plaster_bottom
+            ModelTemplates.CUBE_BOTTOM_TOP.create(modelLoc, tex, blockModels.modelOutput);
+            drippingPlasterVariants.add(BlockModelGenerators.plainModel(modelLoc));
+            Variant base = BlockModelGenerators.plainModel(modelLoc);
+            drippingPlasterVariants.add(base);
+        }
+        blockModels.registerSimpleItemModel(ModBlocks.DRIPPING_PLASTER.get(),
+                Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/dripping_plaster0"));
+        blockModels.blockStateOutput.accept(
+                BlockModelGenerators.createSimpleBlock(ModBlocks.DRIPPING_PLASTER.get(),
+                        BlockModelGenerators.variants(drippingPlasterVariants.toArray(new Variant[0]))));
 
         blockModels.family(ModBlocks.BEECH_PLANKS.get())
                 .stairs(ModBlocks.BEECH_STAIRS.get())

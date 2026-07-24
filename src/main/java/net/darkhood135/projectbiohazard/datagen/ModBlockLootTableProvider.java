@@ -33,12 +33,19 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.TYPEWRITER.get());
 
-        dropSelf(ModBlocks.STONE_TILES.get());
-        dropSelf(ModBlocks.STONE_TILE_STAIRS.get());
-        dropSelf(ModBlocks.MOSSY_STONE_TILES.get());
-        dropSelf(ModBlocks.MOSSY_STONE_TILE_STAIRS.get());
-        add(ModBlocks.STONE_TILE_SLAB.get(), this::createSlabItemTable);
-        add(ModBlocks.MOSSY_STONE_TILE_SLAB.get(), this::createSlabItemTable);
+        dropSelf(ModBlocks.STONE_PANELS.get());
+        dropSelf(ModBlocks.STONE_PANEL_STAIRS.get());
+        dropSelf(ModBlocks.MOSSY_STONE_PANELS.get());
+        dropSelf(ModBlocks.MOSSY_STONE_PANEL_STAIRS.get());
+        dropSelf(ModBlocks.DEEPSLATE_PANELS.get());
+        dropSelf(ModBlocks.DEEPSLATE_PANEL_STAIRS.get());
+        add(ModBlocks.STONE_PANEL_SLAB.get(), this::createSlabItemTable);
+        add(ModBlocks.MOSSY_STONE_PANEL_SLAB.get(), this::createSlabItemTable);
+        add(ModBlocks.DEEPSLATE_PANEL_SLAB.get(), this::createSlabItemTable);
+
+        dropSelf(ModBlocks.PLASTER.get());
+        dropSelf(ModBlocks.WEATHERED_PLASTER.get());
+        dropSelf(ModBlocks.DRIPPING_PLASTER.get());
 
         dropSelf(ModBlocks.WEATHERED_BRICKS.get());
         dropSelf(ModBlocks.WEATHERED_BRICK_STAIRS.get());

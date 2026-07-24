@@ -2,6 +2,40 @@
 
 A running list of things to build, fix, or revisit. Newest priorities near the top.
 
+## Textures — RE4 block set (in progress)
+
+Emulating Resident Evil 4 rural-village architecture (timber-framed stucco cottages). Guide-only
+collaboration — analyze & advise, Tyler implements.
+
+**Done so far:**
+- Weathered Bricks (chimney + the source texture for exposed-brick-under-plaster). Recipe motif: bricks + gravel.
+- Dirty Glass (grime in corners, olive tint, mostly-clear center). Recipe: glass + gravel.
+- Stone Tiles roof — scalloped fish-scale via *clustered noise* (NOT banding; banding read as pipes),
+  with a mossy variant + value variation. Separate block from the flat-noise floor Stone Tiles. Stair
+  geometry provides the course lines, so the texture stays flat/non-directional.
+- Plaster system: clean quiet **base** (weighted random variants + uvlock rotation), **Weathered** variant
+  (bottom grime, rotation-locked so it can't flip up), **Dripping** variant (vertical streaks from the top
+  under roofline/sills, rotation-locked). Base stays calm; variants + placement carry the weathering.
+
+**To do:**
+1. **Exposed Plaster** — plaster peeled showing Weathered Bricks. Hand-placed, FIXED orientation so brick
+   courses stay horizontal; brick must match the chimney block. Recipe: Plaster + Weathered Brick (shapeless).
+2. **Cracked Plaster** — hairline cracks / chipped corner, hand-placed decay. Recipe: Plaster + gravel
+   (same "gravel = grime" motif as bricks/glass).
+3. **Crafting recipes for plaster (all forms)** — base Plaster from lime-ish mats (e.g. clay + sand + bone
+   meal); damage variants via the shapeless recipes above; add stonecutter paths (Plaster → each variant)
+   for cheap decorative access.
+4. **Different plaster colors** — the planned warm soot-brown INTERIOR tone as a sibling (matches the RE4
+   interior fireplace-room reference); optionally other muted village tones (faded ochre/blue/green). Keep
+   all of them low-contrast like the base so the system stays coherent.
+5. **Custom crafting block for plaster blocks** — a dedicated workstation if the recipe set grows large;
+   otherwise vanilla table + stonecutter already cover it. Decide once the recipe count is known.
+
+**Ideas / polish (optional):**
+- Plaster slab / stairs / wall shapes for windowsills, trim, and half-height detailing.
+- Per-brick color variation on Weathered Bricks (a few darker/spalled bricks) to break the uniform grid.
+- Keep the Dripping variant selective — only walls directly under the roofline, or it gets busy.
+
 ## DONE — Typewriter "Save State" (complete)
 
 Directional-placed Blockbench block. Right-click with an Ink Ribbon = save: sets vanilla respawn

@@ -18,12 +18,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider registries) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(ModBlocks.STONE_TILES.get())
-                .add(ModBlocks.STONE_TILE_SLAB.get())
-                .add(ModBlocks.STONE_TILE_STAIRS.get())
-                .add(ModBlocks.MOSSY_STONE_TILES.get())
-                .add(ModBlocks.MOSSY_STONE_TILE_SLAB.get())
-                .add(ModBlocks.MOSSY_STONE_TILE_STAIRS.get())
+                .add(ModBlocks.STONE_PANELS.get())
+                .add(ModBlocks.STONE_PANEL_SLAB.get())
+                .add(ModBlocks.STONE_PANEL_STAIRS.get())
+                .add(ModBlocks.MOSSY_STONE_PANELS.get())
+                .add(ModBlocks.MOSSY_STONE_PANEL_SLAB.get())
+                .add(ModBlocks.MOSSY_STONE_PANEL_STAIRS.get())
                 .add(ModBlocks.TRONA_ORE.get())
                 .add(ModBlocks.SANDSTONE_TRONA_ORE.get())
                 .add(ModBlocks.RED_SANDSTONE_TRONA_ORE.get())
@@ -62,16 +62,16 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.BEECH_STAIRS.get());
         tag(BlockTags.STAIRS)
                 .add(ModBlocks.BEECH_STAIRS.get())
-                .add(ModBlocks.STONE_TILE_STAIRS.get())
-                .add(ModBlocks.MOSSY_STONE_TILE_STAIRS.get())
+                .add(ModBlocks.STONE_PANEL_STAIRS.get())
+                .add(ModBlocks.MOSSY_STONE_PANEL_STAIRS.get())
                 .add(ModBlocks.WEATHERED_BRICK_STAIRS.get());
 
         tag(BlockTags.WOODEN_SLABS)
                 .add(ModBlocks.BEECH_SLAB.get());
         tag(BlockTags.SLABS)
                 .add(ModBlocks.BEECH_SLAB.get())
-                .add(ModBlocks.STONE_TILE_SLAB.get())
-                .add(ModBlocks.MOSSY_STONE_TILE_SLAB.get())
+                .add(ModBlocks.STONE_PANEL_SLAB.get())
+                .add(ModBlocks.MOSSY_STONE_PANEL_SLAB.get())
                 .add(ModBlocks.WEATHERED_BRICK_SLAB.get());
 
         tag(BlockTags.WOODEN_PRESSURE_PLATES)

@@ -199,28 +199,28 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(output);
 
         // Stone Tiles
-        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_TILES, Blocks.STONE);
-        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_TILE_SLAB, Blocks.STONE, 2);
-        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_TILE_STAIRS, Blocks.STONE);
-        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_TILE_SLAB, ModBlocks.STONE_TILES, 2);
-        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_TILE_STAIRS, ModBlocks.STONE_TILES);
-        shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOSSY_STONE_TILES)
-                .requires(ModBlocks.STONE_TILES)
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_PANELS, Blocks.STONE);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_PANEL_SLAB, Blocks.STONE, 2);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_PANEL_STAIRS, Blocks.STONE);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_PANEL_SLAB, ModBlocks.STONE_PANELS, 2);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_PANEL_STAIRS, ModBlocks.STONE_PANELS);
+        shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOSSY_STONE_PANELS)
+                .requires(ModBlocks.STONE_PANELS)
                 .requires(Blocks.VINE)
                 .unlockedBy(getHasName(Blocks.VINE), has(Blocks.VINE))
                 .save(output);
-        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOSSY_STONE_TILE_SLAB, ModBlocks.MOSSY_STONE_TILES, 2);
-        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOSSY_STONE_TILE_STAIRS, ModBlocks.MOSSY_STONE_TILES);
-        stairBuilder(ModBlocks.STONE_TILE_STAIRS.get(), Ingredient.of(ModBlocks.STONE_TILES))
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOSSY_STONE_PANEL_SLAB, ModBlocks.MOSSY_STONE_PANELS, 2);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOSSY_STONE_PANEL_STAIRS, ModBlocks.MOSSY_STONE_PANELS);
+        stairBuilder(ModBlocks.STONE_PANEL_STAIRS.get(), Ingredient.of(ModBlocks.STONE_PANELS))
                 .group("stone_tiles")
-                .unlockedBy(getHasName(ModBlocks.STONE_TILES.get()), has(ModBlocks.STONE_TILES.get()))
+                .unlockedBy(getHasName(ModBlocks.STONE_PANELS.get()), has(ModBlocks.STONE_PANELS.get()))
                 .save(output);
-        slab(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_TILE_SLAB.get(), ModBlocks.STONE_TILES.get());
-        stairBuilder(ModBlocks.MOSSY_STONE_TILE_STAIRS.get(), Ingredient.of(ModBlocks.MOSSY_STONE_TILES))
+        slab(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_PANEL_SLAB.get(), ModBlocks.STONE_PANELS.get());
+        stairBuilder(ModBlocks.MOSSY_STONE_PANEL_STAIRS.get(), Ingredient.of(ModBlocks.MOSSY_STONE_PANELS))
                 .group("mossy_stone_tiles")
-                .unlockedBy(getHasName(ModBlocks.MOSSY_STONE_TILES.get()), has(ModBlocks.MOSSY_STONE_TILES.get()))
+                .unlockedBy(getHasName(ModBlocks.MOSSY_STONE_PANELS.get()), has(ModBlocks.MOSSY_STONE_PANELS.get()))
                 .save(output);
-        slab(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOSSY_STONE_TILE_SLAB.get(), ModBlocks.MOSSY_STONE_TILES.get());
+        slab(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOSSY_STONE_PANEL_SLAB.get(), ModBlocks.MOSSY_STONE_PANELS.get());
 
         // Weathered Bricks
         shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WEATHERED_BRICKS)
