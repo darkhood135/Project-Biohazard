@@ -102,6 +102,8 @@
   "block.projectbiohazard.plaster": "Plaster",
   "block.projectbiohazard.weathered_plaster": "Weathered Plaster",
   "block.projectbiohazard.dripping_plaster": "Dripping Plaster",
+  "block.projectbiohazard.exposed_plaster": "Exposed Plaster",
+  "block.projectbiohazard.cracked_plaster": "Cracked Plaster",
 
   "block.projectbiohazard.weathered_bricks": "Weathered Bricks",
   "block.projectbiohazard.weathered_brick_stairs": "Weathered Brick Stairs",

@@ -104,6 +104,18 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .strength(2.0F, 6.0F)
             ));
+    public static final DeferredBlock<Block> EXPOSED_PLASTER = registerBlock("exposed_plaster",
+            properties -> new Block(properties
+                    .mapColor(MapColor.SAND)
+                    .requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F)
+            ));
+    public static final DeferredBlock<Block> CRACKED_PLASTER = registerBlock("cracked_plaster",
+            properties -> new Block(properties
+                    .mapColor(MapColor.SAND)
+                    .requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F)
+            ));
 
     // Weathered Bricks
     public static final DeferredBlock<Block> WEATHERED_BRICKS = registerBlock("weathered_bricks",

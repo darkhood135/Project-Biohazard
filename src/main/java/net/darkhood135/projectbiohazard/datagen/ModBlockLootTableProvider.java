@@ -46,6 +46,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.PLASTER.get());
         dropSelf(ModBlocks.WEATHERED_PLASTER.get());
         dropSelf(ModBlocks.DRIPPING_PLASTER.get());
+        dropSelf(ModBlocks.EXPOSED_PLASTER.get());
+        dropSelf(ModBlocks.CRACKED_PLASTER.get());
 
         dropSelf(ModBlocks.WEATHERED_BRICKS.get());
         dropSelf(ModBlocks.WEATHERED_BRICK_STAIRS.get());

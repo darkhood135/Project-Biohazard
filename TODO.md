@@ -36,6 +36,32 @@ collaboration — analyze & advise, Tyler implements.
 - Per-brick color variation on Weathered Bricks (a few darker/spalled bricks) to break the uniform grid.
 - Keep the Dripping variant selective — only walls directly under the roofline, or it gets busy.
 
+## Structure — RE4 village house as a generated structure (planned)
+
+Goal: the RE4-style house spawns as a generated structure in a custom **dark / foggy / swampy forest
+biome** (wicked gloomy, RE4 village mood), likely populated by **Ganado**. Cracked-plaster craze variant
+is done and reading well (slightly too regular/lattice up close — optional future polish to break the grid).
+First interior is largely Tyler's own design; the two original reference images were separate houses.
+
+**Fiction to lock first:** lived-in vs abandoned. RE4 village houses were *occupied* (tidy-but-grim, lit) —
+that's what the current build is, which is coherent. Best result = a MIX: some occupied, some rotting husks,
+so the biome isn't uniform.
+
+**To do:**
+- **More house designs** — multiple footprints/layouts so the biome doesn't feel copy-pasted. Interior AND
+  exterior variety to differentiate houses from each other.
+- **Ruin-state variants** — reuse the existing decay blocks (heavy exposed brick, cracked plaster, missing
+  railings, broken windows, collapsed roof corners, interior overgrowth) to make abandoned husks alongside
+  the occupied houses. Same shell, different wear.
+- **Generation variety** — jigsaw/modular approach (shuffle rooms + damage states) or several NBT variants,
+  so repeated spawns don't read as copy-paste and kill the dread.
+- **Tie house to biome** — moss/vines creeping up the plaster near the ground, stilts standing in murk, dead
+  dark trees crowding it. Environment should bleed onto the structure.
+- **Encounter staging for Ganado** — use the horror bones already there (railing/stairwell chokepoints, long
+  table breaking sightlines, dark corners). Hear-before-you-see flow; something between player and the door.
+  Lit typewriter save point inside = "brief safety in a hostile place" beat.
+- **Biome atmosphere** — custom fog color, low light, swampy/dead-forest vegetation, ambient sound to sell it.
+
 ## DONE — Typewriter "Save State" (complete)
 
 Directional-placed Blockbench block. Right-click with an Ink Ribbon = save: sets vanilla respawn

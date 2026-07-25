@@ -141,6 +141,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.PLASTER);
                         output.accept(ModBlocks.WEATHERED_PLASTER);
                         output.accept(ModBlocks.DRIPPING_PLASTER);
+                        output.accept(ModBlocks.EXPOSED_PLASTER);
+                        output.accept(ModBlocks.CRACKED_PLASTER);
                     })
                     .build());
 
