@@ -49,6 +49,12 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.EXPOSED_PLASTER.get());
         dropSelf(ModBlocks.CRACKED_PLASTER.get());
 
+        dropSelf(ModBlocks.EPOXY_BLOCK.get());
+
+        dropSelf(ModBlocks.CLEANROOM_PANEL.get());
+        dropSelf(ModBlocks.BOUND_CLEANROOM_PANEL.get());
+        dropSelf(ModBlocks.ACCENTED_CLEANROOM_PANEL.get());
+
         dropSelf(ModBlocks.WEATHERED_BRICKS.get());
         dropSelf(ModBlocks.WEATHERED_BRICK_STAIRS.get());
         add(ModBlocks.WEATHERED_BRICK_SLAB.get(), this::createSlabItemTable);

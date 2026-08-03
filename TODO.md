@@ -2,6 +2,100 @@
 
 A running list of things to build, fix, or revisit. Newest priorities near the top.
 
+## Dream features / long-term roadmap (Tyler's vision — sequenced by what unlocks the most)
+
+All authentically RE and coherent. Ordered by dependency, not desire. **Entities are the big unlock** —
+Tyler hasn't built custom entities yet, and doing so unlocks ~half this list.
+
+**Foundational unlocks (build these first — they gate the rest):**
+- **Custom entities** (the domain to learn next): registration, model/renderer, AI goals, spawning, sync.
+  Learn on a **custom zombie** first, then everything below follows.
+- **Infection system** (#13): staged/progressing infection via attachments+effects+events. MECHANIC is
+  feasible now; the hallucination VISUALS are client-rendering (defer). Underpins upgrade-station infection
+  resistance + the whole tone.
+- **Dodge + special melee (#11):** same ability-code family as the parry. Feasible now. Together with
+  infection, these unblock the parked **Upgrade Station**.
+
+**Entity features (after the entity pipeline is learned, roughly in order):**
+- Custom zombies/skeletons replacing base mobs (#4) — creepier tone, variants.
+- RE4 Ganado (#5) — "smart zombies," patient AI that dodges/times strikes.
+- Player-like corpses (#8), grab attacks (#12) — entity behavior + player-control lock.
+- **Nemesis (#1) — the CAPSTONE and Tyler's whole reason for the mod.** Hyper-intelligent stalker;
+  STARS-badge trigger, escalating appearances, defeatable once. Not literal AI — layered designed behaviors
+  (predictive pathing, attacks on player-vulnerable frames, escalation states). Build LAST, when fluent.
+
+**Feasible item systems (can slot in anytime):**
+- Herb growing via lab equipment (#2) — blocks + growth mechanic (block entities / random tick).
+- Chainsaw (#3) — brutal damage is easy now; limb-gib gore is client rendering (polish later).
+- Guns (#6) — big but feasible (arrow-like projectiles + ammo + reload). Reload feeds STARS outfit.
+
+**Hard / risky client-rendering tier (set expectations; the churny, least-documented area):**
+- Flashlight (#7) — HARDEST ask; a real dynamic beam that isn't client-only is ~shader territory in MC.
+  Realistic v1 = a held light that brightens the area; true beam is the stretch dream.
+- Blood mechanics (#9) — particles easy, persistent decals/pooling need custom rendering.
+- Clothing (#10) — EFFECTS easy (attachments/attributes: Leon jacket = +parry window; STARS = faster reload
+  but higher Nemesis spawn rate). VISUAL (non-armor-looking) = advanced player-model rendering. It's a
+  downstream INTEGRATION feature: its effects depend on guns (#6) and Nemesis (#1) existing first.
+
+### Dream features — batch 2
+
+**The spine (design throughline, not a discrete task):**
+- **Gradual progression (helpless survivor -> apex predator, Leon RE2 -> RE9).** The organizing principle:
+  upgrade/unlock state (attachments + gated abilities) + enemy tuning. Counterpart to Nemesis as the core.
+  Most everything below hangs off it.
+
+**Extends existing systems (feasible, low-risk, near-term):**
+- Knives (#8) — parry-weapon variant; re-tune of the hatchet parry (briefer window, faster recharge).
+- Coins/charms (#11, #12) — passive items granting effects while in inventory (one inventory-tick mechanism).
+- Breakable barrels (#4) — block + loot table; ammo/pesetas drops wait on those items.
+- Final hatchet upgrade (#9) — "sharpness" resource replacing durability + parry-charges; the progression reward.
+- Grenades (#10) — thrown-item entity + explosion (snowball/egg pattern).
+
+**Entity-dependent (needs the custom-entity arc first):**
+- Enemy stagger-on-parry (#2) — lives ON the entity ("if parried -> stagger"). Head-kick (#2.2) layers on:
+  stagger + player kick ability + progression gate. (Entities + abilities + progression converge here.)
+- Merchant + Pesetas (#5) — currency item is trivial; the Merchant = custom trader entity + trade UI (first
+  custom GUI, OR reuse the vanilla villager-trade screen = lower effort). Replaces the wandering trader.
+- Barricade boards (#7) — board block easy; "zombies see through + break glass" = custom AI.
+- Survivors replacing villagers (#14) — player-model NPC entities; build with the player-corpse idea.
+
+**Direction decision:** Remove/replace vanilla mobs (#6) turns this from an ADDON into a TOTAL CONVERSION
+(config/datapack toggle to keep vanilla). Coherent with the vision; identity-defining. Code = spawn cancel
++ config; the weight is design.
+
+**Client-rendering tier (hard/churny — polish later):**
+- Improved parry animation (#2.1) — custom player animation (the area that fought us on the parry swing).
+- New third person (#3) — OTS camera; moderate client work, strong existing-mod precedent (Shoulder Surfing)
+  — consider integrating vs reinventing.
+
+**Compat:** Curios (#13) — make coins/charms work via inventory with NO dependency; offer Curios as an
+optional soft-dep for dedicated accessory slots. Standalone-first, Curios as a bonus.
+
+### Dream features — batch 3 (world & endgame tier; VERY long-term, Tyler's words)
+
+Two big NEW domains here: **worldgen** (biomes + structures) and **boss entities**. This is the summit.
+
+**Reachable sooner (extends existing / item-based):**
+- Safe zones (#10) — formalize the light + no-hostiles check (already built for the safe-room music) into
+  defined zones with mechanical benefits. Low-risk, near-term.
+- STARS communication (#9) — walkie-talkie item found WITH the STARS badge: triggers Nemesis AND opens a
+  narrative early-mid-game guide (message/guide delivery + writing). Doubles as onboarding. Feasible before
+  the big structures.
+
+**Biomes (#1-4) — natural first, urban is a major task:**
+- Natural: woodland/swampy (#3, RE4/RE7), mountainous w/ houses (#4, RE8) — biome JSON: terrain, vegetation,
+  fog/colors, spawns. Achievable.
+- Urban: city (#1, RE2/3 Raccoon City), town (#2, RE1) — the "atmosphere" is GENERATED BUILDINGS = custom
+  structure generation at scale. Much harder than a biome JSON.
+
+**Landmark structures + bosses — the "raid tier" (each = big build + worldgen placement + a phase boss):**
+- Infested building + giant spider boss (#6) — needs realistic spiders (#5, entity rework).
+- Baker house + Jack/Marguerite + Eveline (#7).
+- Raccoon City police station + Mr. X (lesser-Nemesis, biome-specific) -> Super Tyrant phase transition (#8).
+- Castle Dimitrescu + Alcina (#11).
+- These need entity mastery AND worldgen mastery — built LAST, the payoff of everything else. Bosses share
+  tech with Nemesis (phases, escalation).
+
 ## Textures — RE4 block set (in progress)
 
 Emulating Resident Evil 4 rural-village architecture (timber-framed stucco cottages). Guide-only

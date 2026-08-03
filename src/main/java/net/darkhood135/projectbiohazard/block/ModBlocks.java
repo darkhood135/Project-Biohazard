@@ -117,6 +117,37 @@ public class ModBlocks {
                     .strength(2.0F, 6.0F)
             ));
 
+    // Epoxy
+    public static final DeferredBlock<Block> EPOXY_BLOCK = registerBlock("epoxy_block",
+            properties -> new TransparentBlock(properties
+                    .strength(1.8F, 1.8f)
+                    .sound(SoundType.STONE)
+                    .mapColor(MapColor.COLOR_CYAN)
+                    .noOcclusion()
+                    .isViewBlocking((state, level, pos) -> false)
+            ));
+
+    // Cleanroom Panels
+    public static final DeferredBlock<Block> CLEANROOM_PANEL = registerBlock("cleanroom_panel",
+            properties -> new Block(properties
+                    .mapColor(MapColor.TERRACOTTA_WHITE)
+                    .requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F)
+            ));
+    public static final DeferredBlock<Block> BOUND_CLEANROOM_PANEL = registerBlock("bound_cleanroom_panel",
+            properties -> new Block(properties
+                    .mapColor(MapColor.TERRACOTTA_WHITE)
+                    .requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F)
+            ));
+    public static final DeferredBlock<Block> ACCENTED_CLEANROOM_PANEL = registerBlock("accented_cleanroom_panel",
+            properties -> new Block(properties
+                    .mapColor(MapColor.TERRACOTTA_WHITE)
+                    .requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F)
+            ));
+
+
     // Weathered Bricks
     public static final DeferredBlock<Block> WEATHERED_BRICKS = registerBlock("weathered_bricks",
             properties -> new Block(properties

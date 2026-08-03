@@ -97,6 +97,8 @@ public class ModModelProvider extends ModelProvider {
         blockModels.createGlassBlocks(ModBlocks.BOROSILICATE_GLASS.get(), ModBlocks.BOROSILICATE_GLASS_PANE.get());
         blockModels.createGlassBlocks(ModBlocks.DIRTY_GLASS.get(), ModBlocks.DIRTY_GLASS_PANE.get());
 
+        blockModels.createTrivialCube(ModBlocks.EPOXY_BLOCK.get());
+
         blockModels.family(ModBlocks.STONE_PANELS.get())
                 .stairs(ModBlocks.STONE_PANEL_STAIRS.get())
                 .slab(ModBlocks.STONE_PANEL_SLAB.get());
@@ -204,6 +206,31 @@ public class ModModelProvider extends ModelProvider {
         blockModels.blockStateOutput.accept(
                 BlockModelGenerators.createSimpleBlock(ModBlocks.CRACKED_PLASTER.get(),
                         BlockModelGenerators.variants(crackedPlasterVariants.toArray(new Variant[0]))));
+
+        // Cleanroom Panel
+        blockModels.createTrivialCube(ModBlocks.CLEANROOM_PANEL.get());
+
+        // Accented Cleanroom Panel
+        ModelTemplates.CUBE_COLUMN.create(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/accented_cleanroom_panel"),
+                TextureMapping.column(
+                        TextureMapping.getBlockTexture(ModBlocks.ACCENTED_CLEANROOM_PANEL.get()),
+                        TextureMapping.getBlockTexture(ModBlocks.CLEANROOM_PANEL.get())), // reused base: top + bottom
+                blockModels.modelOutput);
+        blockModels.blockStateOutput.accept(
+                BlockModelGenerators.createSimpleBlock(ModBlocks.ACCENTED_CLEANROOM_PANEL.get(),
+                        BlockModelGenerators.plainVariant(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/accented_cleanroom_panel"))));
+        blockModels.registerSimpleItemModel(ModBlocks.ACCENTED_CLEANROOM_PANEL.get(), Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/accented_cleanroom_panel"));
+
+        // Bound Cleanroom Panel
+        ModelTemplates.CUBE_COLUMN.create(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/bound_cleanroom_panel"),
+                TextureMapping.column(
+                        TextureMapping.getBlockTexture(ModBlocks.BOUND_CLEANROOM_PANEL.get()),
+                        TextureMapping.getBlockTexture(ModBlocks.CLEANROOM_PANEL.get())), // reused base: top + bottom
+                blockModels.modelOutput);
+        blockModels.blockStateOutput.accept(
+                BlockModelGenerators.createSimpleBlock(ModBlocks.BOUND_CLEANROOM_PANEL.get(),
+                        BlockModelGenerators.plainVariant(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/bound_cleanroom_panel"))));
+        blockModels.registerSimpleItemModel(ModBlocks.BOUND_CLEANROOM_PANEL.get(), Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/bound_cleanroom_panel"));
 
         blockModels.family(ModBlocks.BEECH_PLANKS.get())
                 .stairs(ModBlocks.BEECH_STAIRS.get())

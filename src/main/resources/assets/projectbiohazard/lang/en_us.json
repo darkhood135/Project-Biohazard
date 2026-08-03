@@ -76,6 +76,10 @@
 
   "block.projectbiohazard.deactivated_redstone_block": "Deactivated Block of Redstone",
 
+  "block.projectbiohazard.cleanroom_panel": "Cleanroom Panel",
+  "block.projectbiohazard.accented_cleanroom_panel": "Accented Cleanroom Panel",
+  "block.projectbiohazard.bound_cleanroom_panel": "Bound Cleanroom Panel",
+
   "block.projectbiohazard.beech_planks": "Beech Planks",
   "block.projectbiohazard.beech_stairs": "Beech Stairs",
   "block.projectbiohazard.beech_slab": "Beech Slab",
@@ -85,6 +89,8 @@
   "block.projectbiohazard.beech_fence_gate": "Beech Fence Gate",
   "block.projectbiohazard.beech_door": "Beech Door",
   "block.projectbiohazard.beech_trapdoor": "Beech Trapdoor",
+
+  "block.projectbiohazard.epoxy_block": "Epoxy Block",
 
   "block.projectbiohazard.stone_panels": "Stone Panels",
   "block.projectbiohazard.stone_panel_stairs": "Stone Panel Stairs",

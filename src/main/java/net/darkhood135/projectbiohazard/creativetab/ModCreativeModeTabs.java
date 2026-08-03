@@ -143,6 +143,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.DRIPPING_PLASTER);
                         output.accept(ModBlocks.EXPOSED_PLASTER);
                         output.accept(ModBlocks.CRACKED_PLASTER);
+                        output.accept(ModBlocks.CLEANROOM_PANEL);
+                        output.accept(ModBlocks.ACCENTED_CLEANROOM_PANEL);
+                        output.accept(ModBlocks.BOUND_CLEANROOM_PANEL);
+                        output.accept(ModBlocks.EPOXY_BLOCK);
                     })
                     .build());
 
