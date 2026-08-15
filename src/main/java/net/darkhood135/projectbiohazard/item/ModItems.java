@@ -94,6 +94,18 @@ public class ModItems {
                     super.appendHoverText(itemStack, context, display, builder, tooltipFlag);
                 }
             });
+
+    // Keys
+    public static final DeferredItem<Item> CLUB_KEY = ITEMS.registerSimpleItem("club_key",
+            properties -> properties);
+    public static final DeferredItem<Item> SPADE_KEY = ITEMS.registerSimpleItem("spade_key",
+            properties -> properties);
+    public static final DeferredItem<Item> HEART_KEY = ITEMS.registerSimpleItem("heart_key",
+            properties -> properties);
+    public static final DeferredItem<Item> DIAMOND_KEY = ITEMS.registerSimpleItem("diamond_key",
+            properties -> properties);
+
+
     public static final DeferredItem<Item> BORON_SHARD = ITEMS.registerItem("boron_shard", Item::new);
 
     public static final DeferredItem<Item> ALUMINUM_SWORD = ITEMS.registerItem("aluminum_sword",

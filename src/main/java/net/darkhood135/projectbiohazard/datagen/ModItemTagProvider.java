@@ -25,6 +25,13 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.ALUMINUM_REPAIRABLES)
                 .add(ModItems.ALUMINUM_INGOT.get());
 
+        //Keys
+        tag(ModTags.Items.DOOR_KEYS)
+                .add(ModItems.CLUB_KEY.get())
+                .add(ModItems.HEART_KEY.get())
+                .add(ModItems.SPADE_KEY.get())
+                .add(ModItems.DIAMOND_KEY.get());
+
 
         // Aluminum Tools
         tag(ItemTags.SWORDS).add(ModItems.ALUMINUM_SWORD.get());

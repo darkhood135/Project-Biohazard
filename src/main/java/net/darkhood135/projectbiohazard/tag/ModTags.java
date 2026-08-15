@@ -27,6 +27,8 @@ public class ModTags {
         public static final TagKey<Item> EMF_TOOLS = createTag("emf_tools");
         public static final TagKey<Item> ALUMINUM_REPAIRABLES = createTag("aluminum_repairables");
 
+        public static final TagKey<Item> DOOR_KEYS = createTag("door_keys");
+
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, name));
         }

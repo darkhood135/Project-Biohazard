@@ -1,6 +1,7 @@
 package net.darkhood135.projectbiohazard.datagen;
 
 import net.darkhood135.projectbiohazard.ProjectBiohazard;
+import net.darkhood135.projectbiohazard.enchantment.ModEnchantments;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -12,7 +13,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModDatapackProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
-            .add(Registries.JUKEBOX_SONG, ModJukeboxSongs::bootstrap);
+            .add(Registries.JUKEBOX_SONG, ModJukeboxSongs::bootstrap)
+            .add(Registries.ENCHANTMENT, ModEnchantments::bootstrap);
 
     public ModDatapackProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(ProjectBiohazard.MOD_ID));

@@ -16,6 +16,8 @@ public class ModSounds {
 
     public static final Supplier<SoundEvent> SYRINGE_PIERCE = registerSoundEvent("syringe_pierce");
 
+    public static final Supplier<SoundEvent> BARREL_DESTROY = registerSoundEvent("barrel_destroy");
+
     public static final Supplier<SoundEvent> TYPEWRITER_SAVE = registerSoundEvent("typewriter_save");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> SECURE_CD = registerJukeboxSong("secure_cd");

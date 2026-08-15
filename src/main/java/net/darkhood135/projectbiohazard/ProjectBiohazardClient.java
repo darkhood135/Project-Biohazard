@@ -1,8 +1,10 @@
 package net.darkhood135.projectbiohazard;
 
+import net.darkhood135.projectbiohazard.entity.ModEntities;
+import net.darkhood135.projectbiohazard.entity.client.TZombieRenderer;
 import net.darkhood135.projectbiohazard.keymapping.ModKeyMappings;
-import net.darkhood135.projectbiohazard.networking.packet.TestPacketC2S;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.network.chat.Component;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -14,7 +16,6 @@ import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
-import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = ProjectBiohazard.MOD_ID, dist = Dist.CLIENT)
@@ -33,8 +34,9 @@ public class ProjectBiohazardClient {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
-
+        EntityRenderers.register(ModEntities.T_VIRUS_ZOMBIE.get(), TZombieRenderer::new);
     }
+
 
     @SubscribeEvent
     public static void registerKeybind(RegisterKeyMappingsEvent event) {

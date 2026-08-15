@@ -8,11 +8,14 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
@@ -89,6 +92,40 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(ModBlocks.BOROSILICATE_GLASS_PANE.get(), this::createSilkTouchOnlyTable);
         add(ModBlocks.DIRTY_GLASS.get(), this::createSilkTouchOnlyTable);
         add(ModBlocks.DIRTY_GLASS_PANE.get(), this::createSilkTouchOnlyTable);
+
+        add(ModBlocks.LOOT_BARREL.get(), createLootBarrelDrops());
+    }
+
+    protected LootTable.Builder createLootBarrelDrops() {
+        return LootTable.lootTable().withPool(LootPool.lootPool()
+                .setRolls(UniformGenerator.between(1, 2))   // 1–2 separate picks per barrel
+                // 10% chances
+                .add(LootItem.lootTableItem(ModItems.GREEN_HERB.get()).setWeight(10))
+                .add(LootItem.lootTableItem(Items.ARROW).setWeight(10)
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(6, 12))))
+                .add(LootItem.lootTableItem(Items.STICK).setWeight(10)
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 8))))
+                // 8% chances
+                .add(LootItem.lootTableItem(ModItems.RED_HERB.get()).setWeight(8))
+                .add(LootItem.lootTableItem(Items.BREAD).setWeight(8)
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))))
+                .add(LootItem.lootTableItem(Items.BEEF).setWeight(8)
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))))
+                // 5% chances
+                .add(LootItem.lootTableItem(Items.STRING).setWeight(5)
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 5))))
+                .add(LootItem.lootTableItem(Items.BONE).setWeight(5)
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 5))))
+                .add(LootItem.lootTableItem(Items.COAL).setWeight(5)
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 5))))
+                .add(LootItem.lootTableItem(Items.TORCH).setWeight(5)
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 8))))
+                .add(LootItem.lootTableItem(Items.STICK).setWeight(10)
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 8))))
+                //.add(LootItem.lootTableItem(ModItems.HANDGUN_AMMO.get()).setWeight(15)
+                        //.apply(SetItemCountFunction.setCount(UniformGenerator.between(3, 10)))
+                // The rest (empty)
+                .add(EmptyLootItem.emptyItem().setWeight(21)));  // 25/90 chance a pick is nothing
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block pBlock, Item item, float minDrops, float maxDrops) {

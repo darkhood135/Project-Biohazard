@@ -3,7 +3,10 @@ package net.darkhood135.projectbiohazard.block;
 import net.darkhood135.projectbiohazard.ProjectBiohazard;
 import net.darkhood135.projectbiohazard.block.custom.FleshBlock;
 import net.darkhood135.projectbiohazard.block.custom.TypewriterBlock;
+import net.darkhood135.projectbiohazard.datagen.ModSoundsProvider;
 import net.darkhood135.projectbiohazard.item.ModItems;
+import net.darkhood135.projectbiohazard.sound.ModSoundTypes;
+import net.darkhood135.projectbiohazard.sound.ModSounds;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.*;
@@ -181,6 +184,15 @@ public class ModBlocks {
                     .isValidSpawn(Blocks::never)
                     .forceSolidOn()
             ));
+
+    // Loot Barrel
+    public static final DeferredBlock<Block> LOOT_BARREL = registerBlock("loot_barrel",
+            properties -> new Block(properties
+                    .mapColor(MapColor.WOOD)
+                    .strength(0.3f)                 // ~ one hit
+                    .sound(ModSoundTypes.LOOT_BARREL)
+            ));
+
 
     // Beech Wood
     public static final DeferredBlock<Block> BEECH_PLANKS = registerBlock("beech_planks",

@@ -4,6 +4,8 @@ import net.darkhood135.projectbiohazard.ProjectBiohazard;
 import net.darkhood135.projectbiohazard.attachmenttype.ModAttachmentTypes;
 import net.darkhood135.projectbiohazard.block.custom.TypewriterBlock;
 import net.darkhood135.projectbiohazard.effect.ModEffects;
+import net.darkhood135.projectbiohazard.entity.ModEntities;
+import net.darkhood135.projectbiohazard.entity.custom.TZombieEntity;
 import net.darkhood135.projectbiohazard.item.ModItems;
 import net.darkhood135.projectbiohazard.item.custom.HatchetItem;
 import net.darkhood135.projectbiohazard.item.custom.SyringeItem;
@@ -37,6 +39,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
@@ -275,5 +278,8 @@ public class ModEvents {
         }
     }
 
-
+    @SubscribeEvent
+    public static void registerAttributes(EntityAttributeCreationEvent event) {
+        event.put(ModEntities.T_VIRUS_ZOMBIE.get(), TZombieEntity.createTZombieAttributes().build());
+    }
 }

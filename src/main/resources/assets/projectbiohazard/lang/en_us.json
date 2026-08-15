@@ -139,6 +139,8 @@
 
   "item.projectbiohazard.ink_ribbon": "Ink Ribbon",
 
+  "block.projectbiohazard.loot_barrel": "Loot Barrel",
+
   "block.projectbiohazard.flesh_block": "Block of Flesh",
 
   "effect.projectbiohazard.constitution": "Constitution",
@@ -153,5 +155,13 @@
   "sounds.projectbiohazard.syringe_pierce": "Stabbed with a syringe",
   "sounds.projectbiohazard.secure": "Playing Secure background music",
   "sounds.projectbiohazard.secure_cd": "Playing Secure music disc",
-  "sounds.projectbiohazard.typewriter_save": "Saved with a typewriter"
+  "sounds.projectbiohazard.typewriter_save": "Saved with a typewriter",
+  "sounds.projectbiohazard.barrel_destroy": "Broke a loot barrel",
+
+  "enchantment.projectbiohazard.master_key": "Master Key",
+
+  "item.projectbiohazard.club_key": "Club Key",
+  "item.projectbiohazard.spade_key": "Spade Key",
+  "item.projectbiohazard.diamond_key": "Diamond Key",
+  "item.projectbiohazard.heart_key": "Heart Key"
 }

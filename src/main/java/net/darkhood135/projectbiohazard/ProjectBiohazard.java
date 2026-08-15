@@ -5,6 +5,8 @@ import net.darkhood135.projectbiohazard.block.ModBlocks;
 import net.darkhood135.projectbiohazard.component.ModDataComponentTypes;
 import net.darkhood135.projectbiohazard.creativetab.ModCreativeModeTabs;
 import net.darkhood135.projectbiohazard.effect.ModEffects;
+import net.darkhood135.projectbiohazard.enchantment.ModEnchantmentEffects;
+import net.darkhood135.projectbiohazard.entity.ModEntities;
 import net.darkhood135.projectbiohazard.item.ModItems;
 import net.darkhood135.projectbiohazard.item.custom.VialItem;
 import net.darkhood135.projectbiohazard.sound.ModSounds;
@@ -62,6 +64,10 @@ public class ProjectBiohazard {
 
         ModEffects.register(modEventBus);
         ModSounds.register(modEventBus);
+
+        ModEntities.register(modEventBus);
+
+        ModEnchantmentEffects.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
 

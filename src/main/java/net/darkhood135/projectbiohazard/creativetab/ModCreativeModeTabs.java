@@ -75,6 +75,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.EMPTY_SYRINGE);
                         output.accept(ModBlocks.TYPEWRITER);
                         output.accept(ModItems.INK_RIBBON);
+                        output.accept(ModItems.SPADE_KEY);
+                        output.accept(ModItems.DIAMOND_KEY);
+                        output.accept(ModItems.CLUB_KEY);
+                        output.accept(ModItems.HEART_KEY);
                     })
                     .build());
 
@@ -114,6 +118,7 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.projectbiohazard.biohazard_blocks"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModBlocks.TYPEWRITER);
+                        output.accept(ModBlocks.LOOT_BARREL);
                         output.accept(ModBlocks.BEECH_PLANKS);
                         output.accept(ModBlocks.BEECH_STAIRS);
                         output.accept(ModBlocks.BEECH_SLAB);

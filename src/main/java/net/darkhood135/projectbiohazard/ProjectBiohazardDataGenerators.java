@@ -31,5 +31,7 @@ public class ProjectBiohazardDataGenerators {
 
         generator.addProvider(true, new ModSoundsProvider(packOutput));
         generator.addProvider(true, new ModDatapackProvider(packOutput, lookupProvider));
+
+        generator.addProvider(true, new ModEnchantmentTagProvider(packOutput, lookupProvider));
     }
 }

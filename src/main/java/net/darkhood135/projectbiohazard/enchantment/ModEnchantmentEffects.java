@@ -1,0 +1,19 @@
+package net.darkhood135.projectbiohazard.enchantment;
+
+import com.mojang.serialization.MapCodec;
+import net.darkhood135.projectbiohazard.ProjectBiohazard;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+public class ModEnchantmentEffects {
+    public static final DeferredRegister<MapCodec<? extends EnchantmentEntityEffect>> ENTITY_ENCHANTMENT_EFFECTS =
+            DeferredRegister.create(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, ProjectBiohazard.MOD_ID);
+
+
+
+    public static void register(IEventBus eventBus) {
+        ENTITY_ENCHANTMENT_EFFECTS.register(eventBus);
+    }
+}

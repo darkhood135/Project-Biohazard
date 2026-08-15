@@ -57,6 +57,10 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.HONEY_VIAL.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.SECURE_MUSIC_DISC.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.EMPTY_SYRINGE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.SPADE_KEY.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.CLUB_KEY.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.DIAMOND_KEY.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.HEART_KEY.get(), ModelTemplates.FLAT_ITEM);
 
         // Materials
         itemModels.generateFlatItem(ModItems.INK_RIBBON.get(), ModelTemplates.FLAT_ITEM);
@@ -231,6 +235,18 @@ public class ModModelProvider extends ModelProvider {
                 BlockModelGenerators.createSimpleBlock(ModBlocks.BOUND_CLEANROOM_PANEL.get(),
                         BlockModelGenerators.plainVariant(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/bound_cleanroom_panel"))));
         blockModels.registerSimpleItemModel(ModBlocks.BOUND_CLEANROOM_PANEL.get(), Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/bound_cleanroom_panel"));
+
+        // Loot Barrel
+        Identifier lootBarrelModel = Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "block/loot_barrel");
+        TextureMapping lootBarrelTex = new TextureMapping()
+                .put(TextureSlot.SIDE,   TextureMapping.getBlockTexture(ModBlocks.LOOT_BARREL.get(), "_side"))   // block/loot_barrel_side
+                .put(TextureSlot.TOP,    TextureMapping.getBlockTexture(ModBlocks.LOOT_BARREL.get(), "_top"))    // block/loot_barrel_top
+                .put(TextureSlot.BOTTOM, new Material(Identifier.fromNamespaceAndPath("minecraft", "block/barrel_bottom"))); // vanilla barrel bottom
+        ModelTemplates.CUBE_BOTTOM_TOP.create(lootBarrelModel, lootBarrelTex, blockModels.modelOutput);
+        blockModels.blockStateOutput.accept(
+                BlockModelGenerators.createSimpleBlock(ModBlocks.LOOT_BARREL.get(),
+                        BlockModelGenerators.plainVariant(lootBarrelModel)));
+        blockModels.registerSimpleItemModel(ModBlocks.LOOT_BARREL.get(), lootBarrelModel);
 
         blockModels.family(ModBlocks.BEECH_PLANKS.get())
                 .stairs(ModBlocks.BEECH_STAIRS.get())
