@@ -35,7 +35,8 @@ public class ModModelProvider extends ModelProvider {
                 .filter(holder -> holder.value() != ModItems.WATER_VIAL.get())
                 .filter(holder -> holder.value() != ModItems.SYRINGE.get())
                 .filter(holder -> holder.value() != ModItems.EMF_VISUALIZER.get())
-                .filter(holder -> holder.value() != ModBlocks.TYPEWRITER.asItem());
+                .filter(holder -> holder.value() != ModBlocks.TYPEWRITER.asItem())
+                .filter(holder -> holder.value() != ModItems.FIRST_AID_SPRAY.get());
 
     }
 
@@ -61,6 +62,7 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.CLUB_KEY.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.DIAMOND_KEY.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.HEART_KEY.get(), ModelTemplates.FLAT_ITEM);
+
 
         // Materials
         itemModels.generateFlatItem(ModItems.INK_RIBBON.get(), ModelTemplates.FLAT_ITEM);

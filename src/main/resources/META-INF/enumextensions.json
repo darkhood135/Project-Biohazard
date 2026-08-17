@@ -1,0 +1,11 @@
+{
+  "modid": "projectbiohazard",
+  "entries": [
+    {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "PROJECTBIOHAZARD_PISTOL_AIM",
+      "constructor": "(ZZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": { "class": "net/darkhood135/projectbiohazard/client/ModArmPoses", "field": "PISTOL_AIM" }
+    }
+  ]
+}

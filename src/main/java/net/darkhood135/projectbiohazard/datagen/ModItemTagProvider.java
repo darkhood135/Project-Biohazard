@@ -40,6 +40,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.SHOVELS).add(ModItems.ALUMINUM_SHOVEL.get());
         tag(ItemTags.HOES).add(ModItems.ALUMINUM_HOE.get());
 
+
         // Hatchets
         tag(ModTags.Items.HATCHETS)
                 .add(ModItems.ALUMINUM_HATCHET.get())

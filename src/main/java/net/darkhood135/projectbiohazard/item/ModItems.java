@@ -105,6 +105,9 @@ public class ModItems {
     public static final DeferredItem<Item> DIAMOND_KEY = ITEMS.registerSimpleItem("diamond_key",
             properties -> properties);
 
+    //
+    public static final DeferredItem<Item> FIRST_AID_SPRAY = ITEMS.registerItem("first_aid_spray",
+            properties -> new FirstAidSprayItem(properties.durability(30)));
 
     public static final DeferredItem<Item> BORON_SHARD = ITEMS.registerItem("boron_shard", Item::new);
 

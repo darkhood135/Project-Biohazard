@@ -1,0 +1,44 @@
+{
+	"format_version": "1.21.110",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 16,
+				"texture_height": 16,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "base",
+					"pivot": [-0.25, 4, 0.25],
+					"rotation": [0, -90, 0],
+					"cubes": [
+						{"origin": [-2, 0, -1.25], "size": [3, 8, 3], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "seal",
+					"parent": "base",
+					"pivot": [-2, 0, 0.75],
+					"cubes": [
+						{"origin": [-1.75, 8, -1], "size": [2.5, 1, 2.5], "uv": [0, 11]}
+					]
+				},
+				{
+					"name": "nozzle",
+					"parent": "seal",
+					"pivot": [-2, 0, 0.75],
+					"cubes": [
+						{"origin": [-1.25, 9, -0.5], "size": [1.5, 1, 1.5], "uv": [8, 11]}
+					],
+					"locators": {
+						"locator": [-1.25, 9.5, 0.25]
+					}
+				}
+			]
+		}
+	]
+}

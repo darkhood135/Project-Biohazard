@@ -1,0 +1,14 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "minecraft:display_context",
+    "cases": [
+      { "when": "gui", "model": { "type": "minecraft:model", "model": "projectbiohazard:item/first_aid_spray_flat" } }
+    ],
+    "fallback": {
+      "type": "minecraft:special",
+      "base": "projectbiohazard:item/first_aid_spray",
+      "model": { "type": "geckolib:geckolib" }
+    }
+  }
+}

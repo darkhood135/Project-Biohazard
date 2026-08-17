@@ -75,6 +75,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.EMPTY_SYRINGE);
                         output.accept(ModBlocks.TYPEWRITER);
                         output.accept(ModItems.INK_RIBBON);
+                        output.accept(ModItems.FIRST_AID_SPRAY);
                         output.accept(ModItems.SPADE_KEY);
                         output.accept(ModItems.DIAMOND_KEY);
                         output.accept(ModItems.CLUB_KEY);

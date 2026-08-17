@@ -139,6 +139,8 @@
 
   "item.projectbiohazard.ink_ribbon": "Ink Ribbon",
 
+  "item.projectbiohazard.first_aid_spray": "First Aid Spray",
+
   "block.projectbiohazard.loot_barrel": "Loot Barrel",
 
   "block.projectbiohazard.flesh_block": "Block of Flesh",
@@ -157,6 +159,8 @@
   "sounds.projectbiohazard.secure_cd": "Playing Secure music disc",
   "sounds.projectbiohazard.typewriter_save": "Saved with a typewriter",
   "sounds.projectbiohazard.barrel_destroy": "Broke a loot barrel",
+  "sounds.projectbiohazard.spray_can_thunk": "Smacked with a spray can",
+  "sounds.projectbiohazard.spray_hiss": "Spraying mist",
 
   "enchantment.projectbiohazard.master_key": "Master Key",
 

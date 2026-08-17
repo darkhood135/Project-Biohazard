@@ -23,6 +23,9 @@ public class ModDataComponentTypes {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<String>> HERB_VIAL_COMBINATION = register("herb_vial_combination",
             stringBuilder -> stringBuilder.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8));
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> SELF_SPRAY_MODE = register("self_spray_mode",
+            boolBuilder -> boolBuilder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
+
     public static void register(IEventBus eventBus) {
         DATA_COMPONENT_TYPES.register(eventBus);
     }

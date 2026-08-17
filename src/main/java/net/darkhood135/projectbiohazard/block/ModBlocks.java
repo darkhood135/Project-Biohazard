@@ -2,6 +2,7 @@ package net.darkhood135.projectbiohazard.block;
 
 import net.darkhood135.projectbiohazard.ProjectBiohazard;
 import net.darkhood135.projectbiohazard.block.custom.FleshBlock;
+import net.darkhood135.projectbiohazard.block.custom.LootBarrelBlock;
 import net.darkhood135.projectbiohazard.block.custom.TypewriterBlock;
 import net.darkhood135.projectbiohazard.datagen.ModSoundsProvider;
 import net.darkhood135.projectbiohazard.item.ModItems;
@@ -187,7 +188,7 @@ public class ModBlocks {
 
     // Loot Barrel
     public static final DeferredBlock<Block> LOOT_BARREL = registerBlock("loot_barrel",
-            properties -> new Block(properties
+            properties -> new LootBarrelBlock(properties
                     .mapColor(MapColor.WOOD)
                     .strength(0.3f)                 // ~ one hit
                     .sound(ModSoundTypes.LOOT_BARREL)

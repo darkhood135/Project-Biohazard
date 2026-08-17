@@ -20,6 +20,9 @@ public class ModSounds {
 
     public static final Supplier<SoundEvent> TYPEWRITER_SAVE = registerSoundEvent("typewriter_save");
 
+    public static final Supplier<SoundEvent> SPRAY_CAN_THUNK = registerSoundEvent("spray_can_thunk");
+    public static final Supplier<SoundEvent> SPRAY_HISS = registerSoundEvent("spray_hiss");
+
     public static final DeferredHolder<SoundEvent, SoundEvent> SECURE_CD = registerJukeboxSong("secure_cd");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> SECURE = registerJukeboxSong("secure");

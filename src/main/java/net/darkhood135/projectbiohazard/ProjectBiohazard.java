@@ -9,6 +9,7 @@ import net.darkhood135.projectbiohazard.enchantment.ModEnchantmentEffects;
 import net.darkhood135.projectbiohazard.entity.ModEntities;
 import net.darkhood135.projectbiohazard.item.ModItems;
 import net.darkhood135.projectbiohazard.item.custom.VialItem;
+import net.darkhood135.projectbiohazard.particle.ModParticles;
 import net.darkhood135.projectbiohazard.sound.ModSounds;
 import net.minecraft.core.cauldron.CauldronInteractions;
 import org.slf4j.Logger;
@@ -66,6 +67,8 @@ public class ProjectBiohazard {
         ModSounds.register(modEventBus);
 
         ModEntities.register(modEventBus);
+
+        ModParticles.register(modEventBus);
 
         ModEnchantmentEffects.register(modEventBus);
 

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "projectbiohazard:item/first_aid_spray_flat"
+  }
+}

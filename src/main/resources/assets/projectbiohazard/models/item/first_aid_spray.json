@@ -1,0 +1,92 @@
+{ "textures": { "particle": "projectbiohazard:item/first_aid_spray" },
+  "display": {
+    "thirdperson_righthand": {
+      "translation": [
+        -1.75,
+        -8.5,
+        0
+      ]
+    },
+    "thirdperson_lefthand": {
+      "translation": [
+        -1.75,
+        -8.5,
+        0
+      ]
+    },
+    "firstperson_righthand": {
+      "translation": [
+        -2.5,
+        -2.5,
+        3.5
+      ]
+    },
+    "firstperson_lefthand": {
+      "translation": [
+        -2.5,
+        -2.5,
+        3.5
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        -3,
+        0
+      ]
+    },
+    "gui": {
+      "rotation": [
+        0,
+        -180,
+        41
+      ],
+      "translation": [
+        -4.25,
+        -5.75,
+        0
+      ],
+      "scale": [
+        1.5,
+        1.5,
+        1.5
+      ]
+    },
+    "head": {
+      "translation": [
+        0,
+        6.25,
+        0
+      ]
+    },
+    "fixed": {
+      "translation": [
+        -0.75,
+        -8,
+        1
+      ],
+      "scale": [
+        1.7,
+        1.7,
+        1.7
+      ]
+    },
+    "on_shelf": {
+      "rotation": [
+        0,
+        -180,
+        0
+      ],
+      "translation": [
+        0,
+        -1.5,
+        -2.75
+      ],
+      "scale": [
+        1.7,
+        1.7,
+        1.7
+      ]
+    }
+  }
+}

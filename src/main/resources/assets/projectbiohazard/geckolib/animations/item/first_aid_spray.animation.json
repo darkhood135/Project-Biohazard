@@ -1,0 +1,101 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"selfUse": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.054,
+			"bones": {
+				"base": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.05": {
+							"vector": [0, -92.5, 0],
+							"easing": "easeInBack"
+						}
+					}
+				},
+				"nozzle": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.05": {
+							"vector": [0, -0.2, 0]
+						}
+					}
+				},
+				"seal": {
+					"position": {
+						"vector": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"selfUseOH": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.054,
+			"bones": {
+				"base": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.05": {
+							"vector": [0, "92.5", 0],
+							"easing": "easeInBack"
+						}
+					}
+				},
+				"nozzle": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.05": {
+							"vector": [0, -0.2, 0]
+						}
+					}
+				},
+				"seal": {
+					"position": {
+						"vector": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"use": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.054,
+			"bones": {
+				"nozzle": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.05": {
+							"vector": [0, -0.2, 0]
+						}
+					}
+				}
+			}
+		},
+		"default": {
+			"loop": true,
+			"animation_length": 0.0833,
+			"bones": {
+				"base": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.0833": {
+							"vector": [0, 0, 0]
+						}
+					}
+				}
+			}
+		}
+	}
+}
