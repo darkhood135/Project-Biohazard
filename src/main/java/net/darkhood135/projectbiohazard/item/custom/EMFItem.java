@@ -1,6 +1,7 @@
 package net.darkhood135.projectbiohazard.item.custom;
 
 import net.darkhood135.projectbiohazard.block.ModBlocks;
+import net.darkhood135.projectbiohazard.item.custom.shared.OneHandedAimableItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -20,7 +21,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.Map;
 
-public class EMFItem extends Item {
+public class EMFItem extends Item implements OneHandedAimableItem {
     private static final Map<Block, Block> EMF_MAP =
             Map.of(
                     Blocks.REDSTONE_BLOCK, ModBlocks.DEACTIVATED_REDSTONE_BLOCK.get(),

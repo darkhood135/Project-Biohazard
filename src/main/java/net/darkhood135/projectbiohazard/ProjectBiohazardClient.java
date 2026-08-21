@@ -5,6 +5,7 @@ import net.darkhood135.projectbiohazard.entity.ModEntities;
 import net.darkhood135.projectbiohazard.entity.client.TZombieRenderer;
 import net.darkhood135.projectbiohazard.item.ModItems;
 import net.darkhood135.projectbiohazard.item.custom.FirstAidSprayItem;
+import net.darkhood135.projectbiohazard.item.custom.shared.OneHandedAimableItem;
 import net.darkhood135.projectbiohazard.keymapping.ModKeyMappings;
 import net.darkhood135.projectbiohazard.particle.AidMistParticle;
 import net.darkhood135.projectbiohazard.particle.ModParticles;
@@ -91,12 +92,17 @@ public class ProjectBiohazardClient {
 
     @SubscribeEvent
     static void registerClientExtensions(RegisterClientExtensionsEvent event) {
-        event.registerItem(new IClientItemExtensions() {
+        IClientItemExtensions aimPose = new IClientItemExtensions() {
             @Override
             public HumanoidModel.ArmPose getArmPose(LivingEntity entity, InteractionHand hand, ItemStack stack) {
                 return ModArmPoses.PISTOL_AIM.getValue();
             }
-        }, ModItems.FIRST_AID_SPRAY.get());
+        };
+        for (var holder : ModItems.ITEMS.getEntries()) {
+            if (holder.get() instanceof OneHandedAimableItem) {
+                event.registerItem(aimPose, holder.get());
+            }
+        }
     }
 
 
