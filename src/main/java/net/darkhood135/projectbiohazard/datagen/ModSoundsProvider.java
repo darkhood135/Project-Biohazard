@@ -41,12 +41,49 @@ public class ModSoundsProvider extends SoundDefinitionsProvider {
                         sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "thunk2")).pitch(1.0f),
                         sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "thunk2")).pitch(1.1f)
                 ));
-
         add(ModSounds.SPRAY_HISS.get(), definition().subtitle("sounds.projectbiohazard.spray_hiss")
                 .with(
                         sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "spray")).pitch(0.9f),
                         sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "spray")).pitch(1.0f),
                         sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "spray")).pitch(1.1f)
+                ));
+
+        add(ModSounds.FEMALE_T_ZOMBIE_GROAN.get(), definition().subtitle("sounds.projectbiohazard.female_t-zombie_groan")
+                .with(
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_groan1")),
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_groan2")),
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_groan3")),
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_groan4"))
+                ));
+        add(ModSounds.FEMALE_T_ZOMBIE_NOTICE.get(), definition().subtitle("sounds.projectbiohazard.female_t-zombie_notice")
+                .with(
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_notice1")),
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_notice2")),
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_notice3")),
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_notice4")),
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_notice5")),
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_notice6"))
+                ));
+        add(ModSounds.FEMALE_T_ZOMBIE_STAGGER.get(), definition().subtitle("sounds.projectbiohazard.female_t-zombie_stagger")
+                .with(
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_stagger1")),
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_stagger2"))
+                ));
+        add(ModSounds.FEMALE_T_ZOMBIE_LUNGE.get(), definition().subtitle("sounds.projectbiohazard.female_t-zombie_lunge")
+                .with(
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_lunge1")),
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_lunge2")),
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_lunge3"))
+                ));
+        add(ModSounds.FEMALE_T_ZOMBIE_DEATH.get(), definition().subtitle("sounds.projectbiohazard.female_t-zombie_death")
+                .with(
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_death1")),
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_death2")),
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_death3"))
+                ));
+        add(ModSounds.FEMALE_T_ZOMBIE_FEAST.get(), definition().subtitle("sounds.projectbiohazard.female_t-zombie_feast")
+                .with(
+                        sound(Identifier.fromNamespaceAndPath(ProjectBiohazard.MOD_ID, "female_t-zombie_feast1"))
                 ));
 
         add(ModSounds.SECURE.get(), definition().subtitle("sounds.projectbiohazard.secure")

@@ -80,6 +80,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.DIAMOND_KEY);
                         output.accept(ModItems.CLUB_KEY);
                         output.accept(ModItems.HEART_KEY);
+                        output.accept(ModItems.T_VIRUS_ZOMBIE_SPAWN_EGG);
                     })
                     .build());
 

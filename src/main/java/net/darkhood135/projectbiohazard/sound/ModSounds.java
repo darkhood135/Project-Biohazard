@@ -23,6 +23,13 @@ public class ModSounds {
     public static final Supplier<SoundEvent> SPRAY_CAN_THUNK = registerSoundEvent("spray_can_thunk");
     public static final Supplier<SoundEvent> SPRAY_HISS = registerSoundEvent("spray_hiss");
 
+    public static final Supplier<SoundEvent> FEMALE_T_ZOMBIE_GROAN = registerSoundEvent("female_t-zombie_groan");
+    public static final Supplier<SoundEvent> FEMALE_T_ZOMBIE_NOTICE = registerSoundEvent("female_t-zombie_notice");
+    public static final Supplier<SoundEvent> FEMALE_T_ZOMBIE_STAGGER = registerSoundEvent("female_t-zombie_stagger");
+    public static final Supplier<SoundEvent> FEMALE_T_ZOMBIE_LUNGE = registerSoundEvent("female_t-zombie_lunge");
+    public static final Supplier<SoundEvent> FEMALE_T_ZOMBIE_DEATH = registerSoundEvent("female_t-zombie_death");
+    public static final Supplier<SoundEvent> FEMALE_T_ZOMBIE_FEAST = registerSoundEvent("female_t-zombie_feast");
+
     public static final DeferredHolder<SoundEvent, SoundEvent> SECURE_CD = registerJukeboxSong("secure_cd");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> SECURE = registerJukeboxSong("secure");

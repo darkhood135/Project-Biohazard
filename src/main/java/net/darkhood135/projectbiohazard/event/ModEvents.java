@@ -221,7 +221,7 @@ public class ModEvents {
 
         int pT = player.getTicksUsingItem();
         if (pT <= 0) return;
-        boolean perfect = pT <= 3;
+        boolean perfect = pT <= 1;
 
         ItemStack item = player.getItemInHand(player.getUsedItemHand());
         DamageSource source = event.getSource();
@@ -253,6 +253,9 @@ public class ModEvents {
                     );
                     player.attack(attacker);
                     player.addEffect(new MobEffectInstance(ModEffects.ADRENALINE, 60, 0));   // 3s = 60 ticks, amp 0
+                    if (attacker instanceof TZombieEntity zombie) {
+                        zombie.forceStagger(player);          // perfect parry = guaranteed stagger, facing the parrier
+                    }
                 } else {
                     server.playSound(
                             null,                     // Pass 'null' so the sound isn't hidden from the originating player
@@ -264,7 +267,11 @@ public class ModEvents {
                             1.0F,                        // Volume
                             1.0F                         // Pitch
                     );
-                    attacker.knockback(1.0, player.getX() - attacker.getX(), player.getZ() - attacker.getZ());
+                    if (attacker instanceof TZombieEntity zombie) {
+                        zombie.forcedKnockback(player, 0.3);  // ignores KNOCKBACK_RESISTANCE = 1
+                    } else {
+                        attacker.knockback(0.3, player.getX() - attacker.getX(), player.getZ() - attacker.getZ());
+                    }
                 }
             }
             player.stopUsingItem();

@@ -161,11 +161,20 @@
   "sounds.projectbiohazard.barrel_destroy": "Broke a loot barrel",
   "sounds.projectbiohazard.spray_can_thunk": "Smacked with a spray can",
   "sounds.projectbiohazard.spray_hiss": "Spraying mist",
+  "sounds.projectbiohazard.female_t-zombie_groan": "Female zombie groaned",
+  "sounds.projectbiohazard.female_t-zombie_notice": "Female zombie noticed prey",
+  "sounds.projectbiohazard.female_t-zombie_stagger": "Female zombie received damage",
+  "sounds.projectbiohazard.female_t-zombie_lunge": "Female zombie lunged",
+  "sounds.projectbiohazard.female_t-zombie_death": "Female zombie died",
+  "sounds.projectbiohazard.female_t-zombie_feast": "Female zombie eating",
 
   "enchantment.projectbiohazard.master_key": "Master Key",
 
   "item.projectbiohazard.club_key": "Club Key",
   "item.projectbiohazard.spade_key": "Spade Key",
   "item.projectbiohazard.diamond_key": "Diamond Key",
-  "item.projectbiohazard.heart_key": "Heart Key"
+  "item.projectbiohazard.heart_key": "Heart Key",
+
+  "entity.projectbiohazard.t-virus_zombie": "Zombie (T-Virus)",
+  "item.projectbiohazard.t-virus_zombie_spawn_egg": "Zombie (T-Virus) Spawn Egg"
 }

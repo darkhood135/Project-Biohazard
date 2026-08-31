@@ -84,6 +84,9 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.DIAMOND_HATCHET.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ModItems.NETHERITE_HATCHET.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 
+        // Spawn Eggs
+        itemModels.generateFlatItem(ModItems.T_VIRUS_ZOMBIE_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
+
         // Blocks
         blockModels.createTrivialCube(ModBlocks.TRONA_ORE.get());
         blockModels.createTrivialCube(ModBlocks.BAUXITE_ORE.get());

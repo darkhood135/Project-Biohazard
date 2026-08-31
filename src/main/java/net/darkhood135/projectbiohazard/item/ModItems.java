@@ -3,6 +3,7 @@ package net.darkhood135.projectbiohazard.item;
 import net.darkhood135.projectbiohazard.ProjectBiohazard;
 import net.darkhood135.projectbiohazard.component.ModDataComponentTypes;
 import net.darkhood135.projectbiohazard.datagen.ModJukeboxSongs;
+import net.darkhood135.projectbiohazard.entity.ModEntities;
 import net.darkhood135.projectbiohazard.food.ModFoodProperties;
 import net.darkhood135.projectbiohazard.item.custom.*;
 import net.minecraft.core.component.DataComponents;
@@ -94,6 +95,10 @@ public class ModItems {
                     super.appendHoverText(itemStack, context, display, builder, tooltipFlag);
                 }
             });
+
+    // Spawn Eggs
+    public static final DeferredItem<Item> T_VIRUS_ZOMBIE_SPAWN_EGG = ITEMS.registerItem("t-virus_zombie_spawn_egg",
+            properties -> new SpawnEggItem(properties.spawnEgg(ModEntities.T_VIRUS_ZOMBIE.get())));
 
     // Keys
     public static final DeferredItem<Item> CLUB_KEY = ITEMS.registerSimpleItem("club_key",
