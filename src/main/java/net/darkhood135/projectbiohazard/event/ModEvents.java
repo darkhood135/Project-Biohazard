@@ -286,6 +286,15 @@ public class ModEvents {
     }
 
     @SubscribeEvent
+    public static void onZombieDeath(LivingDeathEvent event) {
+        if (!(event.getEntity() instanceof TZombieEntity zombie)) return;
+        if (zombie.level().isClientSide() || zombie.isCorpse()) return;
+        if (zombie.isPermanentDeath(event.getSource())) return;   // fire → let it truly die
+        event.setCanceled(true);                                   // stop the death
+        zombie.collapseToCorpse(event.getSource());               // become a corpse instead
+    }
+
+    @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.T_VIRUS_ZOMBIE.get(), TZombieEntity.createTZombieAttributes().build());
     }

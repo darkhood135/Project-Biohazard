@@ -33,4 +33,11 @@ public class TZombieRenderer extends GeoEntityRenderer<TZombieEntity, LivingEnti
         return 0f;   // no vanilla flop — the death animation owns the fall
     }
 
+    @Override
+    public void addRenderData(TZombieEntity animatable, Void relatedObject,
+                              LivingEntityRenderState renderState, float partialTick) {
+        super.addRenderData(animatable, relatedObject, renderState, partialTick);
+        ((GeoRenderState) renderState).addGeckolibData(TZombieModel.VARIANT_TICKET, animatable.getVariant());
+    }
+
 }

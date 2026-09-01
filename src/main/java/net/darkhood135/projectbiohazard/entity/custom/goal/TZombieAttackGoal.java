@@ -27,6 +27,7 @@ public class TZombieAttackGoal extends Goal {
 
     @Override
     public boolean canUse() {
+        if (this.zombie.isCorpse()) return false;
         LivingEntity t = this.zombie.getTarget();
         if (t == null || !t.isAlive()) return false;
         this.target = t;
@@ -35,6 +36,7 @@ public class TZombieAttackGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
+        if (this.zombie.isCorpse() || this.zombie.isGettingUp()) return false;
         if (this.strikeTimer >= 0) return true;                 // never abandon a swing mid-cycle
         LivingEntity t = this.zombie.getTarget();
         return t != null && t.isAlive();

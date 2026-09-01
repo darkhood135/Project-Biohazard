@@ -198,6 +198,17 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ModItems.BORON_SHARD.get()), has(ModItems.BORON_SHARD.get()))
                 .save(output);
 
+        // First Aid Spray
+        shaped(RecipeCategory.TOOLS, ModItems.FIRST_AID_SPRAY.get(), 1)
+                .pattern("XZX")
+                .pattern("ZYZ")
+                .pattern("XXX")
+                .define('X', ModItems.ALUMINUM_INGOT)
+                .define('Y', Items.REDSTONE)
+                .define('Z', ModItems.GREEN_HERB)
+                .unlockedBy(getHasName(ModItems.GREEN_HERB.get()), has(ModItems.GREEN_HERB.get()))
+                .save(output);
+
         // Stone Tiles
         stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_PANELS, Blocks.STONE);
         stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_PANEL_SLAB, Blocks.STONE, 2);
