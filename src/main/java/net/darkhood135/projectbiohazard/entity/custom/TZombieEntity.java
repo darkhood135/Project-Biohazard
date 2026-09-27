@@ -11,7 +11,9 @@ import com.geckolib.renderer.base.GeoRenderState;
 import com.geckolib.util.GeckoLibUtil;
 import net.darkhood135.projectbiohazard.ProjectBiohazard;
 import net.darkhood135.projectbiohazard.entity.custom.goal.TZombieAttackGoal;
+import net.darkhood135.projectbiohazard.entity.custom.goal.TZombieInvestigateGoal;
 import net.darkhood135.projectbiohazard.sound.ModSounds;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -27,6 +29,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.BodyRotationControl;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
@@ -34,6 +37,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
@@ -59,7 +63,7 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
     // Animations
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>("controller", 3, state -> {
+        controllers.add(new AnimationController<>("controller", 6, state -> {
             TZombieEntity zombie = (TZombieEntity) state.animatable();
             if (zombie.isCorpse()) return state.setAndContinue(RawAnimation.begin().thenLoop("corpse"));
             boolean alreadyWalking = state.isCurrentAnimationStage("walk");
@@ -79,15 +83,38 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
                 .additiveAnimations()
                 .triggerableAnim("passiveGroan", RawAnimation.begin().thenPlay("passiveGroan"))
                 .triggerableAnim("injureGroan",  RawAnimation.begin().thenPlay("injureGroan")));
-        controllers.add(new AnimationController<>("leftArm", 20, state -> PlayState.STOP)
+        controllers.add(new AnimationController<>("leftArm", 30, state -> PlayState.STOP)
                 .triggerableAnim("leftArmStretch", RawAnimation.begin().thenPlay("leftArmStretch")));
-        controllers.add(new AnimationController<>("rightArm", 20, state -> PlayState.STOP)
+        controllers.add(new AnimationController<>("rightArm", 30, state -> PlayState.STOP)
                 .triggerableAnim("rightArmStretch", RawAnimation.begin().thenPlay("rightArmStretch")));
-
+        controllers.add(new AnimationController<>("glance", 1, state -> PlayState.STOP)
+                .triggerableAnim("findAhead",    RawAnimation.begin().thenPlay("findAhead"))
+                .triggerableAnim("findLeft",     RawAnimation.begin().thenPlay("findLeft"))
+                .triggerableAnim("findRight",    RawAnimation.begin().thenPlay("findRight"))
+                .triggerableAnim("findBehind",   RawAnimation.begin().thenPlay("findBehind"))
+                .triggerableAnim("findAheadUp",  RawAnimation.begin().thenPlay("findAheadUp"))
+                .triggerableAnim("findLeftUp",   RawAnimation.begin().thenPlay("findLeftUp"))
+                .triggerableAnim("findRightUp",  RawAnimation.begin().thenPlay("findRightUp"))
+                .triggerableAnim("findBehindUp", RawAnimation.begin().thenPlay("findBehindUp")));
     }
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.cache;
+    }
+
+    @Override
+    protected BodyRotationControl createBodyControl() {
+        return new BodyRotationControl(this) {
+            @Override
+            public void clientTick() {
+                if (TZombieEntity.this.entityData.get(DATA_GLANCING)) {
+                    TZombieEntity.this.yBodyRot  = TZombieEntity.this.getYRot();   // hold to the frozen entity yaw
+                    TZombieEntity.this.yBodyRotO = TZombieEntity.this.getYRot();
+                    return;                                                        // skip the client's own turning
+                }
+                super.clientTick();
+            }
+        };
     }
 
     // Forced Facing the Attacker
@@ -137,6 +164,8 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
         this.setVariant(Variant.weightedRandom(this.random).ordinal());
         return super.finalizeSpawn(level, difficulty, reason, data);
     }
+    private static final EntityDataAccessor<Boolean> DATA_GLANCING =
+            SynchedEntityData.defineId(TZombieEntity.class, EntityDataSerializers.BOOLEAN);
 
 
     // Forced Knockback
@@ -190,6 +219,8 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
             applyKnockback(source, 0.3);
             this.triggerAnim("controller", "death");     // full-body death
             this.triggerAnim("groan", "injureGroan");     // groan overlay
+            this.stopTriggeredAnim("leftArm",  "leftArmStretch");
+            this.stopTriggeredAnim("rightArm", "rightArmStretch");
         }
     }
     @Override
@@ -204,9 +235,15 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
     // Passive Groans
     private int groanCooldown = 300 + this.random.nextInt(1000);
     private Entity pendingKnockbackFrom;
+    private float headTrackWeight = 0f;
+    private static final float HEAD_TRACK_STEP = 0.12f;   // ~0.4s to fully swing; tune
+    public float getHeadTrackWeight() { return this.headTrackWeight; }
     @Override
     public void tick() {
+        this.tickStartYaw = this.getYRot();
         super.tick();
+
+        this.headTrackWeight = Mth.approach(this.headTrackWeight, this.isPursuing() ? 1f : 0f, HEAD_TRACK_STEP);
 
         if (!(this.level() instanceof ServerLevel)) return;   // all of this is server-authoritative
 
@@ -214,6 +251,8 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
             this.forcedKnockback(this.pendingKnockbackFrom, 0.3);
             this.pendingKnockbackFrom = null;
         }
+
+        this.entityData.set(DATA_PURSUING, this.getTarget() != null && !this.isCorpse() && this.glanceTicks <= 0);
 
         if (this.isCorpse()) {
             this.setTarget(null);
@@ -241,13 +280,22 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
 
         LivingEntity target = this.getTarget();
 
-        // notice: once on acquiring a target
-        if (target != null && this.lastTarget == null) {
-            this.playSound(ModSounds.FEMALE_T_ZOMBIE_NOTICE.get(), 1.0f, 1.0f);
-            this.triggerAnim("groan", "passiveGroan");
-            this.pursuitGroanCooldown = 40 + this.random.nextInt(60);
+        if (this.glanceTicks > 0) {                                   // runs EVERY tick — this is the countdown
+            this.getNavigation().stop();
+            this.setYRot(this.glanceYaw);      this.yRotO = this.glanceYaw;
+            this.setYBodyRot(this.glanceYaw);  this.yBodyRotO = this.glanceYaw;
+            this.setYHeadRot(this.glanceYaw);  this.yHeadRotO = this.glanceYaw;
+            if (this.glanceTicks == GLANCE_GROAN_TICK) {
+                this.playSound(ModSounds.FEMALE_T_ZOMBIE_NOTICE.get(), 1.0f, 1.0f);
+                this.triggerAnim("groan", "passiveGroan");
+            }
+            if (--this.glanceTicks <= 0) {
+                this.stopTriggeredAnim("glance", this.currentGlance);
+                this.entityData.set(DATA_GLANCING, false);
+                this.pursuitGroanCooldown = 40 + this.random.nextInt(60);
+            }
+            return;
         }
-        this.lastTarget = target;
 
         // stagger countdown + settle window
         if (this.staggerTicks > 0 && --this.staggerTicks <= 0) {
@@ -277,7 +325,9 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
             }
         }
 
-        if (this.wasPursuing && !pursuing) {
+        if (this.investigateTicks > 0 && --this.investigateTicks <= 0) this.clearInvestigation();
+
+        if ((this.wasPursuing && !pursuing)) {
             this.stopTriggeredAnim("leftArm", "leftArmStretch");
             this.stopTriggeredAnim("rightArm", "rightArmStretch");
         }
@@ -300,9 +350,10 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        // in defineSynchedData:
         builder.define(DATA_VARIANT, 0);
         builder.define(DATA_CORPSE, false);
+        builder.define(DATA_PURSUING, false);
+        builder.define(DATA_GLANCING, false);
     }
     public boolean isCorpse() { return this.entityData.get(DATA_CORPSE); }
     private void setCorpse(boolean v) { this.entityData.set(DATA_CORPSE, v); }
@@ -314,6 +365,7 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
         output.putInt("ReviveCount", this.reviveCount);
         output.putInt("ReviveTicks", this.reviveTicks);
         output.putInt("Variant", this.getVariant());
+        output.putBoolean("HasGlanced", this.hasGlanced);
     }
     @Override
     protected void readAdditionalSaveData(ValueInput input) {
@@ -325,6 +377,7 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
             this.reviveCount = input.getIntOr("ReviveCount", 0);
             this.reviveTicks = input.getIntOr("ReviveTicks", 0);
             this.setVariant(input.getIntOr("Variant", 0));
+            this.hasGlanced = input.getBooleanOr("HasGlanced", false);
         }
     }
     public boolean isPermanentDeath(DamageSource source) {
@@ -356,6 +409,8 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
         }
         this.triggerAnim("controller", "death");                   // the fall
         this.triggerAnim("groan", "injureGroan");
+        this.stopTriggeredAnim("leftArm",  "leftArmStretch");
+        this.stopTriggeredAnim("rightArm", "rightArmStretch");
         this.collapseAnimTicks = DEATH_LENGTH_TICKS;               // then settle into the corpse loop
         this.refreshDimensions();
     }
@@ -373,6 +428,87 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
             this.refreshDimensions();
         }
     }
+
+    // Glancing
+    private boolean hasGlanced = false;
+    private int glanceTicks = 0;
+    private float tickStartYaw;
+    private float glanceYaw;
+    private String currentGlance;
+    private static final int GLANCE_DURATION   = 60;   // 3s frozen recognition
+    private static final int GLANCE_GROAN_TICK = 4;    // fire NOTICE ~2.8s in (4 ticks before end)
+    public boolean isGlancing() { return this.glanceTicks > 0; }
+    private void startGlance(LivingEntity target) {
+        this.entityData.set(DATA_GLANCING, true);
+        this.hasGlanced = true;
+        this.glanceTicks = GLANCE_DURATION;
+        this.glanceYaw = this.tickStartYaw;                       // pre-turn facing
+        this.getNavigation().stop();
+        this.currentGlance = pickGlanceAnim(target, this.glanceYaw);
+        this.triggerAnim("glance", this.currentGlance);
+    }
+    private String pickGlanceAnim(LivingEntity target, float bodyYaw) {
+        double dx = target.getX() - this.getX();
+        double dz = target.getZ() - this.getZ();
+        float toYaw = (float) (Mth.atan2(dz, dx) * (180.0 / Math.PI)) - 90.0f;
+        float rel = Mth.wrapDegrees(toYaw - bodyYaw);
+        String dir;
+        if      (rel >= -45 && rel <= 45)   dir = "findAhead";
+        else if (rel > 45   && rel < 135)   dir = "findRight";
+        else if (rel < -45  && rel > -135)  dir = "findLeft";
+        else                                dir = "findBehind";
+        if (target.getY() - this.getY() >= 3.0) dir += "Up";   // player a few blocks up
+        return dir;
+    }
+
+    @Override
+    public void setTarget(@Nullable LivingEntity target) {
+        LivingEntity old = this.getTarget();
+        super.setTarget(target);
+        if (this.level().isClientSide() || this.isCorpse()) return;
+        if (target != null && old == null) {                    // acquisition edge
+            if (!this.hasGlanced) {
+                startGlance(target);
+            } else {
+                this.playSound(ModSounds.FEMALE_T_ZOMBIE_NOTICE.get(), 1.0f, 1.0f);
+                this.triggerAnim("groan", "passiveGroan");
+                this.pursuitGroanCooldown = 40 + this.random.nextInt(60);
+            }
+        }
+    }
+
+    // Investigate
+    private BlockPos investigatePos;
+    private int investigateTicks;
+    private static final int INVESTIGATE_DURATION = 200;   // ~10s to reach + look before giving up
+
+    public BlockPos getInvestigatePos() { return this.investigatePos; }
+    public int getInvestigateTicks() { return this.investigateTicks; }
+    public void clearInvestigation() { this.investigatePos = null; this.investigateTicks = 0; }
+
+    /** A zombie hears a noise at a location and goes to check it unless it's already got a target or is down. */
+    private static final float INVESTIGATE_CHANCE = 0.44f;
+    public void hearNoise(BlockPos pos) {
+        if (this.isCorpse() || this.isGettingUp() || this.getTarget() != null) return;
+        if (this.random.nextFloat() >= INVESTIGATE_CHANCE) return;   // 44% — some zombies bother, some don't
+        this.investigatePos = pos;
+        this.investigateTicks = INVESTIGATE_DURATION;
+    }
+
+    /** Alert every eligible zombie within radius to a noise at pos. Call from noise sources. */
+    public static void emitNoise(ServerLevel level, BlockPos pos, double radius) {
+        Vec3 c = Vec3.atCenterOf(pos);
+        AABB box = new AABB(c, c).inflate(radius);
+        for (TZombieEntity z : level.getEntitiesOfClass(TZombieEntity.class, box,
+                z -> z.getTarget() == null && !z.isCorpse() && !z.isGettingUp())) {
+            if (z.distanceToSqr(c) <= radius * radius) z.hearNoise(pos);
+        }
+    }
+
+    // Pursuit
+    private static final EntityDataAccessor<Boolean> DATA_PURSUING =
+            SynchedEntityData.defineId(TZombieEntity.class, EntityDataSerializers.BOOLEAN);
+    public boolean isPursuing() { return this.entityData.get(DATA_PURSUING); }
 
     // Resurrection
     private void resurrect() {
@@ -398,6 +534,7 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.goalSelector.addGoal(2, new TZombieAttackGoal(this));
         this.goalSelector.addGoal(3,new RandomStrollGoal(this, 1d));
+        this.goalSelector.addGoal(3, new TZombieInvestigateGoal(this));
 
         super.registerGoals();
     }
@@ -411,7 +548,7 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
     private int   staggerTicks = 0;
     private float damageSinceStagger = 0f;
     private float staggerThreshold = 0f;                 // rolled lazily (needs maxHealth)
-    private static final int STAGGER_DURATION = 30;      // stun length in ticks — match your stagger animation
+    private static final int STAGGER_DURATION = 57;      // stun length in ticks — match your stagger animation
     public boolean isStaggering() { return this.staggerTicks > 0; }
     @Override
     public boolean hurtServer(ServerLevel level, DamageSource source, float damage) {
@@ -428,7 +565,7 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
         if (hurt) {
             this.triggerAnim("flinch", this.getRandom().nextBoolean() ? "flinch1" : "flinch2");
 
-            if (this.staggerTicks <= 0 && this.isAlive()) {                 // not already staggering, not a killing blow
+            if (this.staggerTicks <= 0 && this.isAlive() && !this.isGlancing()) {                 // not already staggering, not a killing blow
                 if (this.staggerThreshold <= 0f) this.staggerThreshold = rollStaggerThreshold();
                 this.damageSinceStagger += before - this.getHealth();       // actual HP lost, not raw damage
                 if (this.damageSinceStagger >= this.staggerThreshold) startStagger(source);
@@ -445,7 +582,9 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
 
     @Override
     protected boolean isImmobile() {
-        return super.isImmobile() || this.staggerTicks > 0 || this.isCorpse() || this.resurrectTicks > 0;
+        // isImmobile:
+        return super.isImmobile() || this.staggerTicks > 0 || this.isCorpse()
+                || this.resurrectTicks > 0 || this.glanceTicks > 0;
     }
     public boolean isGettingUp() { return this.resurrectTicks > 0; }
 
@@ -455,7 +594,7 @@ public class TZombieEntity extends PathfinderMob implements GeoEntity {
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1d)
                 .add(Attributes.MOVEMENT_SPEED, 0.16d)
                 .add(Attributes.TEMPT_RANGE, 16d)
-                .add(Attributes.FOLLOW_RANGE, 16d)
+                .add(Attributes.FOLLOW_RANGE, 70)
                 .add(Attributes.ATTACK_DAMAGE, 3.0); // basic strike ~1.5 hearts; tune later
     }
 }

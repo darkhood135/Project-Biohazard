@@ -11,6 +11,7 @@ import net.darkhood135.projectbiohazard.item.custom.HatchetItem;
 import net.darkhood135.projectbiohazard.item.custom.SyringeItem;
 import net.darkhood135.projectbiohazard.networking.ServerboundPackets;
 import net.darkhood135.projectbiohazard.networking.packet.TestPacketC2S;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
@@ -40,12 +41,18 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
+import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.level.NoteBlockEvent;
+import net.neoforged.neoforge.event.level.PistonEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
@@ -297,5 +304,55 @@ public class ModEvents {
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.T_VIRUS_ZOMBIE.get(), TZombieEntity.createTZombieAttributes().build());
+    }
+
+    @SubscribeEvent
+    public static void blockBreakNoise(BlockEvent.BreakEvent event) {
+        if (event.getLevel() instanceof ServerLevel level && !event.getPlayer().isCrouching())
+            TZombieEntity.emitNoise(level, event.getPos(), 16.0);   // mining is loud
+    }
+
+    @SubscribeEvent
+    public static void blockPlaceNoise(BlockEvent.EntityPlaceEvent event) {
+        if (event.getLevel() instanceof ServerLevel level && event.getEntity() instanceof Player)
+            TZombieEntity.emitNoise(level, event.getPos(), 8.0);
+    }
+
+    @SubscribeEvent
+    public static void attackNoise(AttackEntityEvent event) {
+        if (event.getEntity().level() instanceof ServerLevel level)
+            TZombieEntity.emitNoise(level, event.getEntity().blockPosition(), 16.0);   // swinging/fighting
+    }
+
+    @SubscribeEvent
+    public static void footstepNoise(PlayerTickEvent.Post event) {
+        Player p = event.getEntity();
+        if (!(p.level() instanceof ServerLevel level) || p.isSpectator() || p.isCrouching()) return;  // sneak = silent
+        if (p.tickCount % 8 != 0) return;                       // sample ~every 0.4s
+        double radius;
+        if (p.isSprinting()) radius = 12.0;                     // running is loud
+        else if (p.walkAnimation.isMoving()) radius = 5.0;      // walking is quiet
+        else return;                                            // standing still makes no footstep noise
+        TZombieEntity.emitNoise(level, p.blockPosition(), radius);
+    }
+
+    @SubscribeEvent
+    public static void pistonNoise(PistonEvent.Post event) {
+        if (event.getLevel() instanceof ServerLevel level)
+            TZombieEntity.emitNoise(level, event.getPos(), 12.0);   // redstone traps/lures
+    }
+
+    @SubscribeEvent
+    public static void noteBlockNoise(NoteBlockEvent.Play event) {
+        if (event.getLevel() instanceof ServerLevel level)
+            TZombieEntity.emitNoise(level, event.getPos(), 16.0);   // a deliberate "lure" tool
+    }
+
+    @SubscribeEvent
+    public static void projectileNoise(ProjectileImpactEvent event) {
+        if (event.getProjectile().level() instanceof ServerLevel level) {
+            BlockPos pos = BlockPos.containing(event.getRayTraceResult().getLocation());
+            TZombieEntity.emitNoise(level, pos, 12.0);              // arrows, snowballs — noise where they LAND
+        }
     }
 }

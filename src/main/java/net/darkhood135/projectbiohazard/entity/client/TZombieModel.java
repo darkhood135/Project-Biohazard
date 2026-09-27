@@ -25,4 +25,6 @@ public class TZombieModel extends GeoModel<TZombieEntity> {
         int id = renderState.getOrDefaultGeckolibData(VARIANT_TICKET, 0);
         return TZombieEntity.Variant.byId(id).texture;
     }
+
+    public static final DataTicket<Float> HEAD_WEIGHT_TICKET = DataTicket.create("t_zombie_head_weight", Float.class);
 }
